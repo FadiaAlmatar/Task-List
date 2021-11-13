@@ -24,7 +24,7 @@
                     <form style="width:100%;margin:auto"action="{{route('tasks.store_status')}}" method="POST">
                         @csrf
                     <table class="table table-bordered tasksTable" style="width:100%;text-align:center">
-                        <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">Assignment Tasks</caption>
+                        <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">{{__('Assignment Tasks')}}</caption>
                         <thead>
                             <tr>
                               <th scope="col" style="width: 15%">{{__('Title')}}</th>

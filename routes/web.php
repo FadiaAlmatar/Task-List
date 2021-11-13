@@ -2,11 +2,13 @@
 
 use App\Models\Task;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\EmployeeController;
-use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +29,15 @@ Route::resource('tasks', TaskController::class);
 Route::resource('employees', EmployeeController::class);
 Route::post('/task',[TaskController::class,'store_status'])->name('tasks.store_status');
 Route::get('/archive',[TaskController::class,'archive'])->name('archive');
+
+Route::get('locale/{locale}', function ($locale){
+    if (! in_array($locale, ['en', 'ar'])) {
+        abort(400);
+    }
+    Session::put('locale', $locale);
+    App::setLocale($locale);
+    return redirect()->back();
+});
 
 Route::get('/dashboard', function () {
 

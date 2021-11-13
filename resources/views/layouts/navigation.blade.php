@@ -17,11 +17,20 @@
                     </x-nav-link>
                 </div>
             </div>
-
+            {{-- <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white">
+                  {{ __('lang') }}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{{asset('/locale/ar')}}" style="color: white">{{ __('Ar') }}</a></li>
+                  <li><a class="dropdown-item" href="{{asset('/locale/en')}}" style="color: white">{{ __('En') }}</a></li>
+                </ul>
+             </li> --}}
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <a href="{{route('dashboard')}}"><button style="background:blue"class="btn btn-danger" type="submit"><i class="fa fa-home" aria-hidden="true"></i></button></a>&nbsp;&nbsp;
+
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">

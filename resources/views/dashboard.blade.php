@@ -24,34 +24,10 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            {{-- <div class="container">
-            <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-12">
-            <a href="{{route('tasks.create')}}" class="btn btn-primary btn-md active" role="button" aria-pressed="true">
-                <i class="fa fa-plus fa-sm" aria-hidden="true">  {{__(' New Task')}}</i></a>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-12">
-            <a href="{{route('tasks.index')}}" class="btn btn-primary btn-md active" role="button" aria-pressed="true">
-                {{__('My Tasks')}}</a>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-12">
-            <a href="{{route('employees.create')}}" class="btn btn-primary btn-md active" role="button" aria-pressed="true">
-                <i class="fa fa-plus fa-sm" aria-hidden="true"> {{__('Add Employees')}}</i></a>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-12">
-            <a href="{{route('employees.index')}}" class="btn btn-primary btn-md active" role="button" aria-pressed="true">
-                {{__('My Employees')}}</a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-            <a href="" class="btn btn-primary btn-md active" role="button" aria-pressed="true">
-                {{__('Archive')}}</a>
-            </div>
-            </div>
-            </div><br> --}}
-           <!-- Example single danger button -->
+
            <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown button
+              {{__('Task Management')}}
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" href="{{route('tasks.create')}}">{{__(' New Task')}}</a>
@@ -65,7 +41,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <table class="table table-bordered tasksTable" style="width:100%;text-align:center">
-                        <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">Created Tasks</caption>
+                        <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">{{__('Created Tasks')}}</caption>
                         <thead>
                           <tr class="bg-primary">
                             <th scope="col" style="width: 30%">{{__('Action')}}</th>
@@ -92,7 +68,8 @@
                         @endif
                           {{-- <tr> --}}
                             <td scope="row">
-                                <a><button type="button" class="btn btn-outline-primary">{{__('VIEW')}}</button></a>
+                                {{-- <a><button type="button" class="btn btn-outline-primary">{{__('VIEW')}}</button></a> --}}
+                                <a><button type="button" class="btn btn-outline-primary">{{__('EDIT')}}</button></a>
                                 {{-- <a href="{{route('tasks.edit', $task)}}"><button class="btn btn-outline-primary">{{__('EDIT')}}</button></a> --}}
                                 <a><button type="button" class="btn btn-outline-primary">{{__('DEL')}}</button></a>
                             </td>
@@ -113,3 +90,30 @@
         </div>
     </div>
 </x-app-layout>
+
+
+   {{-- <div class="container">
+            <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+            <a href="{{route('tasks.create')}}" class="btn btn-primary btn-md active" role="button" aria-pressed="true">
+                <i class="fa fa-plus fa-sm" aria-hidden="true">  {{__(' New Task')}}</i></a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+            <a href="{{route('tasks.index')}}" class="btn btn-primary btn-md active" role="button" aria-pressed="true">
+                {{__('My Tasks')}}</a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+            <a href="{{route('employees.create')}}" class="btn btn-primary btn-md active" role="button" aria-pressed="true">
+                <i class="fa fa-plus fa-sm" aria-hidden="true"> {{__('Add Employees')}}</i></a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12">
+            <a href="{{route('employees.index')}}" class="btn btn-primary btn-md active" role="button" aria-pressed="true">
+                {{__('My Employees')}}</a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+            <a href="" class="btn btn-primary btn-md active" role="button" aria-pressed="true">
+                {{__('Archive')}}</a>
+            </div>
+            </div>
+            </div><br> --}}
+           <!-- Example single danger button -->

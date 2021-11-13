@@ -11,7 +11,7 @@
                         {{-- <div class="tab-pane fade" id="employees" role="tabpanel" aria-labelledby="employees-tab"> --}}
                             <div class="table-responsive">
                                 <table class="table" id="employee">
-                                    <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">New Employees</caption>
+                                    <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">{{__('New Employees')}}</caption>
 
                                     <thead style="background: rgba(59, 130, 246, 0.5)">
                                     <tr>
