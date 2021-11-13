@@ -13,20 +13,20 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" >
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                       <h3 style="color:white;">{{ Auth::User()->company_name }} Company</h3>
+                       <h3 style="color:white;">{{ Auth::User()->company_name }} {{__('Company')}}</h3>
                     </x-nav-link>
+
+                <div class="dropdown">
+                    <button style="margin-top:13px;"class="btn btn-primary dropdown-toggle"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {{__('lang')}}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="{{asset('/locale/ar')}}">{{ __('Ar') }}</a>
+                      <a class="dropdown-item" href="{{asset('/locale/en')}}">{{ __('En') }}</a>
+                    </div>
                 </div>
             </div>
-            {{-- <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white">
-                  {{ __('lang') }}
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="{{asset('/locale/ar')}}" style="color: white">{{ __('Ar') }}</a></li>
-                  <li><a class="dropdown-item" href="{{asset('/locale/en')}}" style="color: white">{{ __('En') }}</a></li>
-                </ul>
-             </li> --}}
-
+            </div>
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <a href="{{route('dashboard')}}"><button style="background:blue"class="btn btn-danger" type="submit"><i class="fa fa-home" aria-hidden="true"></i></button></a>&nbsp;&nbsp;
@@ -62,6 +62,15 @@
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
+                <div style="margin-right:25px"class="dropdown">
+                    <button style="margin-top:13px;"class="btn btn-primary dropdown-toggle"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {{__('lang')}}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="{{asset('/locale/ar')}}">{{ __('Ar') }}</a>
+                      <a class="dropdown-item" href="{{asset('/locale/en')}}">{{ __('En') }}</a>
+                    </div>
+                </div>
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -69,6 +78,7 @@
                     </svg>
                 </button>
             </div>
+
         </div>
     </div>
 
@@ -76,7 +86,7 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ Auth::User()->company_name }} {{__('Company')}}
             </x-responsive-nav-link>
         </div>
 
@@ -86,6 +96,8 @@
                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
             </div>
+
+
 
             <div class="mt-3 space-y-1">
                 <!-- Authentication -->

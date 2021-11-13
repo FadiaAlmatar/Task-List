@@ -30,7 +30,7 @@
               {{__('Task Management')}}
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="{{route('tasks.create')}}">{{__(' New Task')}}</a>
+              <a class="dropdown-item" href="{{route('tasks.create')}}">{{__('New Task')}}</a>
               <a class="dropdown-item" href="{{route('tasks.index')}}">{{__('My Tasks')}}</a>
               @if(Auth::User()->parentId == null)<a class="dropdown-item" href="{{route('employees.create')}}">{{__('Add Employees')}}</a>@endif
               <a class="dropdown-item" href="{{route('employees.index')}}">{{__('Employees')}}</a>
