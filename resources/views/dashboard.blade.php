@@ -69,9 +69,9 @@
                           {{-- <tr> --}}
                             <td scope="row">
                                 {{-- <a><button type="button" class="btn btn-outline-primary">{{__('VIEW')}}</button></a> --}}
-                                <a><button type="button" class="btn btn-outline-primary">{{__('EDIT')}}</button></a>
+                                <a><button type="button" class="btn btn-outline-primary"><i style="color:black"class="fa fa-edit" ></i></button></a>
                                 {{-- <a href="{{route('tasks.edit', $task)}}"><button class="btn btn-outline-primary">{{__('EDIT')}}</button></a> --}}
-                                <a><button type="button" class="btn btn-outline-primary">{{__('DEL')}}</button></a>
+                                <a><button type="button" class="btn btn-outline-primary"><i style="color:black"class="fa fa-trash" aria-hidden="true"></i></button></a>
                             </td>
                             <td>{{$task->status}}</td>
                             <td>{{$task->description}}</td>
