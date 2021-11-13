@@ -47,7 +47,7 @@
                           </tbody>
                     </table>
                     <br>
-                    <a href="{{route('dashboard')}}"><button class="btn btn-danger" type="submit"><i class="fa fa-home" aria-hidden="true"></i></button></a>
+                    {{-- <a href="{{route('dashboard')}}"><button class="btn btn-danger" type="submit"><i class="fa fa-home" aria-hidden="true"></i></button></a> --}}
                     <br>
                 </div>
             </div>

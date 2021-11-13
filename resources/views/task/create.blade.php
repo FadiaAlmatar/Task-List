@@ -47,6 +47,7 @@
                     </div>
                         <button class="btn btn-primary" type="submit">{{__('Submit task')}}</button>
                     </form>
+                    {{-- <a href="{{route('dashboard')}}"><button class="btn btn-danger" type="submit"><i class="fa fa-home" aria-hidden="true"></i></button></a> --}}
                 </div>
             </div>
         </div>
