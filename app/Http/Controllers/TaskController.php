@@ -17,7 +17,6 @@ class TaskController extends Controller
      */
     public function index()
     {
-        // dd("here");
         $tasks = Task::where('assigned_to', Auth::User()->id)->get();
         return view('task.index',['tasks' => $tasks]);
     }
@@ -56,15 +55,12 @@ class TaskController extends Controller
         $task->description = $request->description;
         $task->duedate = $request->duedate;
         $task->assigned_to = $request->assigned_to;
-        $task->status = "not started";//not done
-
+        $task->status = "not started";
         $task->user_id = Auth::User()->id;
-        // dd("here");
         $task->save();
-        // return redirect()->route('tasks.show',$task);
         return redirect()->route('dashboard');
     }
-    public function store_status(Request $request)//manager
+    public function store_status(Request $request)
     {
         for ($i = 0; $i < count($request->status); $i++) {
             $task = Task::find($request->taskId[$i]);
@@ -75,7 +71,6 @@ class TaskController extends Controller
     }
     public function archive(){
         $tasks = DB::select("CALL pr_employees_tasks( ".Auth::User()->id.")");//employees who have assign
-        // $tasks = $tasks->where('status', 'finished')->get();
         return view('task.archive',['tasks' => $tasks]);
     }
 
@@ -99,7 +94,6 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        // dd("here");
         $task = Task::find($task->id);
         $users = User::all();
         return view('task.create',['task'=>$task,'users'=>$users]);
