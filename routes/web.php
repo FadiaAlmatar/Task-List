@@ -42,11 +42,14 @@ Route::get('locale/{locale}', function ($locale){
 Route::get('/dashboard', function () {
 
     if(Auth::User()->parentId == null){
-        $tasks = DB::select("CALL pr_employees_tasks( ".Auth::User()->id.")");//employees who have assign
+        // dd(Auth::User()->id);
+        $tasks = DB::select("CALL pr_employees_tasks(".Auth::User()->id.")");//employees who have assign
+
     }
     else{
         $tasks = Task::where('user_id', Auth::User()->id)->get();//all tasks that I created it
     }
+    // dd($tasks);
     return view('dashboard',['tasks'=> $tasks]);
 })->middleware(['auth'])->name('dashboard');
 
@@ -56,10 +59,16 @@ require __DIR__.'/auth.php';
 
 
     // dd("here");
-    // DB::table('tasks')->
-    // $tasks =  Task::join('users', function ($join) {
-    //                 $join->on('tasks.assigned_to', '=', 'users.id')
-    //                 ->where('users.parentId', Auth::User()->id)
-    //                 ->orwhere('users.id', Auth::User()->id);
-    //     })->get();
+
+ // $tasks =   DB::table('tasks')->join('users', function ($join) {
+        //             $join->on('tasks.assigned_to', '=', 'users.id')
+        //             ->where('users.parentId','=', Auth::User()->id)
+        //             ->orwhere('users.id','=', Auth::User()->id);
+        // })->get();
         // dd($tasks);
+
+
+        // SELECT * from tasks
+        // INNER JOIN
+        // users ON (tasks.assigned_to = users.id)
+        // where (users.parentId = id) or (users.id = id);

@@ -36,7 +36,7 @@
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                            <input class="input"type="email" name="email[0]" value= "{{old('email')}}" class="form-control" id="email" placeholder="" required>
+                                            <input class="input"type="email" name="email[0]" value= "{{old('email')}}" class="form-control" id="email" placeholder="" unique required>
                                             @if($errors->has('email.0'))
                                                 @foreach($errors->get('email.0') as $error)
                                                 <p class="help is-danger">{{ $error }}</p>

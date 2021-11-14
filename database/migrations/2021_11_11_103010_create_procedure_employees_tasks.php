@@ -16,12 +16,13 @@ class CreateProcedureEmployeesTasks extends Migration
     public function up()
     {
         $procedure = "DROP PROCEDURE IF EXISTS `pr_employees_tasks`;
-        CREATE PROCEDURE `pr_employees_tasks` (IN id bigint)
+        CREATE PROCEDURE `pr_employees_tasks` (IN num bigint)
         BEGIN
-        SELECT * from tasks
+        SELECT tasks.id ,tasks.title,tasks.description,tasks.status,tasks.assigned_to,tasks.user_id,tasks.created_at,tasks.updated_at,tasks.duedate,
+               users.name ,users.email ,users.password ,users.parentId ,users.company_name from tasks
         INNER JOIN
         users ON (tasks.assigned_to = users.id)
-        where (users.parentId = id) or (users.id = id);
+        where (users.parentId = num) or (users.id = num);
         END;";
 
         DB::unprepared($procedure);

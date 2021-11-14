@@ -35,10 +35,16 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         //  $request->validate([
-        //             'name.*' => ['required', 'string', 'max:255'],
-        //             'email.*' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        //             'name.*' => ['required', 'string', 'min:3','max:255'],
+        //             // 'email.*' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         //             'password.*' => ['required', 'confirmed', Rules\Password::defaults()],
         //             ]);
+
+        // $this->validate($request, [
+        //     '*.item_id' => 'required|integer',
+        //     '*.item_no' => 'required|integer',
+        //     '*.size'    => 'required|max:191',
+        // ]);
             for ($i = 0; $i < count($request->name); $i++) {
 
                 $user = new User();

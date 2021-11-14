@@ -92,9 +92,10 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function edit(Task $task)
+    public function edit($id)
     {
-        $task = Task::find($task->id);
+        // dd($id);
+        $task = Task::find($id);
         $users = User::all();
         return view('task.create',['task'=>$task,'users'=>$users]);
     }
