@@ -29,7 +29,6 @@ Route::resource('tasks', TaskController::class);
 Route::resource('employees', EmployeeController::class);
 Route::post('/task',[TaskController::class,'store_status'])->name('tasks.store_status');
 Route::get('/archive',[TaskController::class,'archive'])->name('archive');
-
 Route::get('locale/{locale}', function ($locale){
     if (! in_array($locale, ['en', 'ar'])) {
         abort(400);
@@ -38,23 +37,15 @@ Route::get('locale/{locale}', function ($locale){
     App::setLocale($locale);
     return redirect()->back();
 });
-
 Route::get('/dashboard', function () {
-
     if(Auth::User()->parentId == null){
-        // dd(Auth::User()->id);
         $tasks = DB::select("CALL pr_employees_tasks(".Auth::User()->id.")");//employees who have assign
-
-    }
-    else{
-        $tasks = Task::where('user_id', Auth::User()->id)->get();//all tasks that I created it
-    }
-    // dd($tasks);
+    }else{ $tasks = Task::where('user_id', Auth::User()->id)->get();//all tasks that I created it
+     }
     return view('dashboard',['tasks'=> $tasks]);
 })->middleware(['auth'])->name('dashboard');
-
-
 Route::get('/printarchive', [TaskController::class, 'printArchive'])->name('tasks.printArchive');
+Auth::routes(['verify' =>true]);
 require __DIR__.'/auth.php';
 
 
