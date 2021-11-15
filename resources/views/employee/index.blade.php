@@ -33,7 +33,7 @@
                               @foreach ($users as $user)
                               <tr>
                                 @if(Auth::User()->parentId == null) <td scope="row">
-                                    <a href="{{route('employees.edit', $user)}}"><button class="btn btn-outline-primary"><i style="color:black"class="fa fa-edit" ></i></button></a>
+                                    <a href="{{route('employees.edit', $user->id)}}"><button class="btn btn-outline-primary"><i style="color:black"class="fa fa-edit" ></i></button></a>
                                     <a><button type="button" class="btn btn-outline-primary"><i style="color:black"class="fa fa-trash" aria-hidden="true"></i></button></a>
                                 </td>@endif
                                    <td>{{$user->name}}</td>
