@@ -17,7 +17,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::where('assigned_to', Auth::User()->id)->get();
+        $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->get();
         return view('task.index',['tasks' => $tasks]);
     }
 
@@ -120,7 +120,7 @@ class TaskController extends Controller
         $task->description = $request->description;
         $task->duedate = $request->duedate;
         $task->assigned_to = $request->assigned_to;
-        $task->status = 0;//not done
+        $task->status =  "not started";
         $task->user_id = Auth::User()->id;
         $task->save();
         return redirect()->route('dashboard');
