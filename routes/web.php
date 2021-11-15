@@ -53,6 +53,8 @@ Route::get('/dashboard', function () {
     return view('dashboard',['tasks'=> $tasks]);
 })->middleware(['auth'])->name('dashboard');
 
+
+Route::get('/printarchive', [TaskController::class, 'printArchive'])->name('tasks.printArchive');
 require __DIR__.'/auth.php';
 
 

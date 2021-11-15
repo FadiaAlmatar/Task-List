@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
@@ -63,5 +64,7 @@ class EmployeeController extends Controller
         $user = User::find($user->id);
         return view('employee.edit',['user'=>$user]);
     }
+
+  
 
 }
