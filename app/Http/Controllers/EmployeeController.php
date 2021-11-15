@@ -14,7 +14,7 @@ class EmployeeController extends Controller
     public function index()
     {
         if(Auth::User()->parentId == null){
-          $users = User::where('parentId', Auth::User()->id)->orwhere('parentId', null)->get();
+          $users = User::where('parentId', Auth::User()->id)->orwhere('id', Auth::User()->id)->get();
         }else{
             $users = User::where('parentId', Auth::User()->parentId)->orwhere('id', Auth::User()->parentId)->get();
         }
