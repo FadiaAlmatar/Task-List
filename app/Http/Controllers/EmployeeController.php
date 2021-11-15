@@ -13,7 +13,11 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        $users = User::where('parentId', Auth::User()->id)->orwhere('parentId', null)->get();
+        if(Auth::User()->parentId == null){
+          $users = User::where('parentId', Auth::User()->id)->orwhere('parentId', null)->get();
+        }else{
+            $users = User::where('parentId', Auth::User()->parentId)->orwhere('id', Auth::User()->parentId)->get();
+        }
         return view('employee.index',['users' => $users]);
     }
 
@@ -65,6 +69,6 @@ class EmployeeController extends Controller
         return view('employee.edit',['user'=>$user]);
     }
 
-  
+
 
 }

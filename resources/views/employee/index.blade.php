@@ -24,7 +24,7 @@
                         <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">{{__('Employees')}} {{Auth::User()->company_name}}</caption>
                         <thead>
                             <tr>
-                              <th scope="col" style="width: 20%">{{__('Action')}}</th>
+                              @if(Auth::User()->parentId == null)<th scope="col" style="width: 20%">{{__('Action')}}</th>@endif
                               <th scope="col" style="width: 15%">{{__('Name')}}</th>
                               <th scope="col" width="30%">{{__('Email')}}</th>
                             </tr>
@@ -32,10 +32,10 @@
                           <tbody>
                               @foreach ($users as $user)
                               <tr>
-                                <td scope="row">
+                                @if(Auth::User()->parentId == null) <td scope="row">
                                     <a href="{{route('employees.edit', $user)}}"><button class="btn btn-outline-primary"><i style="color:black"class="fa fa-edit" ></i></button></a>
                                     <a><button type="button" class="btn btn-outline-primary"><i style="color:black"class="fa fa-trash" aria-hidden="true"></i></button></a>
-                                </td>
+                                </td>@endif
                                    <td>{{$user->name}}</td>
                                    <td>{{$user->email}}</td>
                               </tr>

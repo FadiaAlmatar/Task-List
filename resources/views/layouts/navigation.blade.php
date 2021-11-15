@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-    <div class="container">
+    <div class="container-fluid">
       <a class="navbar-brand" href="{{route('dashboard')}}">
       <h3 style="color:white;">{{ Auth::User()->company_name }} <span>{{__('Company')}}</span> </h3></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,7 +10,12 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{route('dashboard')}}"  style="color: white">{{__('Home')}}</a>
           </li>
-
+          <li class="nav-item">
+          <a  style="color: white"class="nav-link" href="{{route('tasks.index')}}">{{__('My Tasks')}}</a>
+          </li>
+          <li class="nav-item">
+            <a  style="color: white"class="nav-link" href="{{route('employees.edit', Auth::User())}}">{{__('My Profile')}}</a>
+        </li>
           <li class="nav-item dropdown">
             <a  style="color: white"class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               {{__('lang')}}
