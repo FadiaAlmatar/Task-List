@@ -70,7 +70,12 @@
                                 {{-- <a><button type="button" class="btn btn-outline-primary">{{__('VIEW')}}</button></a> --}}
                                 <a href="{{route('tasks.edit',$task->id)}}"><button type="button" class="btn btn-outline-primary"><i style="color:black"class="fa fa-edit" ></i></button></a>
                                 {{-- <a href="{{route('tasks.edit', $task)}}"><button class="btn btn-outline-primary">{{__('EDIT')}}</button></a> --}}
-                                <a><button type="button" class="btn btn-outline-primary"><i style="color:black"class="fa fa-trash" aria-hidden="true"></i></button></a>
+                                {{-- <a href="{{route('tasks.destroy', $task->id)}}"><button type="button" class="btn btn-outline-primary"><i style="color:black"class="fa fa-trash" aria-hidden="true"></i></button></a> --}}
+                                <form action="{{route('tasks.destroy', $task->id)}}" method="POST" style="display:inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-light chat-send-btn"><i style="color:red"class="fa fa-trash" aria-hidden="true"></i></button>
+                                 </form>
                             </td>
                             <td>{{$task->status}}</td>
                             <td>{{$task->description}}</td>

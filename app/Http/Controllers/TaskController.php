@@ -132,9 +132,12 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
+    public function destroy($id)
     {
-        //
+        // dd("here");
+        $task = Task::findOrFail($id);
+        $task->delete();
+        return redirect()->route('dashboard');
     }
 
     public function printArchive(Request $request)
