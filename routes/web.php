@@ -45,7 +45,7 @@ Route::get('/dashboard', function () {
     return view('dashboard',['tasks'=> $tasks]);
 })->middleware(['auth'])->name('dashboard');
 Route::get('/printarchive', [TaskController::class, 'printArchive'])->name('tasks.printArchive');
-Auth::routes(['verify' =>true]);
+// Auth::routes(['verify' =>true]);
 require __DIR__.'/auth.php';
 
 

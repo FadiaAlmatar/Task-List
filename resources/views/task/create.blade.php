@@ -15,14 +15,14 @@
                             @error('title')
                             <p class="help is-danger" style="color: red">{{ $message }}</p>
                             @enderror
-                        </div>
+                        </div><br>
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1">{{__('Description Task')}}</label>
                             <textarea name="description"class="form-control" id="exampleFormControlTextarea1" rows="3">@if(!empty($task)) {{$task->description}} @else {{old('description')}} @endif</textarea>
                             @error('description')
                             <p class="help is-danger"style="color: red">{{ $message }}</p>
                             @enderror
-                        </div>
+                        </div><br>
                         <div class="form-group">
                         <label for="exampleFormControlSelect1">{{__('Assigned To')}}</label>
                         <select name="assigned_to"class="form-control" id="exampleFormControlSelect1">
@@ -37,7 +37,7 @@
                         @error('assigned_to')
                         <p class="help is-danger" style="color: red">{{ $message }}</p>
                         @enderror
-                        </div>
+                        </div><br>
                         <div class="form-group">
                         <label for="exampleFormControlSelect2">{{__('Due Date')}}</label>
                         <input name="duedate"type="datetime-local" value=@if(!empty($task)) "{{$task->duedate->format('Y.m.d H:i:s')}}" @else "{{old('duedate')}}" @endif/>
