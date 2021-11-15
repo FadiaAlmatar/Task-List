@@ -45,12 +45,14 @@
                             <p class="help is-danger" style="color: red">{{ $message }}</p>
                         @enderror
                     </div>
+                    <br><br><br>
                         @if (empty($task))
                           <button class="btn btn-primary" type="submit">{{__('Submit task')}}</button>
                         @else
                           <button class="btn btn-primary" type="submit">{{__('Edit task')}}</button>
                         @endif
                     </form>
+                    <br>
                     {{-- <a href="{{route('dashboard')}}"><button class="btn btn-danger" type="submit"><i class="fa fa-home" aria-hidden="true"></i></button></a> --}}
                 </div>
             </div>

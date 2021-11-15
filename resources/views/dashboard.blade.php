@@ -35,20 +35,19 @@
               @if(Auth::User()->parentId == null)<a class="dropdown-item" href="{{route('employees.create')}}">{{__('Add Employees')}}</a>@endif
               <a class="dropdown-item" href="{{route('employees.index')}}">{{__('Employees')}}</a>
               <a class="dropdown-item" href="{{route('archive')}}">{{__('Archive')}}</a>
-
             </div>
-          </div><br>
+          </div><br><br>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <table class="table table-bordered tasksTable" style="width:100%;text-align:center">
                         <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">{{__('Created Tasks')}}</caption>
                         <thead>
                           <tr class="bg-primary">
-                            <th scope="col" style="width: 30%">{{__('Action')}}</th>
+                            <th scope="col" style="width: 15%">{{__('Action')}}</th>
                             <th scope="col" width="10%">{{__('Status')}}</th>
-                            <th scope="col" style="width: 30%">{{__('Task')}}</th>
-                            <th scope="col" style="width: 15%">{{__('Assigned From')}}</th>
-                            <th scope="col" style="width: 15%">{{__('Assigned To')}}</th>
+                            <th scope="col" style="width: 25%">{{__('Task')}}</th>
+                            <th scope="col" style="width: 10%">{{__('Assigned From')}}</th>
+                            <th scope="col" style="width: 10%">{{__('Assigned To')}}</th>
                             <th scope="col" style="width: 15%">{{__('Due Date')}}</th>
                             <th scope="col" style="width: 15%">{{__('create Date')}}</th>
                             <th scope="col" style="width: 15%">{{__('update Date')}}</th>

@@ -24,7 +24,7 @@
                         <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">{{__('Employees')}} {{Auth::User()->company_name}}</caption>
                         <thead>
                             <tr>
-                              <th scope="col" style="width: 30%">{{__('Action')}}</th>
+                              <th scope="col" style="width: 20%">{{__('Action')}}</th>
                               <th scope="col" style="width: 15%">{{__('Name')}}</th>
                               <th scope="col" width="30%">{{__('Email')}}</th>
                             </tr>
@@ -33,17 +33,16 @@
                               @foreach ($users as $user)
                               <tr>
                                 <td scope="row">
-                                    {{-- <a><button type="button" class="btn btn-outline-primary">{{__('VIEW')}}</button></a> --}}
-                                    <a href="{{route('employees.edit', $user)}}"><button class="btn btn-outline-primary">{{__('EDIT')}}</button></a>
-                                    <a><button type="button" class="btn btn-outline-primary">{{__('DEL')}}</button></a>
+                                    <a href="{{route('employees.edit', $user)}}"><button class="btn btn-outline-primary"><i style="color:black"class="fa fa-edit" ></i></button></a>
+                                    <a><button type="button" class="btn btn-outline-primary"><i style="color:black"class="fa fa-trash" aria-hidden="true"></i></button></a>
                                 </td>
-                                <td>{{$user->name}}</td>
-                                <td>{{$user->email}}</td>
+                                   <td>{{$user->name}}</td>
+                                   <td>{{$user->email}}</td>
                               </tr>
                               @endforeach
                           </tbody>
                     </table>
-                    <a href="{{route('dashboard')}}"><button class="btn btn-danger" type="submit">{{__('Back')}}</button></a>
+                    <a href="{{route('dashboard')}}"><button class="btn btn-danger" type="submit">{{__('Back')}}</button></a><br>
                 </div>
             </div>
         </div>

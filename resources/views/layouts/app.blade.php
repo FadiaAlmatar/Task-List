@@ -17,6 +17,26 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
         {{ $styles ?? '' }}
+
+        @if (app()->getLocale() == 'ar')
+            <style>
+            body{
+                    direction: rtl;
+                }
+            li,label,.dropdown-item,th,td,form{
+                text-align: right;
+            }
+            label,button{
+                margin-left:5px;
+            }
+            label,input,button{
+                float:right;
+            }
+            option{
+                text-align: right;
+            }
+        </style>
+        @endif
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
