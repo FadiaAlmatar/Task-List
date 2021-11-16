@@ -22,7 +22,7 @@ class CreateProcedureEmployeesTasks extends Migration
                users.name ,users.email ,users.password ,users.parentId ,users.company_name from tasks
         INNER JOIN
         users ON (tasks.assigned_to = users.id)
-        where (users.parentId = num) or (users.id = num);
+        where ((users.parentId = num) or (users.id = num)) and (tasks.status <> 'finished');
         END;";
 
         DB::unprepared($procedure);

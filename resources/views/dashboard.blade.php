@@ -56,7 +56,7 @@
                         <tbody>
                         @foreach($tasks as $task)
                         {{-- {{dd($tasks)}} --}}
-                        @if($task->status <> "finished")
+                        {{-- @if($task->status <> "finished") --}}
                         @if(\Carbon\Carbon::now() > $task->duedate)
 
                         <tr style="background:#ff7676">
@@ -85,7 +85,7 @@
                             <td>{{$task->created_at}}</td>
                              <td>{{$task->updated_at}}</td>
                           </tr>
-                          @endif
+                          {{-- @endif --}}
                         @endforeach
                         </tbody>
                       </table>

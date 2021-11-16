@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class EmployeeController extends Controller
 {
@@ -40,7 +43,7 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         //  $request->validate([
-        //             'name.*' => ['required', 'string', 'min:3','max:255'],
+        //             'name.*' => ['sometime','required', 'string', 'min:3','max:255'],
         //             // 'email.*' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         //             'password.*' => ['required', 'confirmed', Rules\Password::defaults()],
         //             ]);
@@ -64,12 +67,26 @@ class EmployeeController extends Controller
     }
     public function update(Request $request,$id)
     {
-        // dd("here");
-            $user = User::find($id);
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->password =  Hash::make($request->password);
-            $user->save();
+        // $request->validate([
+        //                 'name' => 'sometimes|required| string|min:3|max:255',
+        //                 'email' => 'sometimes|required |string|email|max:255|unique:users'
+        //                 ]);
+
+
+            // $user->name = $request->name;
+            // $user->email = $request->email;
+            // $user->password =  Hash::make($request->password);
+            $validator = Validator::make($request->all(), [
+                'email' =>['sometimes',
+                'required',
+                Rule::unique('users','email')->where(function ($query) use ($id){
+              $query->where('id' ,'<>', $id);
+            })
+        ],
+        ]);
+        $user = User::find($id);
+            $user->update(['name'=> $request->name],['email'=> $request->email]);
+            // $user->save();
          return redirect()->route('employees.index');
     }
 
