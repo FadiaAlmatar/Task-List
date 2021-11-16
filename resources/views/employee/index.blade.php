@@ -32,9 +32,15 @@
                           <tbody>
                               @foreach ($users as $user)
                               <tr>
-                                @if(Auth::User()->parentId == null) <td scope="row">
+                                @if(Auth::User()->parentId == null)
+                                <td scope="row">
                                     <a href="{{route('employees.edit', $user->id)}}"><button class="btn btn-outline-primary"><i style="color:black"class="fa fa-edit" ></i></button></a>
-                                    <a><button type="button" class="btn btn-outline-primary"><i style="color:black"class="fa fa-trash" aria-hidden="true"></i></button></a>
+                                    {{-- <a><button type="button" class="btn btn-outline-primary"><i style="color:black"class="fa fa-trash" aria-hidden="true"></i></button></a> --}}
+                                    <form action="{{route('employees.destroy', $user->id)}}" method="POST" style="display:inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-light chat-send-btn"><i style="color:red"class="fa fa-trash" aria-hidden="true"></i></button>
+                                    </form>
                                 </td>@endif
                                    <td>{{$user->name}}</td>
                                    <td>{{$user->email}}</td>

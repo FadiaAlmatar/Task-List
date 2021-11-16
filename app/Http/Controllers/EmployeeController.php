@@ -96,6 +96,18 @@ class EmployeeController extends Controller
         $user = User::find($id);
         return view('employee.edit',['user'=> $user]);
     }
+    public function destroy($id)
+    {
+        if($id == Auth::User()->id){
+            $user = User::findOrFail($id);
+            $user->delete();
+            return redirect()->route('register');
+        }else{
+            $user = User::findOrFail($id);
+            $user->delete();
+            return redirect()->route('employees.index');
+        }
+    }
 
 
 
