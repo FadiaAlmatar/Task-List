@@ -152,4 +152,32 @@ class TaskController extends Controller
         $pdf->WriteHTML($html);
         return  $pdf->Output("archive.pdf","D");
     }
+    public function printCreated(Request $request)
+    {
+        if(Auth::User()->parentId == null){
+            $tasks = DB::select("CALL pr_employees_tasks(".Auth::User()->id.")");//employees who have assign
+        }else{ $tasks = Task::where('user_id', Auth::User()->id)->get();//all tasks that I created it
+         }
+        $html = view('task.createdtask-pdf',['tasks'=>$tasks])->render();
+        $pdf = new \Mpdf\Mpdf([
+            'mode' => 'utf-8', 'format' => 'A4','default_font' => 'fontawesome','margin_left' => 15,'margin_right' => 10,'margin_top' => 16,'margin_bottom' => 15,'margin_header' => 10, 'margin_footer' => 10 ]);
+        $pdf->AddPage("P");
+        $pdf->SetHTMLFooter('<p style="text-align: center">{PAGENO}</p>');
+        $pdf->WriteHTML('.fa { font-family: fontawesome;}',1);
+        $pdf->WriteHTML($html);
+        return  $pdf->Output("created.pdf","D");
+    }
+
+    public function printAssign (Request $request)
+    {
+        $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->get();
+        $html = view('task.assign-task-pdf',['tasks'=>$tasks])->render();
+        $pdf = new \Mpdf\Mpdf([
+            'mode' => 'utf-8', 'format' => 'A4','default_font' => 'fontawesome','margin_left' => 15,'margin_right' => 10,'margin_top' => 16,'margin_bottom' => 15,'margin_header' => 10, 'margin_footer' => 10 ]);
+        $pdf->AddPage("P");
+        $pdf->SetHTMLFooter('<p style="text-align: center">{PAGENO}</p>');
+        $pdf->WriteHTML('.fa { font-family: fontawesome;}',1);
+        $pdf->WriteHTML($html);
+        return  $pdf->Output("assign.pdf","D");
+    }
 }

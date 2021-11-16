@@ -35,6 +35,7 @@
               @if(Auth::User()->parentId == null)<a class="dropdown-item" href="{{route('employees.create')}}">{{__('Add Employees')}}</a>@endif
               <a class="dropdown-item" href="{{route('employees.index')}}">{{__('Employees')}}</a>
               <a class="dropdown-item" href="{{route('archive')}}">{{__('Archive')}}</a>
+              <a class="dropdown-item" href="{{route('tasks.printCreated')}}">PDF</a>
             </div>
           </div><br><br>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">

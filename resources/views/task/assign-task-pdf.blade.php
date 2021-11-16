@@ -65,7 +65,7 @@
     </head>
     <body>
         <table class="table table-bordered">
-            <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">{{__('Archive')}}</caption>
+            <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">{{__('Created Tasks')}}</caption>
             <thead>
                 <tr>
                     <th scope="col" style="width: 15%">{{__('Title')}}</th>
@@ -77,14 +77,20 @@
             </thead>
             <tbody>
                 @foreach ($tasks as $task)
-                        <tr>
-                            <td>{{$task->title}}</td>
-                            <td>{{$task->description}}</td>
-                            <td>{{ App\Models\User::where(['id' => $task->user_id])->pluck('name')->first()}}</td>
-                            <td>{{$task->status}} </td>
-                            <td>{{$task->duedate}}
-                        </tr>
-                @endforeach
+                @if(\Carbon\Carbon::now() > $task->duedate)
+                <tr style="background: #ff7676">
+                @elseif(\Carbon\Carbon::now()->diffInDays($task->duedate) <= 3 and \Carbon\Carbon::now()->diffInDays($task->duedate) >= 0)
+                <tr style="background:#ffcf76;">
+                @else
+                <tr style="background:#98FF98;">
+                @endif
+                <td>{{$task->title}}</td>
+                <td>{{$task->description}}</td>
+                <td>{{ App\Models\User::where(['id' => $task->user_id])->pluck('name')->first()}}</td>
+                <td>{{$task->status}}</td>
+                <td>{{$task->duedate}}</td>
+              </tr>
+@endforeach
             </tbody>
         </table>
 

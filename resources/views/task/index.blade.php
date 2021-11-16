@@ -78,6 +78,8 @@
                     </form>
                     <br>
                     <a href="{{route('dashboard')}}"><button class="btn btn-danger" type="submit">{{__('Cancel')}}</button></a>
+                    <a href="{{route('tasks.printAssign')}}" class="btn btn-danger btn-md active" role="button" aria-pressed="true">PDF</a><br><br>
+
                     <br>
 
                 </div>
