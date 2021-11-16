@@ -46,7 +46,7 @@ class TaskController extends Controller
         $request->validate([
             'title'                   => 'required|min:3',
             'description'             => 'required|min:3',
-            'duedate'                 => 'required',
+            'duedate'                 => 'required|after:yesterday|date',
             'assigned_to'             => 'required'
         ]);
 
@@ -113,7 +113,7 @@ class TaskController extends Controller
         $request->validate([
             'title'                   => 'required|min:3',
             'description'             => 'required|min:3',
-            'duedate'                 => 'required',
+            'duedate'                 => 'required|after:yesterday|date',
             'assigned_to'             => 'required'
         ]);
         $task->title = $request->title;

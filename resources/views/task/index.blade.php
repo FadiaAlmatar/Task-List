@@ -42,7 +42,7 @@
                               @foreach ($tasks as $task)
                                 @if(\Carbon\Carbon::now() > $task->duedate)
                                 <tr style="background: #ff7676">
-                                @elseif(\Carbon\Carbon::now()->diffInDays($task->duedate) <= 3 and \Carbon\Carbon::now()->diffInDays($task->duedate) >= 1)
+                                @elseif(\Carbon\Carbon::now()->diffInDays($task->duedate) <= 3 and \Carbon\Carbon::now()->diffInDays($task->duedate) >= 0)
                                 <tr style="background:#ffcf76;">
                                 @else
                                 <tr style="background:#98FF98;">

@@ -55,37 +55,29 @@
                         </thead>
                         <tbody>
                         @foreach($tasks as $task)
-                        {{-- {{dd($tasks)}} --}}
-                        {{-- @if($task->status <> "finished") --}}
-                        @if(\Carbon\Carbon::now() > $task->duedate)
-
-                        <tr style="background:#ff7676">
-                        @elseif((\Carbon\Carbon::now()->diffInDays($task->duedate) <= 3) && (\Carbon\Carbon::now()->diffInDays($task->duedate) >= 1))
-                        <tr style="background:#ffcf76;">
-                        @else
-                        <tr style="background:#98FF98;">
-                        @endif
-                          {{-- <tr> --}}
-                            <td scope="row">
-                                {{-- <a><button type="button" class="btn btn-outline-primary">{{__('VIEW')}}</button></a> --}}
-                                <a href="{{route('tasks.edit',$task->id)}}"><button type="button" class="btn btn-outline-primary"><i style="color:black"class="fa fa-edit" ></i></button></a>
-                                {{-- <a href="{{route('tasks.edit', $task)}}"><button class="btn btn-outline-primary">{{__('EDIT')}}</button></a> --}}
-                                {{-- <a href="{{route('tasks.destroy', $task->id)}}"><button type="button" class="btn btn-outline-primary"><i style="color:black"class="fa fa-trash" aria-hidden="true"></i></button></a> --}}
-                                <form action="{{route('tasks.destroy', $task->id)}}" method="POST" style="display:inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-light chat-send-btn"><i style="color:red"class="fa fa-trash" aria-hidden="true"></i></button>
-                                 </form>
-                            </td>
-                            <td>{{$task->status}}</td>
-                            <td>{{$task->description}}</td>
-                            <td>{{ App\Models\User::where(['id' => $task->user_id])->pluck('name')->first()}}</td>
-                            <td>{{ App\Models\User::where(['id' => $task->assigned_to])->pluck('name')->first()}}</td>
-                            <td>{{$task->duedate}}</td>
-                            <td>{{$task->created_at}}</td>
-                             <td>{{$task->updated_at}}</td>
-                          </tr>
-                          {{-- @endif --}}
+                            @if(\Carbon\Carbon::now() > $task->duedate)
+                                <tr style="background:#ff7676">
+                            @elseif((\Carbon\Carbon::now()->diffInDays($task->duedate) <= 3) && (\Carbon\Carbon::now()->diffInDays($task->duedate) >= 0))
+                                <tr style="background:#ffcf76;">
+                            @else
+                                <tr style="background:#98FF98;">
+                             @endif
+                                    <td scope="row">
+                                        <a href="{{route('tasks.edit',$task->id)}}"><button type="button" class="btn btn-outline-primary"><i style="color:black"class="fa fa-edit" ></i></button></a>
+                                        <form action="{{route('tasks.destroy', $task->id)}}" method="POST" style="display:inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-light chat-send-btn"><i style="color:red"class="fa fa-trash" aria-hidden="true"></i></button>
+                                        </form>
+                                    </td>
+                                    <td>{{$task->status}}</td>
+                                    <td>{{$task->description}}</td>
+                                    <td>{{ App\Models\User::where(['id' => $task->user_id])->pluck('name')->first()}}</td>
+                                    <td>{{ App\Models\User::where(['id' => $task->assigned_to])->pluck('name')->first()}}</td>
+                                    <td>{{$task->duedate}}{{\Carbon\Carbon::now()->diffInDays($task->duedate)}}</td>
+                                    <td>{{$task->created_at}}</td>
+                                    <td>{{$task->updated_at}}</td>
+                                </tr>
                         @endforeach
                         </tbody>
                       </table>

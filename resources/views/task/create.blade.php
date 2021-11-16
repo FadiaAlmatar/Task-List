@@ -40,7 +40,7 @@
                         </div><br>
                         <div class="form-group">
                         <label for="exampleFormControlSelect2">{{__('Due Date')}}</label>
-                        <input name="duedate"type="datetime-local" value=@if(!empty($task)) "{{$task->duedate->format('Y.m.d H:i:s')}}" @else "{{old('duedate')}}" @endif/>
+                        <input name="duedate"type="date" value=@if(!empty($task)) "{{$task->duedate->format('Y.m.d')}}" @else "{{old('duedate')}}" @endif/>
                         @error('duedate')
                             <p class="help is-danger" style="color: red">{{ $message }}</p>
                         @enderror

@@ -17,7 +17,7 @@ class CreateTasksTable extends Migration
             $table->id();
             $table->string('title');  //name of task
             $table->text('description');
-            $table->dateTime('duedate');
+            $table->date('duedate');
             $table->string('status');
             $table->integer('assigned_to');
             $table->foreignId('user_id');//who created the task
