@@ -29,9 +29,12 @@
                             @if (!empty($task) && old('assigned_to', $task->assigned_to))
                             <option value="{{ $task->assigned_to}}" selected>{{ App\Models\User::where(['id' => $task->assigned_to])->pluck('name')->first() }}</option>
                             @endif
-                            <option></option>
                             @foreach ($users as $user)
+                            @if(Auth::User()->id == $user->id)
+                            <option value="{{$user->id}}" @if (old('assigned_to') == $user->id) {{ 'selected' }} @endif selected>{{Auth::User()->name}}</option>
+                            @else
                             <option value="{{$user->id}}" @if (old('assigned_to') == $user->id) {{ 'selected' }} @endif>{{$user->name}}</option>
+                           @endif
                             @endforeach
                         </select>
                         @error('assigned_to')
@@ -40,7 +43,7 @@
                         </div><br>
                         <div class="form-group">
                         <label for="exampleFormControlSelect2">{{__('Due Date')}}</label>
-                        <input name="duedate"type="date" value=@if(!empty($task)) "{{$task->duedate->format('Y.m.d')}}" @else "{{old('duedate')}}" @endif/>
+                        <input name="duedate"type="date" value=@if(!empty($task)) "{{$task->duedate->format('Y-m-d')}}" @else "{{\Carbon\Carbon::now()->format('Y-m-d')}}" @endif/>
                         @error('duedate')
                             <p class="help is-danger" style="color: red">{{ $message }}</p>
                         @enderror
@@ -51,7 +54,9 @@
                         @else
                           <button class="btn btn-primary" type="submit">{{__('Save')}}</button>
                         @endif
+
                     </form>
+                    <a style="float:right"href="{{route('dashboard')}}"><button class="btn btn-danger" type="submit">{{__('Cancel')}}</button></a><br>
                     <br>
                     {{-- <a href="{{route('dashboard')}}"><button class="btn btn-danger" type="submit"><i class="fa fa-home" aria-hidden="true"></i></button></a> --}}
                 </div>
