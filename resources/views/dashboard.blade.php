@@ -76,7 +76,7 @@
                                             <button class="btn btn-light chat-send-btn"><i style="color:red"class="fa fa-trash" aria-hidden="true"></i></button>
                                         </form>
                                     </td>
-                                    <td>{{$task->status}}</td>
+                                    <td>{{__($task->status)}}</td>
                                     <td>{{$task->description}}</td>
                                     <td>{{ App\Models\User::where(['id' => $task->user_id])->pluck('name')->first()}}</td>
                                     <td>{{ App\Models\User::where(['id' => $task->assigned_to])->pluck('name')->first()}}</td>

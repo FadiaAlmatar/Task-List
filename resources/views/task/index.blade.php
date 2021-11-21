@@ -54,7 +54,7 @@
                                     <div class="form-check">
                                         <select name="status[]"class="form-select form-select-sm" aria-label=".form-select-sm example">
                                            @if($task->status <> "not started")
-                                          <option>{{$task->status}}</option>
+                                          <option>{{__($task->status)}}</option>
                                           <option value="not started">{{__('not started')}}</option>
                                           <option value="in progress">{{__('in progress')}}</option>
                                           <option value="waiting">{{__('waiting')}}</option>
