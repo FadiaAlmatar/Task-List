@@ -97,7 +97,10 @@ class TaskController extends Controller
     public function edit($id)
     {
         $task = Task::find($id);
-        $users = User::all();
+        if(Auth::User()->parentId == null)
+        $users = User::where('parentId', Auth::User()->id)->orwhere('id', Auth::User()->id)->get();
+       else
+       $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
         return view('task.create',['task'=>$task,'users'=>$users]);
     }
 

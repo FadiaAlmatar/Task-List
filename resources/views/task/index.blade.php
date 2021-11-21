@@ -53,22 +53,27 @@
                                 <td>
                                     <div class="form-check">
                                         <select name="status[]"class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                          @if($task->status <> "not started")
+                                           @if($task->status <> "not started")
                                           <option>{{$task->status}}</option>
-                                          @else
-                                          <option value="not started" selected>{{__('not started')}}</option>
-                                           @endif
-                                          {{-- <option value="not started">{{__('not started')}}</option> --}}
+                                          <option value="not started">{{__('not started')}}</option>
                                           <option value="in progress">{{__('in progress')}}</option>
                                           <option value="waiting">{{__('waiting')}}</option>
                                           <option value="finished">{{__('finished')}}</option>
                                           <option value="denied">{{__('denied')}}</option>
+                                          @else
+                                          <option value="not started" selected>{{__('not started')}}</option>
+                                          <option value="in progress">{{__('in progress')}}</option>
+                                          <option value="waiting">{{__('waiting')}}</option>
+                                          <option value="finished">{{__('finished')}}</option>
+                                          <option value="denied">{{__('denied')}}</option>
+                                           @endif
+
                                           {{-- @endif --}}
                                         </select>
                                         <input type="hidden" name="taskId[]" value="{{$task->id}}">
                                     </div>
                                 </td>
-                                <td>{{$task->duedate}}</td>
+                                <td>{{$task->duedate->format('Y-m-d')}}</td>
                               </tr>
 
                               @endforeach

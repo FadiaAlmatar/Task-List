@@ -28,14 +28,20 @@
                         <select name="assigned_to"class="form-control" id="exampleFormControlSelect1">
                             @if (!empty($task) && old('assigned_to', $task->assigned_to))
                             <option value="{{ $task->assigned_to}}" selected>{{ App\Models\User::where(['id' => $task->assigned_to])->pluck('name')->first() }}</option>
-                            @endif
-                            @foreach ($users as $user)
-                            @if(Auth::User()->id == $user->id)
-                            <option value="{{$user->id}}" @if (old('assigned_to') == $user->id) {{ 'selected' }} @endif selected>{{Auth::User()->name}}</option>
+                                @foreach ($users as $user)
+                                    @if($task->assigned_to <> $user->id)
+                                     <option value="{{$user->id}}" @if (old('assigned_to') == $user->id) {{ 'selected' }} @endif>{{$user->name}}</option>
+                                    @endif
+                                @endforeach
                             @else
-                            <option value="{{$user->id}}" @if (old('assigned_to') == $user->id) {{ 'selected' }} @endif>{{$user->name}}</option>
-                           @endif
-                            @endforeach
+                                @foreach ($users as $user)
+                                    @if(Auth::User()->id == $user->id)
+                                     <option value="{{$user->id}}" @if (old('assigned_to') == $user->id) {{ 'selected' }} @endif selected>{{Auth::User()->name}}</option>
+                                    @else
+                                      <option value="{{$user->id}}" @if (old('assigned_to') == $user->id) {{ 'selected' }} @endif>{{$user->name}}</option> --}}
+                                    @endif
+                                @endforeach
+                            @endif
                         </select>
                         @error('assigned_to')
                         <p class="help is-danger" style="color: red">{{ $message }}</p>
