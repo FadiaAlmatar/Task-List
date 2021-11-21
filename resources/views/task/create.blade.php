@@ -49,7 +49,7 @@
                         @if (empty($task))
                           <button class="btn btn-primary" type="submit">{{__('Submit task')}}</button>
                         @else
-                          <button class="btn btn-primary" type="submit">{{__('Edit task')}}</button>
+                          <button class="btn btn-primary" type="submit">{{__('Save')}}</button>
                         @endif
                     </form>
                     <br>
