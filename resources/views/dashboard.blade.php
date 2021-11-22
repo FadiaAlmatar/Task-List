@@ -49,14 +49,14 @@
                         <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">{{__('Created Tasks')}}</caption>
                         <thead>
                           <tr class="bg-primary">
-                            <th scope="col" style="width: 15%">{{__('Action')}}</th>
-                            <th scope="col" width="10%">{{__('Status')}}</th>
+                            <th scope="col" style="width: 10%">{{__('Action')}}</th>
+                            <th scope="col" width="8%">{{__('Status')}}</th>
                             <th scope="col" style="width: 25%">{{__('Task')}}</th>
                             <th scope="col" style="width: 10%">{{__('Assigned From')}}</th>
                             <th scope="col" style="width: 10%">{{__('Assigned To')}}</th>
                             <th scope="col" style="width: 15%">{{__('Due Date')}}</th>
-                            <th scope="col" style="width: 15%">{{__('create Date')}}</th>
-                            <th scope="col" style="width: 15%">{{__('update Date')}}</th>
+                            <th scope="col" style="width: 12%">{{__('create Date')}}</th>
+                            <th scope="col" style="width: 18%">{{__('update Date')}}</th>
                           </tr>
                         </thead>
                         <tbody>
