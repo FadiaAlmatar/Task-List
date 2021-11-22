@@ -33,10 +33,10 @@
                                 <tr>
                                 <th scope="col" style="width: 15%">{{__('Title')}}</th>
                                 <th scope="col" width="30%">{{__('Description')}}</th>
-                                <th scope="col" style="width: 15%">{{__('Assigned From')}}</th>
+                                <th scope="col" style="width: 13%">{{__('Assigned From')}}</th>
                                 <th scope="col" style="width: 15%">{{__('Status')}}</th>
-                                <th scope="col" style="width: 15%">{{__('Forward to')}}</th>
-                                <th scope="col" style="width: 20%">{{__('Due Date')}}</th>
+                                <th scope="col" style="width: 13%">{{__('Forward to')}}</th>
+                                <th scope="col" style="width: 24%">{{__('Due Date')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -76,8 +76,10 @@
                                                 @foreach ($users as $user)
                                                  <option value="{{$user->id}}">{{$user->name}}</option>
                                                 @endforeach
-
                                            </select>
+                                           @error('forwardto[]')
+                                           <p class="help is-danger" style="color: black">{{ $message }}</p>
+                                           @enderror
                                         </div>
                                     </td>
                                     <td>{{$task->duedate->format('Y-m-d')}}</td>

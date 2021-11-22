@@ -58,7 +58,6 @@ class TaskController extends Controller
         $task->title = $request->title;
         $task->description = $request->description;
         $task->duedate = $request->duedate;
-        // dd($request->duedate);
         $task->assigned_to = $request->assigned_to;
         $task->status = "not started";
         $task->user_id = Auth::User()->id;
@@ -67,7 +66,12 @@ class TaskController extends Controller
     }
     public function store_status(Request $request)
     {
+        $request->validate([
+            'forwardto'           => "required|array",
+            'forwardto.*'         => 'required',
+        ]);
         for ($i = 0; $i < count($request->status); $i++) {
+
             $task = Task::find($request->taskId[$i]);
             $task->status = $request->status[$i];
             $task->assigned_to = $request->forwardto[$i];
