@@ -80,7 +80,7 @@
                                     <td>{{$task->description}}</td>
                                     <td>{{ App\Models\User::where(['id' => $task->user_id])->pluck('name')->first()}}</td>
                                     <td>{{ App\Models\User::where(['id' => $task->assigned_to])->pluck('name')->first()}}</td>
-                                    <td>{{$task->duedate->format('Y-m-d')}}</td>
+                                    <td>{{$task->duedate}}</td>
                                     <td>{{$task->created_at}}</td>
                                     <td>{{$task->updated_at}}</td>
                                 </tr>

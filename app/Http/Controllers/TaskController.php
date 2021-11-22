@@ -18,7 +18,11 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->get();
-        return view('task.index',['tasks' => $tasks]);
+        if(Auth::User()->parentId == null)
+          $users = User::where('parentId', Auth::User()->id)->orwhere('id', Auth::User()->id)->get();
+       else
+          $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
+        return view('task.index',['tasks' => $tasks,'users'=>$users]);
     }
 
     /**
@@ -29,9 +33,9 @@ class TaskController extends Controller
     public function create()
     {
         if(Auth::User()->parentId == null)
-         $users = User::where('parentId', Auth::User()->id)->orwhere('id', Auth::User()->id)->get();
+          $users = User::where('parentId', Auth::User()->id)->orwhere('id', Auth::User()->id)->get();
         else
-        $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
+          $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
         return view('task.create',['users'=>$users]);
     }
 
@@ -54,6 +58,7 @@ class TaskController extends Controller
         $task->title = $request->title;
         $task->description = $request->description;
         $task->duedate = $request->duedate;
+        // dd($request->duedate);
         $task->assigned_to = $request->assigned_to;
         $task->status = "not started";
         $task->user_id = Auth::User()->id;
@@ -65,6 +70,7 @@ class TaskController extends Controller
         for ($i = 0; $i < count($request->status); $i++) {
             $task = Task::find($request->taskId[$i]);
             $task->status = $request->status[$i];
+            $task->assigned_to = $request->forwardto[$i];
             $task->save();
     }
     return redirect()->route('tasks.index');

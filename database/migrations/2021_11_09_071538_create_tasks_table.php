@@ -19,7 +19,7 @@ class CreateTasksTable extends Migration
             $table->text('description');
             $table->date('duedate');
             $table->string('status');
-            $table->integer('assigned_to');
+            $table->integer('assigned_to')->nullable();
             $table->foreignId('user_id');//who created the task
             $table->timestamps();
         });
