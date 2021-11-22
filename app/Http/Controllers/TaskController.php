@@ -66,10 +66,10 @@ class TaskController extends Controller
     }
     public function store_status(Request $request)
     {
-        $request->validate([
-            'forwardto'           => "required|array",
-            'forwardto.*'         => 'required',
-        ]);
+        // $request->validate([
+        //     'forwardto'           => "required|array",
+        //     'forwardto.*'         => 'required',
+        // ]);
         for ($i = 0; $i < count($request->status); $i++) {
 
             $task = Task::find($request->taskId[$i]);
