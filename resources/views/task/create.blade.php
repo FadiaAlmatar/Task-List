@@ -64,7 +64,6 @@
                     </form>
                     <a style="float:right"href="{{route('dashboard')}}"><button class="btn btn-danger" type="submit">{{__('Cancel')}}</button></a><br>
                     <br>
-                    {{-- <a href="{{route('dashboard')}}"><button class="btn btn-danger" type="submit"><i class="fa fa-home" aria-hidden="true"></i></button></a> --}}
                 </div>
             </div>
         </div>

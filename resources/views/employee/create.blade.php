@@ -8,7 +8,6 @@
                         @if (!empty($employee))
                             @method('PUT')
                         @endif
-                        {{-- <div class="tab-pane fade" id="employees" role="tabpanel" aria-labelledby="employees-tab"> --}}
                             <div class="table-responsive">
                                 <table class="table" id="employee">
                                     <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">{{__('New Employees')}}</caption>
@@ -66,7 +65,6 @@
                                 </table>
                             </div>
                             <button style="float: right;"class="btn btn-primary" type="submit">{{__('Save')}}</button><br>
-                        {{-- </div> --}}
                     </form>
 
                 </div>

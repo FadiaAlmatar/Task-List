@@ -13,9 +13,7 @@
           <li class="nav-item">
           <a  style="color: white"class="nav-link" href="{{route('tasks.index')}}">{{__('My Tasks')}}</a>
           </li>
-          {{-- <li class="nav-item">
-            <a  style="color: white"class="nav-link" href="{{route('employees.edit', Auth::User())}}">{{__('My Profile')}}</a>
-        </li> --}}
+         
           <li class="nav-item dropdown">
             <a  style="color: white"class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               {{__('lang')}}
