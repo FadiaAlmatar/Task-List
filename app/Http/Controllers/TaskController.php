@@ -74,7 +74,10 @@ class TaskController extends Controller
 
             $task = Task::find($request->taskId[$i]);
             $task->status = $request->status[$i];
-            $task->assigned_to = $request->forwardto[$i];
+            if($request->status[$i] == 'forward' && $request->forwardto[$i] <> null){
+                $task->assigned_to = $request->forwardto[$i];
+                $task->user_id = Auth::User()->id;
+            }
             $task->save();
     }
     return redirect()->route('tasks.index');
