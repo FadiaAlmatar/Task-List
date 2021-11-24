@@ -43,7 +43,9 @@ Route::get('/dashboard', function () {
     }else{ $tasks = Task::where('user_id', Auth::User()->id)->get();//all tasks that I created it
      }
     return view('dashboard',['tasks'=> $tasks]);
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth','verified'])->name('dashboard');
+
+
 Route::get('/printarchive', [TaskController::class, 'printArchive'])->name('tasks.printArchive');
 Route::get('/printcreated', [TaskController::class, 'printCreated'])->name('tasks.printCreated');
 Route::get('/printassign', [TaskController::class, 'printAssign'])->name('tasks.printAssign');
