@@ -1,18 +1,10 @@
 <x-app-layout>
     <x-slot name="styles">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
         <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
         <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
       </x-slot>
-      <x-slot name="scripts">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-        <script>
-        $(document).ready(function() {
-               $('.tasksTable').DataTable();
-           });
-        </script>
-      </x-slot>
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
@@ -34,6 +26,7 @@
               <a class="dropdown-item" href="{{route('tasks.printCreated')}}">PDF</a>
             </div>
           </div><br><br>
+        
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <table class="table table-resposive table-bordered tasksTable" style="width:100%;text-align:center">
@@ -82,31 +75,22 @@
             </div>
         </div>
     </div>
+    <x-slot name="scripts">
+        {{-- for datatable --}}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" defer></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"  defer></script>
+        {{-- for dropdown button --}}
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script>
+        $(document).ready(function() {
+               $('.tasksTable').DataTable();
+           });
+        </script>
+      </x-slot>
 </x-app-layout>
 
 
-   {{-- <div class="container">
-            <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-12">
-            <a href="{{route('tasks.create')}}" class="btn btn-primary btn-md active" role="button" aria-pressed="true">
-                <i class="fa fa-plus fa-sm" aria-hidden="true">  {{__(' New Task')}}</i></a>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-12">
-            <a href="{{route('tasks.index')}}" class="btn btn-primary btn-md active" role="button" aria-pressed="true">
-                {{__('My Tasks')}}</a>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-12">
-            <a href="{{route('employees.create')}}" class="btn btn-primary btn-md active" role="button" aria-pressed="true">
-                <i class="fa fa-plus fa-sm" aria-hidden="true"> {{__('Add Employees')}}</i></a>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-12">
-            <a href="{{route('employees.index')}}" class="btn btn-primary btn-md active" role="button" aria-pressed="true">
-                {{__('My Employees')}}</a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-            <a href="" class="btn btn-primary btn-md active" role="button" aria-pressed="true">
-                {{__('Archive')}}</a>
-            </div>
-            </div>
-            </div><br> --}}
-           <!-- Example single danger button -->
+
