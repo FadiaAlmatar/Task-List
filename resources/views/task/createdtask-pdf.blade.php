@@ -23,7 +23,7 @@
                 padding-right: 5px;
             }
             th{
-                text-align: right;
+                text-align: center;
                 width:30%;
                 font-size: 17px;
             }
@@ -56,7 +56,7 @@
                 text-align: center;
             }
             th{
-                text-align: left;
+                text-align: center;
                 font-size: 13px;
                 padding-left: 5px;
             }
@@ -68,32 +68,36 @@
             <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">{{__('Created Tasks')}}</caption>
             <thead>
                 <tr>
-                    <th scope="col" width="10%">{{__('Status')}}</th>
+                    <th scope="col" style="width: 10%">{{__('Duration')}}</th>
+                    <th scope="col" style="width: 8%">{{__('Status')}}</th>
                     <th scope="col" style="width: 25%">{{__('Task')}}</th>
-                    <th scope="col" style="width: 10%">{{__('Assigned From')}}</th>
-                    <th scope="col" style="width: 10%">{{__('Assigned To')}}</th>
+                    <th scope="col" style="width: 5%">{{__('Assigned From')}}</th>
+                    <th scope="col" style="width: 5%">{{__('Assigned To')}}</th>
                     <th scope="col" style="width: 15%">{{__('Due Date')}}</th>
-                    <th scope="col" style="width: 15%">{{__('create Date')}}</th>
-                    <th scope="col" style="width: 15%">{{__('update Date')}}</th>
+                    <th scope="col" style="width: 12%">{{__('create Date')}}</th>
+                    <th scope="col" style="width: 18%">{{__('update Date')}}</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($tasks as $task)
-                @if(\Carbon\Carbon::now() > $task->duedate)
-                <tr style="background:#ff7676">
-            @elseif((\Carbon\Carbon::now()->diffInDays($task->duedate) <= 3) && (\Carbon\Carbon::now()->diffInDays($task->duedate) >= 0))
-                <tr style="background:#ffcf76;">
-            @else
-                <tr style="background:#98FF98;">
-             @endif
-
-                    <td>{{$task->status}}</td>
+                <tr>
+                    <td>
+                        @if(\Carbon\Carbon::now()->diffInDays($task->duedate) <= 0)
+                        <small style="background: #ff7676; padding:4px;"><i class="far fa-clock"></i> < 24 {{__('hours')}}</small>
+                    @elseif(\Carbon\Carbon::now()->diffInDays($task->duedate) <= 3 and \Carbon\Carbon::now()->diffInDays($task->duedate) > 0)
+                    <small style="background: #ffcf76;;padding:4px;"><i class="far fa-clock"></i> {{\Carbon\Carbon::now()->diffInDays($task->duedate)}} {{__('days')}}</small>
+                    @else
+                    <small style="background: #98FF98;padding:4px;"><i class="far fa-clock"></i> {{\Carbon\Carbon::now()->diffInDays($task->duedate)}} {{__('days')}}</small>
+                    @endif
+                    </td>
+                    <td>{{__($task->status)}}</td>
                     <td>{{$task->description}}</td>
                     <td>{{ App\Models\User::where(['id' => $task->user_id])->pluck('name')->first()}}</td>
                     <td>{{ App\Models\User::where(['id' => $task->assigned_to])->pluck('name')->first()}}</td>
-                    <td>{{$task->duedate}}{{\Carbon\Carbon::now()->diffInDays($task->duedate)}}</td>
+                    <td>{{$task->duedate}}</td>
                     <td>{{$task->created_at}}</td>
                     <td>{{$task->updated_at}}</td>
+                </tr>
                 </tr>
                 @endforeach
             </tbody>
