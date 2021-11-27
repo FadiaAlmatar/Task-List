@@ -254,7 +254,7 @@
 ,"update Date":"تاريخ التعديل"
 ,"Action":"الخيارات"
 ,"Status":"الحالة"
-,"Created Tasks":"المهام المنشئة"
+,"Created Tasks":"المهام المنشأة"
 ,"Task Management":"إدارة المهمة"
 ,"New Task":"مهمة جديدة"
 ,"My Tasks":"مهامي"
@@ -298,4 +298,6 @@
 ,"hours":"ساعة"
 ,"days":"يوم"
 ,"To Do List":"قائمة المهام"
+,"PDF Created Tasks":"طباعة المهام المنشأة"
+,"PDF To Do List":"طباعة قائمة المهام"
 }

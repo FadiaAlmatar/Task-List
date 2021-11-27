@@ -15,16 +15,15 @@
                             <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">
                                 <i class="fas fa-clipboard mr-1"></i>
                                 {{__('To Do List')}}
-                              {{-- {{__('Assignment Tasks')}} --}}
                             </caption>
                             <thead>
                                 <tr>
                                 <th scope="col" style="width: 10%">{{__('Duration')}}</th>
                                 <th scope="col" style="width: 15%">{{__('Title')}}</th>
                                 <th scope="col" style="width: 25%">{{__('Description')}}</th>
-                                <th scope="col" style="width: 13%">{{__('Assigned From')}}</th>
+                                <th scope="col" style="width: 10%">{{__('Assigned From')}}</th>
                                 <th scope="col" style="width: 15%">{{__('Status')}}</th>
-                                <th scope="col" style="width: 13%">{{__('Forward to')}}</th>
+                                <th scope="col" style="width: 12%">{{__('Forward to')}}</th>
                                 <th scope="col" style="width: 25%">{{__('Due Date')}}</th>
                                 </tr>
                             </thead>
@@ -84,10 +83,7 @@
                     </form>
                     <br>
                     <a href="{{route('dashboard')}}"><button class="btn btn-danger" type="submit">{{__('Cancel')}}</button></a>
-                    <a href="{{route('tasks.printAssign')}}" class="btn btn-danger btn-md active" role="button" aria-pressed="true">PDF</a><br><br>
-
                     <br>
-
                 </div>
             </div>
         </div>
