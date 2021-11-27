@@ -12,26 +12,34 @@
                     <form style="width:100%;margin:auto"action="{{route('tasks.store_status')}}" method="POST">
                         @csrf
                         <table class="table table-bordered tasksTable" style="width:100%;text-align:center">
-                            <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">{{__('Assignment Tasks')}}</caption>
+                            <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">
+                                <i class="fas fa-clipboard mr-1"></i>
+                                {{__('To Do List')}}
+                              {{-- {{__('Assignment Tasks')}} --}}
+                            </caption>
                             <thead>
                                 <tr>
+                                <th scope="col" style="width: 10%">{{__('Duration')}}</th>
                                 <th scope="col" style="width: 15%">{{__('Title')}}</th>
-                                <th scope="col" width="30%">{{__('Description')}}</th>
+                                <th scope="col" style="width: 25%">{{__('Description')}}</th>
                                 <th scope="col" style="width: 13%">{{__('Assigned From')}}</th>
                                 <th scope="col" style="width: 15%">{{__('Status')}}</th>
                                 <th scope="col" style="width: 13%">{{__('Forward to')}}</th>
-                                <th scope="col" style="width: 24%">{{__('Due Date')}}</th>
+                                <th scope="col" style="width: 25%">{{__('Due Date')}}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($tasks as $task)
-                                    @if(\Carbon\Carbon::now() > $task->duedate)
-                                      <tr style="background: #ff7676">
-                                    @elseif(\Carbon\Carbon::now()->diffInDays($task->duedate) <= 3 and \Carbon\Carbon::now()->diffInDays($task->duedate) >= 0)
-                                     <tr style="background:#ffcf76;">
-                                    @else
-                                      <tr style="background:#98FF98;">
-                                    @endif
+                                    <tr>
+                                    <td>
+                                        @if(\Carbon\Carbon::now()->diffInDays($task->duedate) <= 0)
+                                            <small style="background: #ff7676; padding:4px;"><i class="far fa-clock"></i> < 24 {{__('hours')}}</small>
+                                        @elseif(\Carbon\Carbon::now()->diffInDays($task->duedate) <= 3 and \Carbon\Carbon::now()->diffInDays($task->duedate) > 0)
+                                        <small style="background: #ffcf76;;padding:4px;"><i class="far fa-clock"></i> {{\Carbon\Carbon::now()->diffInDays($task->duedate)}} {{__('days')}}</small>
+                                        @else
+                                        <small style="background: #98FF98;padding:4px;"><i class="far fa-clock"></i> {{\Carbon\Carbon::now()->diffInDays($task->duedate)}} {{__('days')}}</small>
+                                        @endif
+                                    </td>
                                     <td>{{$task->title}}</td>
                                     <td>{{$task->description}}</td>
                                     <td>{{ App\Models\User::where(['id' => $task->user_id])->pluck('name')->first()}}</td>
