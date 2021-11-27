@@ -7,33 +7,33 @@
            body {
             font-family: 'XBRiyaz', sans-serif;
             direction: rtl;
-            font-size: 15px;
+            font-size: 20px;
             height: 100%;
            }
            table{
                 width:100%;
-                min-height: 75%;
                 border: 1px solid black;
                 border-collapse: collapse;
+                margin:auto;
                 direction: rtl;
-           }
+            }
             td,th{
                 border: 1px solid black;
-                height:45px;
                 padding-right: 5px;
+                width:24%;
+                text-align: right;
+                font-size: 16px;
             }
             th{
-                text-align: center;
-                width:30%;
-                font-size: 17px;
+                font-size: 19px;
             }
-            td{
-                width:15%;
+            caption{
+                font-size: 20px;
             }
         </style>
-           @else
+        @else
         <style>
-            body {
+             body {
             font-family: 'XBRiyaz', sans-serif;
             font-size: 12px;
            }
@@ -56,7 +56,7 @@
                 text-align: center;
             }
             th{
-                text-align: center;
+                text-align: left;
                 font-size: 13px;
                 padding-left: 5px;
             }
