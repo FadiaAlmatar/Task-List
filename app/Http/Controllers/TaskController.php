@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Notifications\TaskCreated;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 class TaskController extends Controller
 {
@@ -62,6 +64,8 @@ class TaskController extends Controller
         $task->status = "not started";
         $task->user_id = Auth::User()->id;
         $task->save();
+        $user = User::where('id',$request->assigned_to)->first();
+        Notification::sendNow($user , new TaskCreated($task));
         return redirect()->route('dashboard');
     }
     public function store_status(Request $request)
