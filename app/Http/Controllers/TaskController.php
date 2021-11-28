@@ -66,17 +66,23 @@ class TaskController extends Controller
     }
     public function store_status(Request $request)
     {
-        // $request->validate([
-        //     'forwardto'           => "required|array",
-        //     'forwardto.*'         => 'required',
-        // ]);
         for ($i = 0; $i < count($request->status); $i++) {
-
             $task = Task::find($request->taskId[$i]);
-            $task->status = $request->status[$i];
-            if($request->status[$i] == 'forward' && $request->forwardto[$i] <> null){
-                $task->assigned_to = $request->forwardto[$i];
-                $task->user_id = Auth::User()->id;
+            if($request->status[$i] <> 'forward'){
+                if($request->forwardto[$i] == null)
+                    $task->status = $request->status[$i];
+                else{
+                    $task->status = 'forward';
+                    $task->assigned_to = $request->forwardto[$i];
+                    $task->user_id = Auth::User()->id;
+                }
+            }
+            else{
+                if($request->forwardto[$i] <> null){
+                    $task->status = $request->status[$i];
+                    $task->assigned_to = $request->forwardto[$i];
+                    $task->user_id = Auth::User()->id;
+                }
             }
             $task->save();
     }
@@ -97,7 +103,6 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        // dd("here");
       return view('task.show',['task'=> $task]);
     }
 
@@ -197,3 +202,13 @@ class TaskController extends Controller
         return  $pdf->Output("assign.pdf","D");
     }
 }
+
+
+
+
+
+
+// $request->validate([
+        //     'forwardto'           => "required|array",
+        //     'forwardto.*'         => 'required',
+        // ]);
