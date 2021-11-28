@@ -29,8 +29,11 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     @if (Session::get('success'))
-                    <div style="text-align: center"class="alert alert-success" role="alert">
-                        {{ Session::get('success') }}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Good </strong>{{ Session::get('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     @endif
                     <table class="table table-resposive table-bordered tasksTable" style="width:100%;text-align:center">

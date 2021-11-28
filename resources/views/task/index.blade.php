@@ -10,8 +10,11 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     @if (Session::get('success'))
-                    <div style="text-align: center"class="alert alert-success" role="alert">
-                        {{ Session::get('success') }}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Good </strong>{{ Session::get('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     @endif
                     <form style="width:100%;margin:auto"action="{{route('tasks.store_status')}}" method="POST">
@@ -98,6 +101,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
         <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" defer></script>
         <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"  defer></script>
+        {{-- for flash message --}}
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
         <script>
         $(document).ready(function() {
                $('.tasksTable').DataTable();
