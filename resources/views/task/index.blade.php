@@ -9,6 +9,11 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
+                    @if (Session::get('success'))
+                    <div style="text-align: center"class="alert alert-success" role="alert">
+                        {{ Session::get('success') }}
+                    </div>
+                    @endif
                     <form style="width:100%;margin:auto"action="{{route('tasks.store_status')}}" method="POST">
                         @csrf
                         <table class="table table-bordered tasksTable" style="width:100%;text-align:center">

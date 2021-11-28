@@ -66,7 +66,7 @@ class TaskController extends Controller
         $task->save();
         $user = User::where('id',$request->assigned_to)->first();
         Notification::sendNow($user , new TaskCreated($task));
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with('success', 'The task was created successfully');
     }
     public function store_status(Request $request)
     {
@@ -90,7 +90,7 @@ class TaskController extends Controller
             }
             $task->save();
     }
-    return redirect()->route('tasks.index');
+    return redirect()->route('tasks.index')->with('success', 'status was updated successfully');
     }
 
     public function archive()
@@ -148,7 +148,7 @@ class TaskController extends Controller
         $task->status =  "not started";
         $task->user_id = Auth::User()->id;
         $task->save();
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with('success', 'The task was updated successfully');;
     }
 
     /**
@@ -162,7 +162,7 @@ class TaskController extends Controller
         // dd("here");
         $task = Task::findOrFail($id);
         $task->delete();
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with('success', 'The task was deleted successfully');
     }
 
     public function printArchive(Request $request)
