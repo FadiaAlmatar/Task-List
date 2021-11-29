@@ -1,7 +1,7 @@
-    <x-app-layout>
+@extends('layouts.app')
     <x-auth-card>
         <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        {{-- <x-auth-validation-errors class="mb-4" :errors="$errors" /> --}}
         <form method="POST" action="{{route('employees.update', $user->id)}}">
             @csrf
             @method('PUT')
@@ -17,13 +17,14 @@
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" value="{{$user->email}}" required />
             </div>
-      
+
             <div class="flex items-center justify-end mt-4">
 
                 <x-button class="ml-4">
                     {{ __('Save') }}
                 </x-button>
+                <a href="{{route('dashboard')}}"><x-button type="button" class="btn btn-danger ml-4">{{__('Cancel')}}</x-button></a>
             </div>
         </form>
     </x-auth-card>
-</x-app-layout>>
+

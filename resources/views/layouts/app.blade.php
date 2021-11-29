@@ -35,20 +35,20 @@
         @endif
         <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    {{ $styles ?? '' }}
+    {{-- {{ $styles ?? '' }} --}}
+    @yield('styles')
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+                {{-- {{ $slot }} --}}
+                @yield('content')
             </main>
         </div>
         {{-- for add employees --}}
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-         {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script> --}}
         <script>
         $(document).ready(function(){
             $(document).on('click', '.btn_add', function () {
@@ -72,5 +72,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
     </body>
-    {{ $scripts ?? '' }}
+    {{-- {{ $scripts ?? '' }} --}}
+    @yield('scripts')
 </html>
