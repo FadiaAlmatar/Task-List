@@ -18,7 +18,7 @@
             body{
                     direction: rtl;
                 }
-            li,label,.dropdown-item,th,td,form{
+            li,label,th,td,form{
                 text-align: right;
             }
             label,button{
@@ -30,6 +30,7 @@
             option{
                 text-align: right;
             }
+
         </style>
         @endif
         <!-- Scripts -->

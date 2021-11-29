@@ -55,14 +55,9 @@
                         @enderror
                     </div>
                     <br><br><br>
-                        @if (empty($task))
-                          <button class="btn btn-primary" type="submit">{{__('Submit task')}}</button>
-                        @else
-                          <button class="btn btn-primary" type="submit">{{__('Save')}}</button>
-                        @endif
-
+                          <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> {{__('Save')}}</button>
+                          <a href="{{route('dashboard')}}"><button type="button" class="btn btn-danger">{{__('Cancel')}}</button></a>
                     </form>
-                    <a style="float:right"href="{{route('dashboard')}}"><button class="btn btn-danger" type="submit">{{__('Cancel')}}</button></a><br>
                     <br>
                 </div>
             </div>

@@ -35,7 +35,7 @@
                               @endforeach
                           </tbody>
                     </table>
-                    <a href="{{route('dashboard')}}"><button class="btn btn-danger" type="submit">{{__('Back')}}</button></a><br>
+                    <a href="{{route('dashboard')}}"><button class="btn btn-danger" type="button">{{__('Back')}}</button></a><br>
                 </div>
             </div>
         </div>
