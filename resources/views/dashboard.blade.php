@@ -7,9 +7,9 @@
         <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
         @if (app()->getLocale() == 'ar')
         <style>
-        .dropdown-item{
-            text-align:right;
-        }
+        .dropdown-item{text-align:right;}
+        div{text-align: right;}
+        .btn-sm{margin-left: 5px;}
         </style>
         @endif
         @endsection
@@ -41,7 +41,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     @if (Session::get('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>Good </strong>{{ Session::get('success') }}
+                        <strong>{{__('Good')}} </strong>{{__(Session::get('success')) }}
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -67,11 +67,32 @@
                             <tr>
                                 <td scope="row">
                                     <a href="{{route('tasks.edit',$task->id)}}"><button type="button" class="btn btn-outline-primary"><i style="color:black"class="fa fa-edit" ></i></button></a>
-                                    <form action="{{route('tasks.destroy', $task->id)}}" method="POST" style="display:inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-light chat-send-btn"><i style="color:red"class="fa fa-trash" aria-hidden="true"></i></button>
-                                    </form>
+                                        <button class="btn btn-light"data-toggle="modal" data-target="#centralModalSm"><i style="color:red"class="fa fa-trash" aria-hidden="true"></i></button>
+<!-- Central Modal Small -->
+                                        <div class="modal fade" id="centralModalSm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-sm" role="document">
+                                            <!--Content-->
+                                            <div class="modal-content">
+                                                <!--Header-->
+                                                <div class="modal-header">
+                                                <h4 class="modal-title w-100" id="myModalLabel">{{__('Are you sure?')}}</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                </div>
+                                                <!--Footer-->
+                                                <div class="modal-footer">
+                                                    <form action="{{route('tasks.destroy', $task->id)}}" method="POST" style="display:inline">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">{{__('Cancel')}}</button>
+                                                        <button type="submit" class="btn btn-primary btn-sm">{{__('Save changes')}}</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+<!-- Central Modal Small -->
                                 </td>
                                 <td>
                                     @if(\Carbon\Carbon::now()->diffInDays($task->duedate) <= 0)

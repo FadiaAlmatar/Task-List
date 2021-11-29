@@ -290,4 +290,12 @@
 ,"PDF Created Tasks":"طباعة المهام المنشأة"
 ,"PDF To Do List":"طباعة قائمة المهام"
 ,"Cancel":"إلغاء"
+,"Are you sure?":"هل انت متأكد؟"
+,"Save changes":"حفظ التغييرات"
+,"Good":"جيد"
+,"success":"نجاح"
+,"The task was created successfully":"المهمة أُنشأت بنجاح"
+,"status was updated successfully":"الحالة عُدلت بنجاح"
+,"The task was deleted successfully":"المهمة حُذفت بنجاح"
+,"The task was updated successfully":"المهمة عُدلت بنجاح"
 }

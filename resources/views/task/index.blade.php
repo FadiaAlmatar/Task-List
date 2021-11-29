@@ -19,7 +19,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     @if (Session::get('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>Good </strong>{{ Session::get('success') }}
+                        <strong>{{__('Good')}} </strong>{{__(Session::get('success')) }}
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
