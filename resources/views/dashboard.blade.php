@@ -10,6 +10,7 @@
         .dropdown-item{text-align:right;}
         div{text-align: right;}
         .btn-sm{margin-left: 5px;}
+        button{margin-left: 4px;}
         </style>
         @endif
         @endsection

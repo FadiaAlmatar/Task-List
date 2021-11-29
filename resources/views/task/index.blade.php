@@ -6,9 +6,8 @@
         <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
         @if (app()->getLocale() == 'ar')
         <style>
-        button{
-            margin-left:5px;
-        }
+        button{ margin-left:5px;}
+        div{text-align: right;}
         </style>
         @endif
 @endsection
