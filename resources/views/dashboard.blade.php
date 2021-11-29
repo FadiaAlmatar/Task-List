@@ -43,7 +43,7 @@
                             <th scope="col" style="width: 10%">{{__('Action')}}</th>
                             <th scope="col" style="width: 10%">{{__('Duration')}}</th>
                             <th scope="col" style="width: 8%">{{__('Status')}}</th>
-                            <th scope="col" style="width: 25%">{{__('Task')}}</th>
+                            <th scope="col" style="width: 25%" >{{__('Task')}}</th>
                             <th scope="col" style="width: 5%">{{__('Assigned From')}}</th>
                             <th scope="col" style="width: 5%">{{__('Assigned To')}}</th>
                             <th scope="col" style="width: 15%">{{__('Due Date')}}</th>
