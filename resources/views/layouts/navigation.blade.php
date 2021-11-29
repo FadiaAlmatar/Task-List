@@ -13,7 +13,7 @@
           <li class="nav-item">
           <a  style="color: white"class="nav-link" href="{{route('tasks.index')}}">{{__('My Tasks')}}</a>
           </li>
-         
+
           <li class="nav-item dropdown">
             <a  style="color: white"class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               {{__('lang')}}
@@ -28,10 +28,9 @@
              {{ __('account') }}
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-             @guest<li><a class="dropdown-item" href="{{ asset('login') }}" style="color: blue">{{ __('Login') }}</a></li>
-             <li><a class="dropdown-item" href="{{ asset('register') }}" style="color: blue">{{ __('register') }}</a></li>@endguest
              @auth
-             <li><a class="nav-link"><form action="logout" method="post">
+             <li><a class="nav-link">
+            <form action="{{ route('logout') }}" method="post">
                @csrf
                <input type="submit" style="background-color: white;" value="{{ __('Log Out') }}">
              </form>
