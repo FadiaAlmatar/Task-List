@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -26,7 +27,7 @@
                         </div><br>
                         <div class="form-group">
                         <label for="exampleFormControlSelect1">{{__('Assigned To')}}</label>
-                        <select name="assigned_to"class="form-control" id="exampleFormControlSelect1">
+                        <select name="assigned_to"class="form-control" id="exampleFormControlSelect1" style="appearance: none;background-image: url('<custom_arrow_image_url_here>');">
                             @if (!empty($task) && old('assigned_to', $task->assigned_to))
                             <option value="{{ $task->assigned_to}}" selected>{{ App\Models\User::where(['id' => $task->assigned_to])->pluck('name')->first() }}</option>
                                 @foreach ($users as $user)

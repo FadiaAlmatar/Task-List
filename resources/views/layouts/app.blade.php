@@ -29,6 +29,7 @@
             }
             option{
                 text-align: right;
+                margin-right: 5px;
             }
 
         </style>

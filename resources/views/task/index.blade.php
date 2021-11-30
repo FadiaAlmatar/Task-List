@@ -24,6 +24,7 @@
                         </button>
                     </div>
                     @endif
+                   
                     <form style="width:100%;margin:auto"action="{{route('tasks.store_status')}}" method="POST">
                         @csrf
                         <table class="table table-bordered tasksTable" style="width:100%;text-align:center">

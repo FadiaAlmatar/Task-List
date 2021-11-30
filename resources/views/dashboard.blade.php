@@ -48,6 +48,7 @@
                         </button>
                     </div>
                     @endif
+                   
                     <table class="table table-resposive table-bordered tasksTable" style="width:100%;text-align:center">
                         <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">{{__('Created Tasks')}}</caption>
                         <thead>
