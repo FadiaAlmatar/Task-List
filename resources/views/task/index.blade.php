@@ -24,7 +24,7 @@
                         </button>
                     </div>
                     @endif
-                   
+
                     <form style="width:100%;margin:auto"action="{{route('tasks.store_status')}}" method="POST">
                         @csrf
                         <table class="table table-bordered tasksTable" style="width:100%;text-align:center">
@@ -81,7 +81,9 @@
                                             <select name="forwardto[]"class="form-select form-select-sm" aria-label=".form-select-sm example">
                                                 <option></option>
                                                 @foreach ($users as $user)
-                                                 <option value="{{$user->id}}">{{$user->name}}</option>
+                                                    @unless($user->id == Auth::User()->id)
+                                                        <option value="{{$user->id}}">{{$user->name}}</option>
+                                                    @endunless
                                                 @endforeach
                                            </select>
                                            @error('forwardto[]')

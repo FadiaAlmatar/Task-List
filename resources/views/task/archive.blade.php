@@ -26,8 +26,11 @@
                             <tr>
                               <th scope="col" style="width: 15%">{{__('Title')}}</th>
                               <th scope="col" width="30%">{{__('Description')}}</th>
-                              <th scope="col" style="width: 15%">{{__('Assigned From')}}</th>
-                              <th scope="col" style="width: 20%">{{__('Status')}}</th>
+                              <th scope="col" style="width: 13%">{{__('Assigned From')}}</th>
+                              @if(Auth::User()->parentId == null)
+                              <th scope="col" style="width: 13%">{{__('Assigned To')}}</th>
+                              @endif
+                              <th scope="col" style="width: 15%">{{__('Status')}}</th>
                               <th scope="col" style="width: 20%">{{__('Due Date')}}</th>
                             </tr>
                           </thead>
@@ -37,6 +40,9 @@
                                 <td>{{$task->title}}</td>
                                 <td>{{$task->description}}</td>
                                 <td>{{ App\Models\User::where(['id' => $task->user_id])->pluck('name')->first()}}</td>
+                                @if(Auth::User()->parentId == null)
+                                <td>{{ App\Models\User::where(['id' => $task->assigned_to])->pluck('name')->first()}}</td>
+                                @endif
                                 <td>{{$task->status}} </td>
                                 <td>{{$task->duedate}}
                               </tr>

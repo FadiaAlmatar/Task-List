@@ -90,7 +90,7 @@ class TaskController extends Controller
             }
             $task->save();
         }
-        return redirect()->route('tasks.index')->with('success', 'Status updated successfully');
+        return redirect()->route('tasks.index');
     }
 
     public function archive()
