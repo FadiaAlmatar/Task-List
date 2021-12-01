@@ -69,7 +69,7 @@
                             <tr>
                                 <td scope="row">
                                     <a href="{{route('tasks.edit',$task->id)}}"><button type="button" class="btn btn-outline-primary"><i style="color:black"class="fa fa-edit" ></i></button></a>
-                                        <button class="btn btn-light"data-toggle="modal" data-target="#centralModalSm{!! $task->id !!}">{{$task->id}}<i style="color:red"class="fa fa-trash" aria-hidden="true"></i></button>
+                                        <button class="btn btn-light"data-toggle="modal" data-target="#centralModalSm{!! $task->id !!}"><i style="color:red"class="fa fa-trash" aria-hidden="true"></i></button>
   <!-- Central Modal Small -->
                                         <div class="modal fade" id="centralModalSm{!! $task->id !!}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-sm" role="document">
