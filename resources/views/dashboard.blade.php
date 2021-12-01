@@ -48,7 +48,7 @@
                         </button>
                     </div>
                     @endif
-                   
+
                     <table class="table table-resposive table-bordered tasksTable" style="width:100%;text-align:center">
                         <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">{{__('Created Tasks')}}</caption>
                         <thead>
@@ -69,9 +69,9 @@
                             <tr>
                                 <td scope="row">
                                     <a href="{{route('tasks.edit',$task->id)}}"><button type="button" class="btn btn-outline-primary"><i style="color:black"class="fa fa-edit" ></i></button></a>
-                                        <button class="btn btn-light"data-toggle="modal" data-target="#centralModalSm"><i style="color:red"class="fa fa-trash" aria-hidden="true"></i></button>
-<!-- Central Modal Small -->
-                                        <div class="modal fade" id="centralModalSm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <button class="btn btn-light"data-toggle="modal" data-target="#centralModalSm{!! $task->id !!}">{{$task->id}}<i style="color:red"class="fa fa-trash" aria-hidden="true"></i></button>
+  <!-- Central Modal Small -->
+                                        <div class="modal fade" id="centralModalSm{!! $task->id !!}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-sm" role="document">
                                             <!--Content-->
                                             <div class="modal-content">
@@ -138,6 +138,7 @@
         </script>
       {{-- </x-slot> --}}
       @endsection
+
       @endsection
 {{-- </x-app-layout> --}}
 
