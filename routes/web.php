@@ -24,11 +24,6 @@ use App\Http\Controllers\EmployeeController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::resource('tasks', TaskController::class);
-Route::resource('employees', EmployeeController::class);
-Route::post('/task',[TaskController::class,'store_status'])->name('tasks.store_status');
-Route::get('/archive',[TaskController::class,'archive'])->name('archive');
 Route::get('locale/{locale}', function ($locale){
     if (! in_array($locale, ['en', 'ar'])) {
         abort(400);
@@ -37,6 +32,11 @@ Route::get('locale/{locale}', function ($locale){
     App::setLocale($locale);
     return redirect()->back();
 });
+Route::resource('tasks', TaskController::class);
+Route::resource('employees', EmployeeController::class);
+Route::post('/task',[TaskController::class,'store_status'])->name('tasks.store_status');
+Route::get('/archive',[TaskController::class,'archive'])->name('archive');
+
 Route::get('/dashboard', function () {
     if(Auth::User()->parentId == null){
         $tasks = DB::select("CALL pr_employees_tasks(".Auth::User()->id.")");//employees who have assign

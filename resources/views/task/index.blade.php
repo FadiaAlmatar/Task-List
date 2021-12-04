@@ -1,5 +1,5 @@
 {{-- show all tasks assigned to me --}}
-@extends('layouts.app')
+@extends('layouts.amz')
 @section('styles')
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
         <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
@@ -28,10 +28,10 @@
                     <form style="width:100%;margin:auto"action="{{route('tasks.store_status')}}" method="POST">
                         @csrf
                         <table class="table table-bordered tasksTable" style="width:100%;text-align:center">
-                            <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">
+                            {{-- <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">
                                 <i class="fas fa-clipboard mr-1"></i>
                                 {{__('To Do List')}}
-                            </caption>
+                            </caption> --}}
                             <thead>
                                 <tr>
                                 <th scope="col" style="width: 10%">{{__('Duration')}}</th>

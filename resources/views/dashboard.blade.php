@@ -1,29 +1,14 @@
-    {{-- @extends('layouts.app') --}}
     @extends('layouts.amz')
-        @section('styles')
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+      @section('styles')
+        {{--   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
         <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-        <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-
-        @if (app()->getLocale() == 'ar')
-        <style>
-        .dropdown-item{text-align:right;}
-        div{text-align: right;}
-        .btn-sm{margin-left: 5px;}
-        button{margin-left: 4px;}
-        </style>
-        @endif
+        <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">--}}
         @endsection
-      {{-- </x-slot> --}}
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+
     @section('content')
-    {{-- <div class="py-12">
+    <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-           <div class="dropdown">
+           {{-- <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {{__('Task Management')}}
             </button>
@@ -36,7 +21,8 @@
               <a class="dropdown-item" href="{{route('tasks.printCreated')}}">{{__('PDF Created Tasks')}}</a>
               <a href="{{route('tasks.printAssign')}}" class="dropdown-item">{{__('PDF To Do List')}}</a>
             </div>
-          </div><br><br>
+          </div> --}}
+
 
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
@@ -50,7 +36,7 @@
                     @endif
 
                     <table class="table table-resposive table-bordered tasksTable" style="width:100%;text-align:center">
-                        <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">{{__('Created Tasks')}}</caption>
+                        {{-- <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">{{__('Created Tasks')}}</caption> --}}
                         <thead>
                           <tr class="bg-primary">
                             <th scope="col" style="width: 10%">{{__('Action')}}</th>
@@ -119,18 +105,17 @@
                       </table>
                 </div>
             </div>
-        </div> --}}
+        </div>
     </div>
+          @endsection
         @section('scripts')
+
         {{-- for datatable --}}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
         <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" defer></script>
         <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"  defer></script>
-        {{-- for dropdown button --}}
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-        <script>
+
+           <script>
         $(document).ready(function() {
                $('.tasksTable').DataTable();
            });
@@ -138,7 +123,7 @@
 
 
       @endsection
-      @endsection
+
 
 
 

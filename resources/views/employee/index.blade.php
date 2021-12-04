@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.amz')
     @section('styles')
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
         <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
@@ -10,7 +10,6 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <table class="table table-bordered employeesTable" style="width:100%;text-align:center">
-                        <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">{{__('Employees')}} {{Auth::User()->company_name}}</caption>
                         <thead>
                             <tr>
                               @if(Auth::User()->parentId == null)<th scope="col" style="width: 20%">{{__('Action')}}</th>@endif

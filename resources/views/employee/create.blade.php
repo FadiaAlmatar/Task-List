@@ -1,19 +1,19 @@
-@extends('layouts.app')
+@extends('layouts.amz')
 @section('content')
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                     <form style="width:90%;margin:auto"action="{!! !empty($employee) ? route('employees.update', $employee) :  route('employees.store')  !!}" method="POST">
+                     <form action="{!! !empty($employee) ? route('employees.update', $employee) :  route('employees.store')  !!}" method="POST">
                         @csrf
                         @if (!empty($employee))
                             @method('PUT')
                         @endif
                             <div class="table-responsive">
                                 <table class="table" id="employee">
-                                    <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">{{__('New Employees')}}</caption>
+                                    {{-- <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">{{__('New Employees')}}</caption> --}}
 
-                                    <thead style="background: rgba(59, 130, 246, 0.5)">
+                                    <thead">
                                     <tr>
                                         <th></th>
                                         <th style="width: 30%">{{__('Name')}}</th>
@@ -72,5 +72,28 @@
             </div>
         </div>
     </div>
-@endsection
 
+@endsection
+@section('scripts')
+<script>
+
+
+  $(document).ready(function(){
+            $(document).on('click', '.btn_add', function () {
+            let trCount = $('#employee').find('tr.cloning_row:last').length;
+            let numberIncr = trCount > 0 ? parseInt($('#employee').find('tr.cloning_row:last').attr('id')) + 1 : 0;
+            $('#employee').find('tbody').append($('' +
+                '<tr class="cloning_row" id="' + numberIncr + '">' +
+                '<td><button type="button" class="btn btn-danger btn-sm delegated-btn"><i class="fa fa-minus"></i></button></td>' +
+                '<td><input class="input"type="text" name="name['+ numberIncr + ']" class=" form-control"></td>' +
+                '<td><input class="input"type="email" name="email['+ numberIncr + ']" class=" form-control"></td>' +
+                '<td><input class="input"type="password" name="password[' + numberIncr + ']" class="form-control"></td>' +
+                '</tr>'));
+        });
+        $(document).on('click', '.delegated-btn', function (e) {
+            e.preventDefault();
+            $(this).parent().parent().remove();
+        });
+    });
+    </script>
+@endsection
