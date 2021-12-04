@@ -65,7 +65,6 @@ class TaskController extends Controller
         $task->user_id = Auth::User()->id;
         $task->save();
         $user = User::where('id',$request->assigned_to)->first();
-        // Notification::sendNow($user , new TaskCreated($task));
         return redirect()->route('dashboard')->with('success', 'Task created successfully');
     }
     public function store_status(Request $request)
@@ -204,14 +203,7 @@ class TaskController extends Controller
         $pdf->WriteHTML($html);
         return  $pdf->Output("assign.pdf","D");
     }
+
+
 }
 
-
-
-
-
-
-// $request->validate([
-        //     'forwardto'           => "required|array",
-        //     'forwardto.*'         => 'required',
-        // ]);

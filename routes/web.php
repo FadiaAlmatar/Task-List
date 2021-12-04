@@ -49,24 +49,7 @@ Route::get('/dashboard', function () {
 Route::get('/printarchive', [TaskController::class, 'printArchive'])->name('tasks.printArchive');
 Route::get('/printcreated', [TaskController::class, 'printCreated'])->name('tasks.printCreated');
 Route::get('/printassign', [TaskController::class, 'printAssign'])->name('tasks.printAssign');
-
-// Auth::routes(['verify' =>true]);
 require __DIR__.'/auth.php';
 
 
 
-
-    // dd("here");
-
- // $tasks =   DB::table('tasks')->join('users', function ($join) {
-        //             $join->on('tasks.assigned_to', '=', 'users.id')
-        //             ->where('users.parentId','=', Auth::User()->id)
-        //             ->orwhere('users.id','=', Auth::User()->id);
-        // })->get();
-        // dd($tasks);
-
-
-        // SELECT * from tasks
-        // INNER JOIN
-        // users ON (tasks.assigned_to = users.id)
-        // where (users.parentId = id) or (users.id = id);
