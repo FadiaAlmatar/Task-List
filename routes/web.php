@@ -44,6 +44,7 @@ Route::get('/delegatedTasks', [TaskController::class,'delegatedTasks'])->name('d
 Route::get('/printarchive', [TaskController::class, 'printArchive'])->name('tasks.printArchive');
 Route::get('/printcreated', [TaskController::class, 'printCreated'])->name('tasks.printCreated');
 Route::get('/printassign', [TaskController::class, 'printAssign'])->name('tasks.printAssign');
+Route::get('/findtasks', [TaskController::class, 'find'])->name('tasks.find');
 require __DIR__.'/auth.php';
 
 

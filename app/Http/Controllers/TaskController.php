@@ -222,5 +222,16 @@ class TaskController extends Controller
 
     }
 
+    public function find(Request $request)
+    {
+        dd($request);
+        $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->get();
+        if(Auth::User()->parentId == null)
+          $users = User::where('parentId', Auth::User()->id)->orwhere('id', Auth::User()->id)->get();
+       else
+          $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
+        return view('task.find',['tasks' => $tasks,'users'=>$users]);
+    }
+
 }
 
