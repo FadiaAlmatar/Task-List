@@ -11,9 +11,7 @@
                         @endif
                             <div class="table-responsive">
                                 <table class="table" id="employee">
-                                    {{-- <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">{{__('New Employees')}}</caption> --}}
-
-                                    <thead">
+                                    <thead>
                                     <tr>
                                         <th></th>
                                         <th style="width: 30%">{{__('Name')}}</th>
@@ -76,8 +74,6 @@
 @endsection
 @section('scripts')
 <script>
-
-
   $(document).ready(function(){
             $(document).on('click', '.btn_add', function () {
             let trCount = $('#employee').find('tr.cloning_row:last').length;

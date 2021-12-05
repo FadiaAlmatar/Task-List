@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html dir="{{ str_replace('_', '-', app()->getLocale()) == 'ar' ? 'rtl' : 'ltr' }}"
     lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -93,304 +92,6 @@
                                 <i class="sl-icon-menu font-20"></i>
                             </a>
                         </li>
-                        <!-- ============================================================== -->
-                        <!-- mega menu -->
-                        <!-- ============================================================== -->
-                        {{-- <li class="nav-item dropdown mega-dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="ti-gift font-20"></i>
-                            </a>
-                            <div class="dropdown-menu animated bounceInDown">
-                                <div class="mega-dropdown-menu row">
-                                    <div class="col-lg-3 col-xlg-2 m-b-30">
-                                        <h5 class="m-b-20">Carousel</h5>
-                                        <!-- CAROUSEL -->
-                                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                                            <div class="carousel-inner" role="listbox">
-                                                <div class="carousel-item active">
-                                                    <div class="container p-0">
-                                                        <img class="d-block img-fluid" src="{{ asset('assets/images/big/img1.jpg')}}" alt="First slide">
-                                                    </div>
-                                                </div>
-                                                <div class="carousel-item">
-                                                    <div class="container p-0">
-                                                        <img class="d-block img-fluid" src="{{ asset('assets/images/big/img2.jpg')}}" alt="Second slide">
-                                                    </div>
-                                                </div>
-                                                <div class="carousel-item">
-                                                    <div class="container p-0">
-                                                        <img class="d-block img-fluid" src="{{ asset('assets/images/big/img3.jpg')}}" alt="Third slide">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                        </div>
-                                        <!-- End CAROUSEL -->
-                                    </div>
-                                    <div class="col-lg-3 m-b-30">
-                                        <h5 class="m-b-20">Accordion</h5>
-                                        <!-- Accordian -->
-                                        <div id="accordion">
-                                            <div class="card m-b-5">
-                                                <div class="card-header" id="headingOne">
-                                                    <h5 class="mb-0">
-                                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                            Collapsible Group Item #1
-                                                        </button>
-                                                    </h5>
-                                                </div>
-                                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                                                    <div class="card-body">
-                                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card m-b-5">
-                                                <div class="card-header" id="headingTwo">
-                                                    <h5 class="mb-0">
-                                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                            Collapsible Group Item #2
-                                                        </button>
-                                                    </h5>
-                                                </div>
-                                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                                                    <div class="card-body">
-                                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card m-b-5">
-                                                <div class="card-header" id="headingThree">
-                                                    <h5 class="mb-0">
-                                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                            Collapsible Group Item #3
-                                                        </button>
-                                                    </h5>
-                                                </div>
-                                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                                                    <div class="card-body">
-                                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3  m-b-30">
-                                        <h5 class="m-b-20">Contact Us</h5>
-                                        <!-- Contact -->
-                                        <form>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="exampleInputname1" placeholder="Enter Name"> </div>
-                                            <div class="form-group">
-                                                <input type="email" class="form-control" placeholder="Enter email"> </div>
-                                            <div class="form-group">
-                                                <textarea class="form-control" id="exampleTextarea" rows="3" placeholder="Message"></textarea>
-                                            </div>
-                                            <button type="submit" class="btn btn-info">Submit</button>
-                                        </form>
-                                    </div>
-                                    <div class="col-lg-3 col-xlg-4 m-b-30">
-                                        <h5 class="m-b-20">List style</h5>
-                                        <!-- List style -->
-                                        <ul class="list-style-none">
-                                            <li>
-                                                <a href="javascript:void(0)">
-                                                    <i class="fa fa-check text-success"></i> You can give link</a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)">
-                                                    <i class="fa fa-check text-success"></i> Give link</a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)">
-                                                    <i class="fa fa-check text-success"></i> Another Give link</a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)">
-                                                    <i class="fa fa-check text-success"></i> Forth link</a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)">
-                                                    <i class="fa fa-check text-success"></i> Another fifth link</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </li> --}}
-                        <!-- ============================================================== -->
-                        <!-- End mega menu -->
-                        <!-- ============================================================== -->
-                        <!-- ============================================================== -->
-                        <!-- Comment -->
-                        <!-- ============================================================== -->
-                        {{-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="ti-bell font-20"></i>
-
-                            </a>
-                            <div class="dropdown-menu mailbox animated bounceInDown">
-                                <span class="with-arrow">
-                                    <span class="bg-primary"></span>
-                                </span>
-                                <ul class="list-style-none">
-                                    <li>
-                                        <div class="drop-title bg-primary text-white">
-                                            <h4 class="m-b-0 m-t-5">4 New</h4>
-                                            <span class="font-light">Notifications</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="message-center notifications">
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="message-item">
-                                                <span class="btn btn-danger btn-circle">
-                                                    <i class="fa fa-link"></i>
-                                                </span>
-                                                <div class="mail-contnet">
-                                                    <h5 class="message-title">Luanch Admin</h5>
-                                                    <span class="mail-desc">Just see the my new admin!</span>
-                                                    <span class="time">9:30 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="message-item">
-                                                <span class="btn btn-success btn-circle">
-                                                    <i class="ti-calendar"></i>
-                                                </span>
-                                                <div class="mail-contnet">
-                                                    <h5 class="message-title">Event today</h5>
-                                                    <span class="mail-desc">Just a reminder that you have event</span>
-                                                    <span class="time">9:10 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="message-item">
-                                                <span class="btn btn-info btn-circle">
-                                                    <i class="ti-settings"></i>
-                                                </span>
-                                                <div class="mail-contnet">
-                                                    <h5 class="message-title">Settings</h5>
-                                                    <span class="mail-desc">You can customize this template as you want</span>
-                                                    <span class="time">9:08 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="message-item">
-                                                <span class="btn btn-primary btn-circle">
-                                                    <i class="ti-user"></i>
-                                                </span>
-                                                <div class="mail-contnet">
-                                                    <h5 class="message-title">Pavan kumar</h5>
-                                                    <span class="mail-desc">Just see the my admin!</span>
-                                                    <span class="time">9:02 AM</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link text-center m-b-5" href="javascript:void(0);">
-                                            <strong>Check all notifications</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> --}}
-                        <!-- ============================================================== -->
-                        <!-- End Comment -->
-                        <!-- ============================================================== -->
-                        <!-- ============================================================== -->
-                        <!-- Messages -->
-                        <!-- ============================================================== -->
-                        {{-- <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="font-20 ti-email"></i>
-
-                            </a>
-                            <div class="dropdown-menu mailbox animated bounceInDown" aria-labelledby="2">
-                                <span class="with-arrow">
-                                    <span class="bg-danger"></span>
-                                </span>
-                                <ul class="list-style-none">
-                                    <li>
-                                        <div class="drop-title bg-danger text-white">
-                                            <h4 class="m-b-0 m-t-5">5 New</h4>
-                                            <span class="font-light">Messages</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="message-center message-body">
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="message-item">
-                                                <span class="user-img">
-                                                    <img src="{{ asset('assets/images/users/1.jpg')}}" alt="user" class="rounded-circle">
-                                                    <span class="profile-status online pull-right"></span>
-                                                </span>
-                                                <div class="mail-contnet">
-                                                    <h5 class="message-title">Pavan kumar</h5>
-                                                    <span class="mail-desc">Just see the my admin!</span>
-                                                    <span class="time">9:30 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="message-item">
-                                                <span class="user-img">
-                                                    <img src="{{ asset('assets/images/users/2.jpg')}}" alt="user" class="rounded-circle">
-                                                    <span class="profile-status busy pull-right"></span>
-                                                </span>
-                                                <div class="mail-contnet">
-                                                    <h5 class="message-title">Sonu Nigam</h5>
-                                                    <span class="mail-desc">I've sung a song! See you at</span>
-                                                    <span class="time">9:10 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="message-item">
-                                                <span class="user-img">
-                                                    <img src="{{ asset('assets/images/users/3.jpg')}}" alt="user" class="rounded-circle">
-                                                    <span class="profile-status away pull-right"></span>
-                                                </span>
-                                                <div class="mail-contnet">
-                                                    <h5 class="message-title">Arijit Sinh</h5>
-                                                    <span class="mail-desc">I am a singer!</span>
-                                                    <span class="time">9:08 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)" class="message-item">
-                                                <span class="user-img">
-                                                    <img src="{{ asset('assets/images/users/4.jpg')}}" alt="user" class="rounded-circle">
-                                                    <span class="profile-status offline pull-right"></span>
-                                                </span>
-                                                <div class="mail-contnet">
-                                                    <h5 class="message-title">Pavan kumar</h5>
-                                                    <span class="mail-desc">Just see the my admin!</span>
-                                                    <span class="time">9:02 AM</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link text-center link" href="javascript:void(0);">
-                                            <b>See all e-Mails</b>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> --}}
-                        <!-- ============================================================== -->
-                        <!-- End Messages -->
-                        <!-- ============================================================== -->
-
 
                     </ul>
                     <!-- ============================================================== -->
@@ -421,9 +122,9 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right  animated bounceInDown" aria-labelledby="navbarDropdown2">
                                 <a class="dropdown-item" href="{{asset('/locale/en')}}">
-                                    <i class="flag-icon flag-icon-us"></i> English</a>
+                                    <i class="flag-icon flag-icon-us"></i> {{__('English')}}</a>
                                 <a class="dropdown-item" href="{{asset('/locale/ar')}}">
-                                    <i class="flag-icon flag-icon-us"></i> Arabic</a>
+                                    <i class="flag-icon flag-icon-us"></i> {{__('Arabic')}}</a>
                             </div>
                         </li>
 
@@ -496,7 +197,7 @@
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">{{ __('Tasks') }} </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item"><a href="{{route('tasks.index')}}" class="sidebar-link"><i class="mdi mdi-adjust"></i><span class="hide-menu">{{__('My Tasks')}}</span></a></li>
-                                <li class="sidebar-item"><a href="{{route('dashboard')}}" class="sidebar-link"><i class="mdi mdi-adjust"></i><span class="hide-menu">{{__('Tasks delegated')}}</span></a></li>
+                                <li class="sidebar-item"><a href="{{route('delegatedTasks')}}" class="sidebar-link"><i class="mdi mdi-adjust"></i><span class="hide-menu">{{__('Tasks delegated')}}</span></a></li>
                                 <li class="sidebar-item"><a href="{{route('tasks.create')}}" class="sidebar-link"><i class="mdi mdi-adjust"></i><span class="hide-menu"> {{__('New Task')}}</span></a></li>
                             </ul>
                         </li>
@@ -504,14 +205,6 @@
                             <ul aria-expanded="false" class="collapse first-level">
                                 <li class="sidebar-item"><a href="{{route('employees.index')}}" class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu">{{__('Employees')}}</span></a></li>
                                 @if(Auth::User()->parentId == null) <li class="sidebar-item"><a href="{{route('employees.create')}}" class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu">{{__('Add Employees')}}</span></a></li>@endif
-                                {{-- <li class="sidebar-item"> <a class="has-arrow sidebar-link" href="" aria-expanded="false"><i class="mdi mdi-playlist-plus"></i> <span class="hide-menu"></span></a>
-                                    <ul aria-expanded="false" class="collapse second-level">
-                                        <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu"> item 1.3.1</span></a></li>
-                                        <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu"> item 1.3.2</span></a></li>
-                                        <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu"> item 1.3.3</span></a></li>
-                                        <li class="sidebar-item"><a href="javascript:void(0)" class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu"> item 1.3.4</span></a></li>
-                                    </ul>
-                                </li> --}}
                                 <li class="sidebar-item"><a href="{{route('archive')}}" class="sidebar-link"><i class="mdi mdi-playlist-check"></i><span class="hide-menu">{{__('Archive')}}</span></a></li>
                             </ul>
                         </li>
@@ -531,28 +224,7 @@
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
-            {{-- <div class="page-breadcrumb">
-                <div class="row">
-                    <div class="col-5 align-self-center">
-                        <h4 class="page-title">Starter Page</h4>
-                        <div class="d-flex align-items-center">
 
-                        </div>
-                    </div>
-                    <div class="col-7 align-self-center">
-                        <div class="d-flex no-block justify-content-end align-items-center">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item">
-                                        <a href="#">Home</a>
-                                    </li>
-                                    <li class="breadcrumb-item active" aria-current="page">Library</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
             <!-- ============================================================== -->
             <!-- End Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->

@@ -73,7 +73,6 @@
                     <th scope="col" style="width: 25%">{{__('Description')}}</th>
                     <th scope="col" style="width: 13%">{{__('Assigned From')}}</th>
                     <th scope="col" style="width: 15%">{{__('Status')}}</th>
-                    {{-- <th scope="col" style="width: 13%">{{__('Forward to')}}</th> --}}
                     <th scope="col" style="width: 25%">{{__('Due Date')}}</th>
                 </tr>
             </thead>

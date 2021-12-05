@@ -160,7 +160,7 @@ class TaskController extends Controller
     {
         $task = Task::findOrFail($id);
         $task->delete();
-        return redirect()->route('dashboard')->with('success', 'Task deleted successfully');
+        return redirect()->route('delegatedTasks')->with('success', 'Task deleted successfully');
     }
 
     public function printArchive(Request $request)
@@ -204,6 +204,23 @@ class TaskController extends Controller
         return  $pdf->Output("assign.pdf","D");
     }
 
+    public function delegatedTasks()
+    {
+        if(Auth::User()->parentId == null){
+            $tasks = DB::select("CALL pr_employees_tasks(".Auth::User()->id.")");//employees who have assign
+        }else{ $tasks = Task::where('user_id', Auth::User()->id)->get();//all tasks that I created it
+         }
+         if (!empty($tasks)){
+         foreach($tasks as $task){
+         $assignedfrom_users = User::where('id' , $task->user_id)->get();
+         $assignedto_users = User::where('id' , $task->assigned_to)->get();
+        }
+        return view('dashboard',['tasks'=> $tasks,'assignedfrom_users'=>$assignedfrom_users,'assignedto_users'=>$assignedto_users]);
+         }else{
+            return view('dashboard',['tasks'=> $tasks]);
+         }
+
+    }
 
 }
 

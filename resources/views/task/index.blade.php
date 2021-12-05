@@ -1,13 +1,13 @@
 {{-- show all tasks assigned to me --}}
 @extends('layouts.amz')
 @section('styles')
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
         <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
         <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
         @if (app()->getLocale() == 'ar')
         <style>
-        button{ margin-left:5px;}
-        div{text-align: right;}
+        /* button{ margin-left:10px;} */
+        /* a{padding-left:10px;}
+        div{text-align: right;} */
         </style>
         @endif
 @endsection
@@ -28,10 +28,10 @@
                     <form style="width:100%;margin:auto"action="{{route('tasks.store_status')}}" method="POST">
                         @csrf
                         <table class="table table-bordered tasksTable" style="width:100%;text-align:center">
-                            {{-- <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">
+                            <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">
                                 <i class="fas fa-clipboard mr-1"></i>
                                 {{__('To Do List')}}
-                            </caption> --}}
+                            </caption>
                             <thead>
                                 <tr>
                                 <th scope="col" style="width: 10%">{{__('Duration')}}</th>
@@ -97,8 +97,10 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    <button type="submit" class="btn btn-success mr-2"> <i class="fa fa-check"></i> {{__('Save')}}</button>
-                    <a href="{{route('dashboard')}}"><button type="button" class="btn btn-danger">{{__('Cancel')}}</button></a>
+                    @empty($tasks)
+                       <button type="submit" class="btn btn-success mr-2"> <i class="fa fa-check"></i> {{__('Save')}}</button>
+                    @endempty
+                    <a href="{{route('delegatedTasks')}}"><button type="button" class="btn btn-danger">{{__('Cancel')}}</button></a>
                     </form>
                     <br>
                     <br>
@@ -108,7 +110,6 @@
     </div>
     @section('scripts')
         {{-- for datatable --}}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
         <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" defer></script>
         <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"  defer></script>
         {{-- for flash message --}}
