@@ -22,9 +22,7 @@ use App\Http\Controllers\Controller;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [TaskController::class,'index'])->middleware(['auth']);
 Route::get('locale/{locale}', function ($locale){
     if (! in_array($locale, ['en', 'ar'])) {
         abort(400);
@@ -38,7 +36,6 @@ Route::resource('employees', EmployeeController::class);
 Route::post('/task',[TaskController::class,'store_status'])->name('tasks.store_status');
 Route::get('/archive',[TaskController::class,'archive'])->name('archive');
 
-// Route::get('/dashboard', [TaskController::class,'delegatedTasks'])->middleware(['auth','verified'])->name('dashboard');
 Route::get('/dashboard', [TaskController::class,'index'])->middleware(['auth','verified'])->name('dashboard');
 Route::get('/delegatedTasks', [TaskController::class,'delegatedTasks'])->name('delegatedTasks');
 Route::get('/printarchive', [TaskController::class, 'printArchive'])->name('tasks.printArchive');
@@ -46,6 +43,7 @@ Route::get('/printcreated', [TaskController::class, 'printCreated'])->name('task
 Route::get('/printassign', [TaskController::class, 'printAssign'])->name('tasks.printAssign');
 Route::get('/findtasks/{status}', [TaskController::class, 'find'])->name('tasks.find');
 require __DIR__.'/auth.php';
+
 
 
 
