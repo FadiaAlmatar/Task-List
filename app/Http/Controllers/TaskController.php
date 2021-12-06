@@ -222,15 +222,22 @@ class TaskController extends Controller
 
     }
 
-    public function find(Request $request)
+    public function find($status)
     {
-        dd($request);
-        $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->get();
+        if($status == "in progress")
+           $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','=',$status)->get();
+        elseif($status == "waiting")
+           $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','=',$status)->get();
+        elseif($status == "not started")
+           $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','=',$status)->get();
+        else
+           $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','=',$status)->get();
+
         if(Auth::User()->parentId == null)
           $users = User::where('parentId', Auth::User()->id)->orwhere('id', Auth::User()->id)->get();
        else
           $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
-        return view('task.find',['tasks' => $tasks,'users'=>$users]);
+        return view('task.index',['tasks' => $tasks,'users'=>$users]);
     }
 
 }

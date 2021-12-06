@@ -208,15 +208,10 @@
                                 <li class="sidebar-item"><a href="{{route('archive')}}" class="sidebar-link"><i class="mdi mdi-playlist-check"></i><span class="hide-menu">{{__('Archive')}}</span></a></li>
                             </ul>
                         </li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="icon-Increase-Inedit"></i><span class="hide-menu">{{__('Find Tasks')}}</span></a>
-                            <ul aria-expanded="false" class="collapse first-level">
-                                <li class="sidebar-item" ><a href="{{route('tasks.find')}}" class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu">{{__('in progress tasks')}}</span></a></li>
-                               <li class="sidebar-item"><a href="{{route('tasks.find')}}" class="sidebar-link"><i class="mdi mdi-octagram"></i><span class="hide-menu">{{__('not started tasks')}}</span></a></li>
-                                <li class="sidebar-item"><a href="{{route('tasks.find')}}" class="sidebar-link"><i class="mdi mdi-playlist-check"></i><span class="hide-menu">{{__('waiting tasks')}}</span></a></li>
-                                <li class="sidebar-item"><a href="{{route('tasks.find')}}" class="sidebar-link"><i class="mdi mdi-playlist-check"></i><span class="hide-menu">{{__('denied tasks')}}</span></a></li>
-
-                            </ul>
-                        </li>
+                        <li class="sidebar-item"> <a  class="sidebar-link waves-effect waves-dark" href="{{route('tasks.find',"in progress")}}" aria-expanded="false"><span class="hide-menu">{{__('in progress tasks')}}</span></a></li>
+                        <li class="sidebar-item"> <a  class="sidebar-link waves-effect waves-dark" href="{{route('tasks.find',"not started")}}" aria-expanded="false"><span class="hide-menu">{{__('not started tasks')}}</span></a></li>
+                        <li class="sidebar-item"> <a  class="sidebar-link waves-effect waves-dark" href="{{route('tasks.find',"waiting")}}" aria-expanded="false"><span class="hide-menu">{{__('waiting tasks')}}</span></a></li>
+                        <li class="sidebar-item"> <a  class="sidebar-link waves-effect waves-dark" href="{{route('tasks.find',"denied")}}" aria-expanded="false"><span class="hide-menu">{{__('denied tasks')}}</span></a></li>
 
                     </ul>
                 </nav>
