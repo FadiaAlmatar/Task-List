@@ -42,59 +42,41 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //  $request->validate([
-        //             'name.*' => ['sometime','required', 'string', 'min:3','max:255'],
-        //             // 'email.*' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-        //             'password.*' => ['required', 'confirmed', Rules\Password::defaults()],
-        //             ]);
-
-        // $this->validate($request, [
-        //     '*.item_id' => 'required|integer',
-        //     '*.item_no' => 'required|integer',
-        //     '*.size'    => 'required|max:191',
-        // ]);
-            for ($i = 0; $i < count($request->name); $i++) {
-
+         $request->validate([
+                    'name' => ['required', 'string', 'min:3','max:255'],
+                    'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                    'password' => ['required', Rules\Password::defaults()],
+                    ]);
                 $user = new User();
-                $user->name = $request->name[$i];
-                $user->email = $request->email[$i];
-                $user->password =  Hash::make($request->password[$i]);
+                $user->name = $request->name;
+                $user->email = $request->email;
+                $user->password =  Hash::make($request->password);
                 $user->company_name = Auth::User()->company_name;
                 $user->parentId = Auth::User()->id;
                 $user->save();
-        }
-         return redirect()->route('employees.index');
+        return redirect()->route('employees.index');
     }
     public function update(Request $request,$id)
     {
-        // $request->validate([
-        //                 'name' => 'sometimes|required| string|min:3|max:255',
-        //                 'email' => 'sometimes|required |string|email|max:255|unique:users'
-        //                 ]);
-
-
-            // $user->name = $request->name;
-            // $user->email = $request->email;
-            // $user->password =  Hash::make($request->password);
-            $validator = Validator::make($request->all(), [
-                'email' =>['sometimes',
-                'required',
-                Rule::unique('users','email')->where(function ($query) use ($id){
-              $query->where('id' ,'<>', $id);
-            })
+        $validator = Validator::make($request->all(), [
+            'email' =>['sometimes',
+            'required',
+            Rule::unique('users','email')->where(function ($query) use ($id){
+            $query->where('id' ,'<>', $id);
+        })
         ],
+        'name' => ['sometime','required', 'string', 'min:3','max:255'],
+        'password' => ['required', Rules\Password::defaults()],
         ]);
         $user = User::find($id);
-            $user->update(['name'=> $request->name],['email'=> $request->email]);
-            // $user->save();
+         $user->update(['name'=> $request->name],['email'=> $request->email]);
          return redirect()->route('employees.index');
     }
 
     public function edit($id)
     {
-        // dd($id);
-        $user = User::find($id);
-        return view('employee.edit',['user'=> $user]);
+        $employee = User::find($id);
+        return view('employee.create',['employee'=> $employee]);
     }
     public function destroy($id)
     {
