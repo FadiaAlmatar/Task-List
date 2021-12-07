@@ -1,4 +1,6 @@
-<x-app-layout>
+@extends('layouts.amz')
+
+@section('content')
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -25,7 +27,7 @@
                         </div><br>
                         <div class="form-group">
                         <label for="exampleFormControlSelect1">{{__('Assigned To')}}</label>
-                        <select name="assigned_to"class="form-control" id="exampleFormControlSelect1">
+                        <select name="assigned_to"class="form-control" id="exampleFormControlSelect1" style="appearance: none;background-image: url('<custom_arrow_image_url_here>');">
                             @if (!empty($task) && old('assigned_to', $task->assigned_to))
                             <option value="{{ $task->assigned_to}}" selected>{{ App\Models\User::where(['id' => $task->assigned_to])->pluck('name')->first() }}</option>
                                 @foreach ($users as $user)
@@ -55,19 +57,14 @@
                         @enderror
                     </div>
                     <br><br><br>
-                        @if (empty($task))
-                          <button class="btn btn-primary" type="submit">{{__('Submit task')}}</button>
-                        @else
-                          <button class="btn btn-primary" type="submit">{{__('Save')}}</button>
-                        @endif
-
+                          <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> {{__('Save')}}</button>
+                          <a href="{{route('dashboard')}}"><button type="button" class="btn btn-danger">{{__('Cancel')}}</button></a>
                     </form>
-                    <a style="float:right"href="{{route('dashboard')}}"><button class="btn btn-danger" type="submit">{{__('Cancel')}}</button></a><br>
                     <br>
                 </div>
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection
 
 

@@ -1,15 +1,15 @@
-<x-app-layout>
-    <x-slot name="styles">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+@extends('layouts.amz')
+    @section('styles')
         <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
         <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-      </x-slot>
+     @endsection
+     @section('content')
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
+                    <a href="{{route('employees.create')}}"><button type="button" class="btn_add btn btn-primary"><i class="fas fa-plus" aria-hidden="true"></i> </button></a>
                     <table class="table table-bordered employeesTable" style="width:100%;text-align:center">
-                        <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">{{__('Employees')}} {{Auth::User()->company_name}}</caption>
                         <thead>
                             <tr>
                               @if(Auth::User()->parentId == null)<th scope="col" style="width: 20%">{{__('Action')}}</th>@endif
@@ -35,14 +35,13 @@
                               @endforeach
                           </tbody>
                     </table>
-                    <a href="{{route('dashboard')}}"><button class="btn btn-danger" type="submit">{{__('Back')}}</button></a><br>
+                    <a href="{{route('dashboard')}}"><button class="btn btn-danger" type="button">{{__('Back')}}</button></a><br>
                 </div>
             </div>
         </div>
     </div>
-    <x-slot name="scripts">
+    @section('scripts')
         {{-- for datatable --}}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
         <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" defer></script>
         <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"  defer></script>
         <script>
@@ -50,5 +49,5 @@
                $('.tasksTable').DataTable();
            });
         </script>
-      </x-slot>
-</x-app-layout>
+      @endsection
+      @endsection

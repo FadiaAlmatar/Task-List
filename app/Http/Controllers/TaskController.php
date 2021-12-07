@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Notifications\TaskCreated;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 class TaskController extends Controller
 {
@@ -62,7 +64,8 @@ class TaskController extends Controller
         $task->status = "not started";
         $task->user_id = Auth::User()->id;
         $task->save();
-        return redirect()->route('dashboard');
+        $user = User::where('id',$request->assigned_to)->first();
+        return redirect()->route('dashboard')->with('success', 'Task created successfully');
     }
     public function store_status(Request $request)
     {
@@ -85,8 +88,8 @@ class TaskController extends Controller
                 }
             }
             $task->save();
-    }
-    return redirect()->route('tasks.index');
+        }
+        return redirect()->route('tasks.index');
     }
 
     public function archive()
@@ -144,7 +147,7 @@ class TaskController extends Controller
         $task->status =  "not started";
         $task->user_id = Auth::User()->id;
         $task->save();
-        return redirect()->route('dashboard');
+        return redirect()->route('dashboard')->with('success', 'Task updated successfully');;
     }
 
     /**
@@ -155,10 +158,9 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        // dd("here");
         $task = Task::findOrFail($id);
         $task->delete();
-        return redirect()->route('dashboard');
+        return redirect()->route('delegatedTasks')->with('success', 'Task deleted successfully');
     }
 
     public function printArchive(Request $request)
@@ -201,14 +203,42 @@ class TaskController extends Controller
         $pdf->WriteHTML($html);
         return  $pdf->Output("assign.pdf","D");
     }
+
+    public function delegatedTasks()
+    {
+        if(Auth::User()->parentId == null){
+            $tasks = DB::select("CALL pr_employees_tasks(".Auth::User()->id.")");//employees who have assign
+        }else{ $tasks = Task::where('user_id', Auth::User()->id)->get();//all tasks that I created it
+         }
+         if (!empty($tasks)){
+         foreach($tasks as $task){
+         $assignedfrom_users = User::where('id' , $task->user_id)->get();
+         $assignedto_users = User::where('id' , $task->assigned_to)->get();
+        }
+        return view('dashboard',['tasks'=> $tasks,'assignedfrom_users'=>$assignedfrom_users,'assignedto_users'=>$assignedto_users]);
+         }else{
+            return view('dashboard',['tasks'=> $tasks]);
+         }
+
+    }
+
+    public function find($status)
+    {
+        if($status == "in progress")
+           $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','=',$status)->get();
+        elseif($status == "waiting")
+           $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','=',$status)->get();
+        elseif($status == "not started")
+           $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','=',$status)->get();
+        else
+           $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','=',$status)->get();
+
+        if(Auth::User()->parentId == null)
+          $users = User::where('parentId', Auth::User()->id)->orwhere('id', Auth::User()->id)->get();
+       else
+          $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
+        return view('task.index',['tasks' => $tasks,'users'=>$users]);
+    }
+
 }
 
-
-
-
-
-
-// $request->validate([
-        //     'forwardto'           => "required|array",
-        //     'forwardto.*'         => 'required',
-        // ]);

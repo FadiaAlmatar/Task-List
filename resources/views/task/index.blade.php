@@ -1,14 +1,30 @@
 {{-- show all tasks assigned to me --}}
-<x-app-layout>
-    <x-slot name="styles">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+@extends('layouts.amz')
+@section('styles')
         <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
         <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-      </x-slot>
+        @if (app()->getLocale() == 'ar')
+        <style>
+        /* button{ margin-left:10px;} */
+        /* a{padding-left:10px;}
+        div{text-align: right;} */
+        </style>
+        @endif
+@endsection
+@section('content')
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
+                    @if (Session::get('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>{{__('Good')}} </strong>{{__(Session::get('success')) }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @endif
+
                     <form style="width:100%;margin:auto"action="{{route('tasks.store_status')}}" method="POST">
                         @csrf
                         <table class="table table-bordered tasksTable" style="width:100%;text-align:center">
@@ -65,7 +81,9 @@
                                             <select name="forwardto[]"class="form-select form-select-sm" aria-label=".form-select-sm example">
                                                 <option></option>
                                                 @foreach ($users as $user)
-                                                 <option value="{{$user->id}}">{{$user->name}}</option>
+                                                    @unless($user->id == Auth::User()->id)
+                                                        <option value="{{$user->id}}">{{$user->name}}</option>
+                                                    @endunless
                                                 @endforeach
                                            </select>
                                            @error('forwardto[]')
@@ -79,24 +97,28 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    <button class="btn btn-primary" type="submit">{{__('Save')}}</button><br>
+                    {{-- @empty($tasks) --}}
+                       <button type="submit" class="btn btn-success mr-2"> <i class="fa fa-check"></i> {{__('Save')}}</button>
+                    {{-- @endempty --}}
+                    <a href="{{route('delegatedTasks')}}"><button type="button" class="btn btn-danger">{{__('Cancel')}}</button></a>
                     </form>
                     <br>
-                    <a href="{{route('dashboard')}}"><button class="btn btn-danger" type="submit">{{__('Cancel')}}</button></a>
                     <br>
                 </div>
             </div>
         </div>
     </div>
-    <x-slot name="scripts">
+    @section('scripts')
         {{-- for datatable --}}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
         <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" defer></script>
         <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"  defer></script>
+        {{-- for flash message --}}
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
         <script>
         $(document).ready(function() {
                $('.tasksTable').DataTable();
            });
         </script>
-      </x-slot>
-</x-app-layout>
+     @endsection
+     @endsection
