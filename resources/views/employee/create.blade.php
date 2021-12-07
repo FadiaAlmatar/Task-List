@@ -11,21 +11,21 @@
                         @endif
                     <div class="form-group">
                         <label for="exampleFormControlInput1">{{__('Employee Name')}}</label>
-                        <input name="name"type="text" class="form-control" id="exampleFormControlInput1" value="@if(!empty($employee)) {{$employee->name}} @else {{ old('name') }} @endif"placeholder="{{__("Enter employee's name")}}">
+                        <input name="name"type="text" class="form-control" id="exampleFormControlInput1" value="@if(!empty($employee)) {{$employee->name}} @else {{ old('name') }} @endif" placeholder="">
                         @error('name')
                         <p class="help is-danger" style="color: red">{{ $message }}</p>
                         @enderror
                     </div><br>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">{{__('Employee Email')}}</label>
-                        <input name="email"type="email" class="form-control" id="exampleFormControlInput1" value="@if(!empty($employee)){{$employee->email}}@else{{ old('email') }}@endif"placeholder="{{__("Enter employee's email")}}">
+                        <input name="email"type="email" class="form-control" id="exampleFormControlInput1" value="@if(!empty($employee)){{$employee->email}}@else{{ old('email') }}@endif"placeholder="">
                         @error('email')
                         <p class="help is-danger"style="color: red">{{ $message }}</p>
                         @enderror
                     </div><br>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">{{__('Employee Password')}}</label>
-                        <input name="password"type="password" class="form-control" id="exampleFormControlInput1" value="{{ old('password') }}" placeholder="{{__("Enter employee's password")}}">
+                        <input name="password"type="password" class="form-control" id="exampleFormControlInput1" value="{{ old('password') }}" placeholder="">
                         @error('password')
                         <p class="help is-danger"style="color: red">{{ $message }}</p>
                         @enderror

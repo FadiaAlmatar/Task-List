@@ -65,7 +65,7 @@ class TaskController extends Controller
         $task->user_id = Auth::User()->id;
         $task->save();
         $user = User::where('id',$request->assigned_to)->first();
-        return redirect()->route('dashboard')->with('success', 'Task created successfully');
+        return redirect()->route('delegatedTasks')->with('success', 'Task created successfully');
     }
     public function store_status(Request $request)
     {
@@ -147,7 +147,7 @@ class TaskController extends Controller
         $task->status =  "not started";
         $task->user_id = Auth::User()->id;
         $task->save();
-        return redirect()->route('dashboard')->with('success', 'Task updated successfully');;
+        return redirect()->route('delegatedTasks')->with('success', 'Task updated successfully');;
     }
 
     /**

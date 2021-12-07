@@ -5,6 +5,8 @@
         <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
         @if (app()->getLocale() == 'ar')
         <style>
+            form{margin:auto;
+            width:100%;}
         /* button{ margin-left:10px;} */
         /* a{padding-left:10px;}
         div{text-align: right;} */
@@ -28,10 +30,10 @@
                     <form style="width:100%;margin:auto"action="{{route('tasks.store_status')}}" method="POST">
                         @csrf
                         <table class="table table-bordered tasksTable" style="width:100%;text-align:center">
-                            <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">
+                            {{-- <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">
                                 <i class="fas fa-clipboard mr-1"></i>
                                 {{__('To Do List')}}
-                            </caption>
+                            </caption> --}}
                             <thead>
                                 <tr>
                                 <th scope="col" style="width: 10%">{{__('Duration')}}</th>
@@ -60,7 +62,7 @@
                                     <td>{{ App\Models\User::where(['id' => $task->user_id])->pluck('name')->first()}}</td>
                                     <td>
                                         <div class="form-check">
-                                            <select name="status[]"class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                            <select style="width:100%"name="status[]"class="form-select form-select-sm" aria-label=".form-select-sm example">
                                             @if($task->status <> "not started")
                                                 <option>{{__($task->status)}}</option>
                                                 <option value="not started">{{__('not started')}}</option>
@@ -78,12 +80,13 @@
                                     </td>
                                     <td>
                                         <div class="form-check">
-                                            <select name="forwardto[]"class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                            <select style="width:100%"name="forwardto[]"class="form-select form-select-sm" aria-label=".form-select-sm example">
                                                 <option></option>
                                                 @foreach ($users as $user)
                                                     @unless($user->id == Auth::User()->id)
                                                         <option value="{{$user->id}}">{{$user->name}}</option>
                                                     @endunless
+
                                                 @endforeach
                                            </select>
                                            @error('forwardto[]')
@@ -97,9 +100,9 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    {{-- @empty($tasks) --}}
+                    @if(count($tasks) <> 0)
                        <button type="submit" class="btn btn-success mr-2"> <i class="fa fa-check"></i> {{__('Save')}}</button>
-                    {{-- @endempty --}}
+                    @endif
                     <a href="{{route('delegatedTasks')}}"><button type="button" class="btn btn-danger">{{__('Cancel')}}</button></a>
                     </form>
                     <br>
