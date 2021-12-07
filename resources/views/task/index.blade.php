@@ -97,9 +97,9 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    {{-- @empty($tasks) --}}
-                       <button type="submit" class="btn btn-success mr-2"> <i class="fa fa-check"></i> {{__('Save')}}</button>
-                    {{-- @endempty --}}
+                        @if(count($tasks) <> 0)
+                        <button type="submit" class="btn btn-success mr-2"> <i class="fa fa-check"></i> {{__('Save')}}</button>
+                        @endif
                     <a href="{{route('delegatedTasks')}}"><button type="button" class="btn btn-danger">{{__('Cancel')}}</button></a>
                     </form>
                     <br>

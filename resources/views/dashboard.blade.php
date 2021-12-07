@@ -74,16 +74,20 @@
                                 </td>
                                 <td>{{__($task->status)}}</td>
                                 <td>{{$task->description}}</td>
-                                @foreach ($assignedfrom_users as $assignedfrom_user)
-                                    @if($task->user_id == $assignedfrom_user->id)
-                                    <td>{{$assignedfrom_user->name}}</td>
-                                    @endif
-                                @endforeach
-                                @foreach ($assignedto_users as $assignedto_user)
-                                    @if($task->assigned_to == $assignedto_user->id)
-                                    <td>{{$assignedto_user->name}}</td>
-                                    @endif
-                                @endforeach
+                                {{-- @if($assignedfrom_users <> '' ) --}}
+                                    @foreach ($assignedfrom_users as $assignedfrom_user)
+                                        @if($task->user_id == $assignedfrom_user->id)
+                                          <td>{{$assignedfrom_user->name}}</td>
+                                        @endif
+                                    @endforeach
+                                {{-- @endif --}}
+                                {{-- @if($assignedto_users <> '') --}}
+                                    @foreach ($assignedto_users as $assignedto_user)
+                                        @if($task->assigned_to == $assignedto_user->id)
+                                             <td>{{$assignedto_user->name}}</td>
+                                        @endif
+                                    @endforeach
+                                {{-- @endif --}}
                                 <td>{{$task->duedate}}</td>
                                 <td>{{$task->created_at}}</td>
                                 <td>{{$task->updated_at}}</td>
