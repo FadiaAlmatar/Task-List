@@ -267,8 +267,8 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">
-                All Rights Reserved by Innovative Systems. Designed and Developed by
-                <a href="https://almounkez.com">almounkez</a>.
+                {{__('All Rights Reserved by Innovative Systems. Designed and Developed')}}
+                <a href="https://almounkez.com">{{__('almounkez')}}</a>.
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
