@@ -210,7 +210,7 @@ class TaskController extends Controller
             $tasks = DB::select("CALL pr_employees_tasks(".Auth::User()->id.")");//employees who have assign
         }else{ $tasks = Task::where('user_id', Auth::User()->id)->get();//all tasks that I created it
          }
-         if (!empty($tasks)){
+         if (count($tasks) <> 0){
          foreach($tasks as $task){
          $assignedfrom_users = User::where('id' , $task->user_id)->get();
          $assignedto_users = User::where('id' , $task->assigned_to)->get();

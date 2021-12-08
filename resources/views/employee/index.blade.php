@@ -6,14 +6,14 @@
      @section('content')
     <div class="py-12">
         <div style="padding: 10px">
-            <a href="{{route('employees.create')}}"><button type="button" class="btn_add btn btn-primary"><i class="fas fa-plus" aria-hidden="true"></i> </button></a>
+            @if(Auth::User()->parentId == null)<a href="{{route('employees.create')}}"><button type="button" class="btn_add btn btn-primary"><i class="fas fa-plus" aria-hidden="true"></i> </button></a><br><br>@endif
 
         <table class="table table-bordered table-responsive employeesTable" >
             <thead>
                 <tr>
                     @if(Auth::User()->parentId == null)
                     <th scope="col" style="width: 50%">{{__('Action')}}</th>@endif
-                    <th scope="col" style="width: 50%">{{__('Email')}}</th>
+                    <th scope="col" style="width: 100%">{{__('Email')}}</th>
                     <th scope="col" style="width: 50%">{{__('Name')}}</th>
                 </tr>
                 </thead>
