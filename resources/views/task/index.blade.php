@@ -6,7 +6,7 @@
 @endsection
 @section('content')
     <div class="py-12">
-        <a href="{{route('tasks.printAssign')}}" class="btn btn-danger btn-md active"class="pdf" role="button" aria-pressed="true">{{__('Download PDF')}}</a><br><br>
+        <a href="{{route('tasks.printAssign')}}" class="btn btn-danger btn-md active"class="pdf" role="button" aria-pressed="true">{{__('Download')}} PDF</a><br><br>
         <form action="{{route('tasks.store_status')}}" method="POST">
             @csrf
             <table class="table table-responsive table-bordered tasksTable">

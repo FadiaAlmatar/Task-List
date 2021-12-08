@@ -15,7 +15,7 @@
     @endsection
     @section('content')
     <div class="py-12">
-        <a href="{{route('tasks.printArchive')}}" class="btn btn-danger btn-md active"class="pdf" role="button" aria-pressed="true">{{__('Download PDF')}}</a><br><br>
+        <a href="{{route('tasks.printArchive')}}" class="btn btn-danger btn-md active"class="pdf" role="button" aria-pressed="true">{{__('Download')}} PDF</a><br><br>
         <table class="table table-bordered table-responsive tasksTable">
             <thead>
                 <tr>
