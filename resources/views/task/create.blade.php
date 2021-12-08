@@ -52,11 +52,10 @@
                 <p class="help is-danger" style="color: red">{{ $message }}</p>
             @enderror
         </div>
-        <br><br><br>
+
                 <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> {{__('Save')}}</button>
                 <a href="{{route('dashboard')}}"><button type="button" class="btn btn-danger">{{__('Cancel')}}</button></a>
         </form>
-        <br>
     </div>
 @endsection
 

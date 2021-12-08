@@ -1,8 +1,7 @@
 .card{
-    border:1px solid red;width:85%;margin:auto;margin-top:20px;
+    width:85%;margin:auto;margin-top:20px;
 }
-.footer
-{
+.footer{
     position:fixed;
     bottom:0;
     width:100%
@@ -18,4 +17,6 @@ small{
 }
 .create-task,.create-employee{
     width:50%;margin:auto;
+    padding-top:10px;
+    padding-bottom: 10px;
 }
