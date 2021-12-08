@@ -20,7 +20,7 @@
             <thead>
                 <tr>
                     <th scope="col" style="width: 20%">{{__('Title')}}</th>
-                    <th scope="col" width="35%">{{__('Description')}}</th>
+                    <th scope="col" style="width: 35%">{{__('Description')}}</th>
                     <th scope="col" style="width: 13%">{{__('Assigned From')}}</th>
                     @if(Auth::User()->parentId == null)
                     <th scope="col" style="width: 13%">{{__('Assigned To')}}</th>

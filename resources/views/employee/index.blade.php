@@ -6,12 +6,13 @@
      @section('content')
     <div class="py-12">
         <a href="{{route('employees.create')}}"><button type="button" class="btn_add btn btn-primary"><i class="fas fa-plus" aria-hidden="true"></i> </button></a>
-        <table class="table table-bordered employeesTable" style="width:100%;text-align:center">
+        <table class="table table-bordered table-responsive employeesTable" >
             <thead>
                 <tr>
-                    @if(Auth::User()->parentId == null)<th scope="col" style="width: 20%">{{__('Action')}}</th>@endif
-                    <th scope="col" style="width: 15%">{{__('Name')}}</th>
-                    <th scope="col" width="30%">{{__('Email')}}</th>
+                    @if(Auth::User()->parentId == null)
+                    <th scope="col" style="width: 50%">{{__('Action')}}</th>@endif
+                    <th scope="col" style="width: 50%">{{__('Email')}}</th>
+                    <th scope="col" style="width: 50%">{{__('Name')}}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -26,21 +27,21 @@
                             <button class="btn btn-light chat-send-btn"><i style="color:red"class="fa fa-trash" aria-hidden="true"></i></button>
                         </form>
                     </td>@endif
-                        <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
+                        <td>{{$user->name}}</td>
                     </tr>
                     @endforeach
                 </tbody>
         </table>
-        <a href="{{route('dashboard')}}"><button class="btn btn-danger" type="button">{{__('Back')}}</button></a><br>
-    </div>
+        <a href="{{route('dashboard')}}"><button class="btn btn-danger" type="button">{{__('Back')}}</button></a>
+    </div><br>
     @section('scripts')
         {{-- for datatable --}}
         <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" defer></script>
         <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"  defer></script>
         <script>
         $(document).ready(function() {
-               $('.tasksTable').DataTable();
+               $('.employeesTable').DataTable();
            });
         </script>
       @endsection

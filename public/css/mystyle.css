@@ -13,9 +13,10 @@ form{
     padding-left:10px;
 }
 .table{
-    width:100%;text-align:center;
+    width:100%;
+    text-align:center;
     margin:auto;
-    /* border:1px solid red; */
+    border:1px solid red;
 }
 small{
     padding:4px;
