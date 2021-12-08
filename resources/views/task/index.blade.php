@@ -9,11 +9,11 @@
         <a href="{{route('tasks.printAssign')}}" class="btn btn-danger btn-md active"class="pdf" role="button" aria-pressed="true">{{__('Download PDF')}}</a><br><br>
         <form action="{{route('tasks.store_status')}}" method="POST">
             @csrf
-            <table class="table table-bordered tasksTable">
+            <table class="table table-responsive table-bordered tasksTable">
                 <thead>
                     <tr>
                     <th scope="col" style="width: 10%">{{__('Duration')}}</th>
-                    <th scope="col" style="width: 15%">{{__('Title')}}</th>
+                    <th scope="col" style="width: 20%">{{__('Title')}}</th>
                     <th scope="col" style="width: 25%">{{__('Description')}}</th>
                     <th scope="col" style="width: 10%">{{__('Assigned From')}}</th>
                     <th scope="col" style="width: 15%">{{__('Status')}}</th>
