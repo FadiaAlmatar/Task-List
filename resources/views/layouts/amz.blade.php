@@ -14,6 +14,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Custom CSS -->
     <link href="{{ asset('dist/css/style.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/mystyle.css')}}" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -241,13 +242,13 @@
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 {{-- <div class="row"> --}}
-                    {{-- <div class="col-12"> --}}
-                        {{-- <div class="card"> --}}
+                    <div class="col-12">
+                        <div class="card">
                             {{-- <div class="card-body"> --}}
                                @yield('content')
                             {{-- </div> --}}
-                        {{-- </div> --}}
-                    {{-- </div> --}}
+                        </div>
+                    </div>
                 {{-- </div> --}}
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->

@@ -15,12 +15,8 @@
     @endsection
     @section('content')
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
                     <a href="{{route('tasks.printArchive')}}" class="btn btn-danger btn-md active" role="button" aria-pressed="true">PDF</a><br><br>
-                    <table class="table table-bordered tasksTable" style="width:100%;text-align:center">
-                        <caption style="caption-side: top;text-align:center;font-weight:bold;font-size:30px">{{__('Archive')}}</caption>
+                    <table class="table table-bordered tasksTable">
                         <thead>
                             <tr>
                               <th scope="col" style="width: 15%">{{__('Title')}}</th>
@@ -50,8 +46,5 @@
                     </table>
                     <br>
                     <br>
-                </div>
-            </div>
-        </div>
     </div>
 @endsection

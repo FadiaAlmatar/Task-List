@@ -2,13 +2,9 @@
     @section('styles')
         <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
         <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-
      @endsection
     @section('content')
-    <div class="py-12" style="width:100%;display: flex;justify-content: center;">
-        {{-- <div class="max-w-7xl mx-auto sm:px-6 lg:px-8"> --}}
-            {{-- <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg"> --}}
-                {{-- <div class="p-6 bg-white border-b border-gray-200"> --}}
+    <div class="py-12">
                     @if (Session::get('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         <strong>{{__('Good')}} </strong>{{__(Session::get('success')) }}
@@ -17,7 +13,7 @@
                         </button>
                     </div>
                     @endif
-                    <table class="table table-resposive table-bordered tasksTable" style="width:100%;text-align:center">
+                    <table class="table table-resposive table-bordered tasksTable">
                         <thead>
                           <tr class="bg-primary">
                             <th scope="col" style="width: 10%">{{__('Action')}}</th>
@@ -65,11 +61,11 @@
                                 </td>
                                 <td>
                                 @if(\Carbon\Carbon::now()->diffInDays($task->duedate) <= 0)
-                                    <small style="background: #ff7676; padding:4px;"><i class="far fa-clock"></i> < 24 {{__('hours')}}</small>
+                                    <small style="background: #ff7676;"><i class="far fa-clock"></i> < 24 {{__('hours')}}</small>
                                 @elseif(\Carbon\Carbon::now()->diffInDays($task->duedate) <= 3 and \Carbon\Carbon::now()->diffInDays($task->duedate) > 0)
-                                <small style="background: #ffcf76;;padding:4px;"><i class="far fa-clock"></i> {{\Carbon\Carbon::now()->diffInDays($task->duedate)}} {{__('days')}}</small>
+                                <small style="background: #ffcf76;"><i class="far fa-clock"></i> {{\Carbon\Carbon::now()->diffInDays($task->duedate)}} {{__('days')}}</small>
                                 @else
-                                <small style="background: #98FF98;padding:4px;"><i class="far fa-clock"></i> {{\Carbon\Carbon::now()->diffInDays($task->duedate)}} {{__('days')}}</small>
+                                <small style="background: #98FF98;"><i class="far fa-clock"></i> {{\Carbon\Carbon::now()->diffInDays($task->duedate)}} {{__('days')}}</small>
                                 @endif
                                 </td>
                                 <td>{{__($task->status)}}</td>
@@ -91,9 +87,6 @@
                         @endforeach
                         </tbody>
                       </table>
-                {{-- </div>
-            </div>
-        </div> --}}
     </div>
         @endsection
         @section('scripts')

@@ -1,0 +1,21 @@
+.card{
+    border:1px solid red;width:85%;margin:auto;margin-top:20px;
+}
+.footer
+{
+    position:fixed;
+    bottom:0;
+    width:100%
+}
+form{
+    width:100%;margin:auto;
+}
+table{
+    width:100%;text-align:center;
+}
+small{
+    padding:4px;
+}
+.create-task,.create-employee{
+    width:50%;margin:auto;
+}
