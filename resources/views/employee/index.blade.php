@@ -33,7 +33,7 @@
                     @endforeach
                 </tbody>
         </table>
-        <a href="{{route('dashboard')}}"><button class="btn btn-danger" type="button">{{__('Back')}}</button></a>
+        <a href="{{route('dashboard')}}"><button class="btn btn-danger" type="button" style="margin:15px">{{__('Back')}}</button></a>
     </div><br>
     @section('scripts')
         {{-- for datatable --}}

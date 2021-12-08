@@ -6,7 +6,7 @@
 @endsection
 @section('content')
     <div class="py-12">
-        <a href="{{route('tasks.printAssign')}}" class="btn btn-danger btn-md active"class="pdf" role="button" aria-pressed="true">{{__('Download')}} PDF</a><br><br>
+        @if(count($tasks) <> 0) <a href="{{route('tasks.printAssign')}}" class="btn btn-danger btn-md active"class="pdf" role="button" aria-pressed="true">{{__('Download')}} PDF</a>@endif<br><br>
         <form action="{{route('tasks.store_status')}}" method="POST">
             @csrf
             <table class="table table-responsive table-bordered tasksTable">
@@ -78,11 +78,13 @@
             </table>
         @if(count($tasks) <> 0)
             <button type="submit" class="btn btn-success mr-2"> <i class="fa fa-check"></i> {{__('Save')}}</button>
-        @endif
+
         <a href="{{route('delegatedTasks')}}"><button type="button" class="btn btn-danger">{{__('Cancel')}}</button></a>
-        </form>
+        @endif
+    </form>
         <br>
     </div>
+    @endsection
     @section('scripts')
         {{-- for datatable --}}
         <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" defer></script>
@@ -93,4 +95,4 @@
            });
         </script>
      @endsection
-     @endsection
+

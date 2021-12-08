@@ -4,18 +4,9 @@
         <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
         <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     @endsection
-    @section('scripts')
-        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-        <script>
-        $(document).ready(function() {
-               $('.tasksTable').DataTable();
-           });
-        </script>
-    @endsection
     @section('content')
     <div class="py-12">
-        <a href="{{route('tasks.printArchive')}}" class="btn btn-danger btn-md active"class="pdf" role="button" aria-pressed="true">{{__('Download')}} PDF</a><br><br>
+        @if(count($tasks) <> 0)<a href="{{route('tasks.printArchive')}}" class="btn btn-danger btn-md active"class="pdf" role="button" aria-pressed="true">{{__('Download')}} PDF</a>@endif<br><br>
         <table class="table table-bordered table-responsive tasksTable">
             <thead>
                 <tr>
@@ -46,4 +37,13 @@
         </table>
         <br>
     </div>
+@endsection
+@section('scripts')
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+<script>
+$(document).ready(function() {
+       $('.tasksTable').DataTable();
+   });
+</script>
 @endsection
