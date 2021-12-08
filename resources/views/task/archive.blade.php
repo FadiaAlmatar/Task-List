@@ -15,36 +15,35 @@
     @endsection
     @section('content')
     <div class="py-12">
-                    <a href="{{route('tasks.printArchive')}}" class="btn btn-danger btn-md active" role="button" aria-pressed="true">PDF</a><br><br>
-                    <table class="table table-bordered tasksTable">
-                        <thead>
-                            <tr>
-                              <th scope="col" style="width: 15%">{{__('Title')}}</th>
-                              <th scope="col" width="30%">{{__('Description')}}</th>
-                              <th scope="col" style="width: 13%">{{__('Assigned From')}}</th>
-                              @if(Auth::User()->parentId == null)
-                              <th scope="col" style="width: 13%">{{__('Assigned To')}}</th>
-                              @endif
-                              <th scope="col" style="width: 15%">{{__('Status')}}</th>
-                              <th scope="col" style="width: 20%">{{__('Due Date')}}</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                              @foreach ($tasks as $task)
-                               <tr>
-                                <td>{{$task->title}}</td>
-                                <td>{{$task->description}}</td>
-                                <td>{{ App\Models\User::where(['id' => $task->user_id])->pluck('name')->first()}}</td>
-                                @if(Auth::User()->parentId == null)
-                                <td>{{ App\Models\User::where(['id' => $task->assigned_to])->pluck('name')->first()}}</td>
-                                @endif
-                                <td>{{$task->status}} </td>
-                                <td>{{$task->duedate}}
-                              </tr>
-                              @endforeach
-                          </tbody>
-                    </table>
-                    <br>
-                    <br>
+        <a href="{{route('tasks.printArchive')}}" class="btn btn-danger btn-md active"class="pdf" role="button" aria-pressed="true">{{__('Download PDF')}}</a><br><br>
+        <table class="table table-bordered table-responsive tasksTable">
+            <thead>
+                <tr>
+                    <th scope="col" style="width: 20%">{{__('Title')}}</th>
+                    <th scope="col" width="35%">{{__('Description')}}</th>
+                    <th scope="col" style="width: 13%">{{__('Assigned From')}}</th>
+                    @if(Auth::User()->parentId == null)
+                    <th scope="col" style="width: 13%">{{__('Assigned To')}}</th>
+                    @endif
+                    <th scope="col" style="width: 15%">{{__('Status')}}</th>
+                    <th scope="col" style="width: 20%">{{__('Due Date')}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                    @foreach ($tasks as $task)
+                    <tr>
+                    <td>{{$task->title}}</td>
+                    <td>{{$task->description}}</td>
+                    <td>{{ App\Models\User::where(['id' => $task->user_id])->pluck('name')->first()}}</td>
+                    @if(Auth::User()->parentId == null)
+                    <td>{{ App\Models\User::where(['id' => $task->assigned_to])->pluck('name')->first()}}</td>
+                    @endif
+                    <td>{{$task->status}} </td>
+                    <td>{{$task->duedate}}
+                    </tr>
+                    @endforeach
+                </tbody>
+        </table>
+        <br>
     </div>
 @endsection
