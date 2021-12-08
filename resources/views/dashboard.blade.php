@@ -13,6 +13,7 @@
         </button>
     </div>
     @endif
+<div style="padding: 10px">
     @if(count($tasks) <> 0)<a href="{{route('tasks.printCreated')}}" class="btn btn-danger btn-md active"class="pdf" role="button" aria-pressed="true">{{__('Download')}} PDF</a>@endif<br><br>
 
     <table class="table table-responsive table-bordered tasksTable">
@@ -89,6 +90,7 @@
         @endforeach
         </tbody>
         </table>
+</div>
     </div>
         @endsection
         @section('scripts')

@@ -5,7 +5,9 @@
      @endsection
      @section('content')
     <div class="py-12">
-        <a href="{{route('employees.create')}}"><button type="button" class="btn_add btn btn-primary"><i class="fas fa-plus" aria-hidden="true"></i> </button></a>
+        <div style="padding: 10px">
+            <a href="{{route('employees.create')}}"><button type="button" class="btn_add btn btn-primary"><i class="fas fa-plus" aria-hidden="true"></i> </button></a>
+
         <table class="table table-bordered table-responsive employeesTable" >
             <thead>
                 <tr>
@@ -34,6 +36,8 @@
                 </tbody>
         </table>
         <a href="{{route('dashboard')}}"><button class="btn btn-danger" type="button" style="margin:15px">{{__('Back')}}</button></a>
+
+        </div>
     </div><br>
     @section('scripts')
         {{-- for datatable --}}

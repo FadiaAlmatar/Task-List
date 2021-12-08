@@ -6,7 +6,9 @@
     @endsection
     @section('content')
     <div class="py-12">
-        @if(count($tasks) <> 0)<a href="{{route('tasks.printArchive')}}" class="btn btn-danger btn-md active"class="pdf" role="button" aria-pressed="true">{{__('Download')}} PDF</a>@endif<br><br>
+        <div style="padding: 10px">
+            @if(count($tasks) <> 0)<a href="{{route('tasks.printArchive')}}" class="btn btn-danger btn-md active"class="pdf" role="button" aria-pressed="true">{{__('Download')}} PDF</a>@endif<br><br>
+
         <table class="table table-bordered table-responsive tasksTable">
             <thead>
                 <tr>
@@ -35,6 +37,7 @@
                     @endforeach
                 </tbody>
         </table>
+    </div>
         <br>
     </div>
 @endsection
