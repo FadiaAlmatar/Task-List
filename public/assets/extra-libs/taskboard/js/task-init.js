@@ -1,5 +1,7 @@
 $(function() {
-    var myResult = JSON.parse(window.count);
+    var myTasks = JSON.parse(window.tasks);
+    var fromusers = JSON.parse(window.from);
+    var tousers = JSON.parse(window.to);
     /**
      * Created by Zura on 4/5/2016.
      */
@@ -11,17 +13,17 @@ $(function() {
         });
 
         //Basic example
-        myResult.forEach(result => {
+        myTasks.forEach(task => {
 
         $('#todo-lists-basic-demo').lobiList({
             lists: [{
                     id: 'todo',
                     title: 'Todo',
                         items: [{
-                            title: result.title,
-                            data:[myResult[0], myResult[1]],
-                            description: result.description,
-                            dueDate: result.duedate,
+                            title: task.title,
+                            // data:[myResult[0], myResult[1]],
+                            description: task.description,
+                            dueDate: task.duedate,
                         }],
 
                     defaultStyle: 'lobilist-danger',

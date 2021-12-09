@@ -72,7 +72,9 @@
     <!--This page JavaScript -->
     <script src="../../assets/extra-libs/taskboard/js/lobilist.js"></script>
     <script src="../../assets/extra-libs/taskboard/js/lobibox.min.js"></script>
-    <script> window.count = '<?php echo $jsonResult ?>'; </script>
+    <script> window.tasks = '<?php echo $tasks ?>'; </script>
+    <script> window.from = '<?php echo $fromusers ?>'; </script>
+    <script> window.to = '<?php echo $tousers ?>'; </script>
     <script src="../../assets/extra-libs/taskboard/js/task-init.js"></script>
 </body>
 
