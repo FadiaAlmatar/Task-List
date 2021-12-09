@@ -239,6 +239,18 @@ class TaskController extends Controller
           $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
         return view('task.index',['tasks' => $tasks,'users'=>$users]);
     }
-
+public function taskboard()
+{
+    $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->get();
+    // $taskCount =count($tasks);
+    if(Auth::User()->parentId == null)
+      $users = User::where('parentId', Auth::User()->id)->orwhere('id', Auth::User()->id)->get();
+   else
+      $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
+    // $userCount =count($users);
+    $jsonResult = json_encode($tasks);
+    // dd($jsonResult);
+    return view('app-taskboard',compact('jsonResult'));
 }
 
+}

@@ -1,4 +1,5 @@
 $(function() {
+    var myResult = JSON.parse(window.count);
     /**
      * Created by Zura on 4/5/2016.
      */
@@ -10,72 +11,24 @@ $(function() {
         });
 
         //Basic example
+        myResult.forEach(result => {
+
         $('#todo-lists-basic-demo').lobiList({
             lists: [{
                     id: 'todo',
                     title: 'Todo',
+                        items: [{
+                            title: result.title,
+                            data:[myResult[0], myResult[1]],
+                            description: result.description,
+                            dueDate: result.duedate,
+                        }],
+
                     defaultStyle: 'lobilist-danger',
-                    items: [{
-                            title: 'Floor cool cinders',
-                            description: 'Thunder fulfilled travellers folly, wading, lake.',
-                            dueDate: '2015-01-31'
-                        },
-                        {
-                            title: 'Periods pride',
-                            description: 'Accepted was mollis',
-                            done: true
-                        },
-                        {
-                            title: 'Flags better burns pigeon',
-                            description: 'Rowed cloven frolic thereby, vivamus pining gown intruding strangers prank treacherously darkling.'
-                        },
-                        {
-                            title: 'Accepted was mollis',
-                            description: 'Rowed cloven frolic thereby, vivamus pining gown intruding strangers prank treacherously darkling.',
-                            dueDate: '2015-02-02'
-                        }
-                    ]
                 },
-                {
-                    id: 'doing',
-                    title: 'Doing',
-                    defaultStyle: 'lobilist-primary',
-                    items: [{
-                            title: 'Composed trays',
-                            description: 'Hoary rattle exulting suspendisse elit paradises craft wistful. Bayonets allures prefer traits wrongs flushed. Tent wily matched bold polite slab coinage celerities gales beams.'
-                        },
-                        {
-                            title: 'Chic leafy'
-                        },
-                        {
-                            title: 'Guessed interdum armies chirp writhes most',
-                            description: 'Came champlain live leopards twilight whenever warm read wish squirrel rock.',
-                            dueDate: '2015-02-04',
-                            done: true
-                        }
-                    ]
-                },
-                {
-                    id: 'Done',
-                    title: 'Done',
-                    defaultStyle: 'lobilist-success',
-                    items: [{
-                            title: 'Composed trays',
-                            description: 'Hoary rattle exulting suspendisse elit paradises craft wistful. Bayonets allures prefer traits wrongs flushed. Tent wily matched bold polite slab coinage celerities gales beams.'
-                        },
-                        {
-                            title: 'Chic leafy'
-                        },
-                        {
-                            title: 'Guessed interdum armies chirp writhes most',
-                            description: 'Came champlain live leopards twilight whenever warm read wish squirrel rock.',
-                            dueDate: '2015-02-04',
-                            done: true
-                        }
-                    ]
-                }
             ]
         });
+    });
         //Custom datepicker
         $('#todo-lists-demo-datepicker').lobiList({
             lists: [{
