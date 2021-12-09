@@ -28,7 +28,10 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Basic Sample Taskboard</h4>
+                                {{-- @foreach ($tasks as $task) --}}
                                 <div id="todo-lists-basic-demo"></div>
+                                {{-- @endforeach --}}
+
                             </div>
                         </div>
                     </div>
