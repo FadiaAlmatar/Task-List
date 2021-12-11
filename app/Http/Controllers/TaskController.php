@@ -65,7 +65,7 @@ class TaskController extends Controller
         $task->user_id = Auth::User()->id;
         $task->save();
         $user = User::where('id',$request->assigned_to)->first();
-        return redirect()->route('dashboard')->with('success', 'Task created successfully');
+        return redirect()->route('delegatedTasks')->with('success', 'Task created successfully');
     }
     public function store_status(Request $request)
     {
@@ -147,7 +147,7 @@ class TaskController extends Controller
         $task->status =  "not started";
         $task->user_id = Auth::User()->id;
         $task->save();
-        return redirect()->route('dashboard')->with('success', 'Task updated successfully');;
+        return redirect()->route('delegatedTasks')->with('success', 'Task updated successfully');;
     }
 
     /**
@@ -210,7 +210,7 @@ class TaskController extends Controller
             $tasks = DB::select("CALL pr_employees_tasks(".Auth::User()->id.")");//employees who have assign
         }else{ $tasks = Task::where('user_id', Auth::User()->id)->get();//all tasks that I created it
          }
-         if (!empty($tasks)){
+         if (count($tasks) <> 0){
          foreach($tasks as $task){
          $assignedfrom_users = User::where('id' , $task->user_id)->get();
          $assignedto_users = User::where('id' , $task->assigned_to)->get();
@@ -239,6 +239,39 @@ class TaskController extends Controller
           $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
         return view('task.index',['tasks' => $tasks,'users'=>$users]);
     }
+public function delegated_taskboard()
+{
+//     $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->get();
+//     // $taskCount =count($tasks);
+//     if(Auth::User()->parentId == null)
+//       $users = User::where('parentId', Auth::User()->id)->orwhere('id', Auth::User()->id)->get();
+//    else
+//       $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
+    // $userCount =count($users);
+    // $jsonResult = json_encode($tasks);
+    // dd($jsonResult);
+
+    if(Auth::User()->parentId == null){
+        $tasks = DB::select("CALL pr_employees_tasks(".Auth::User()->id.")");//employees who have assign
+    }else{ $tasks = Task::where('user_id', Auth::User()->id)->get();//all tasks that I created it
+     }
+     if (count($tasks) <> 0){
+     foreach($tasks as $task){
+     $assignedfrom_users = User::where('id' , $task->user_id)->get();
+     $assignedto_users = User::where('id' , $task->assigned_to)->get();
+    }
+    $tasks = json_encode($tasks);
+    $fromusers = json_encode($assignedfrom_users);
+    $tousers = json_encode($assignedto_users);
+    // dd($tasks);
+    return view('delegated-taskboard',compact('tasks','fromusers','tousers'));
+    // return view('dashboard',['tasks'=> $tasks,'assignedfrom_users'=>$assignedfrom_users,'assignedto_users'=>$assignedto_users]);
+     }else{
+        $jsonResult = json_encode($tasks);
+        return view('delegated-taskboard',compact('jsonResult'));
+        // return view('dashboard',['tasks'=> $tasks]);
+     }
 
 }
 
+}
