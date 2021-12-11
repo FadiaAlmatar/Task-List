@@ -17,9 +17,9 @@ $(function() {
                     id: 'todo',
                     title: 'Todo',
                     description:'Todo',
-                    dueDate:'Todo',
+                    duedate:'Todo',
                     defaultStyle: 'lobilist-danger',
-                
+
                     items : myTasks
                     // items: [
 
@@ -27,12 +27,12 @@ $(function() {
                     //         id:myTasks[0]['id'],
                     //         title: myTasks[0]['title'],
                     //         description: myTasks[0]['description'],
-                    //         dueDate: myTasks[0]['duedate']
+                    //         duedate: myTasks[0]['duedate']
                     //     },
                     //     {
                     //         title: myTasks[1]['title'],
                     //         description: myTasks[1]['description'],
-                    //         dueDate: myTasks[1]['duedate'],
+                    //         duedate: myTasks[1]['duedate'],
                     //         // done: true
                     //     },
                         // {
@@ -42,7 +42,7 @@ $(function() {
                         // {
                         //     title: task.title,
                         //     description: task.description,
-                        //     dueDate: task.duedate
+                        //     duedate: task.duedate
                         // }
                     // ]
                 },
@@ -60,7 +60,7 @@ $(function() {
                         {
                             title: 'Guessed interdum armies chirp writhes most',
                             description: 'Came champlain live leopards twilight whenever warm read wish squirrel rock.',
-                            dueDate: '2015-02-04',
+                            duedate: '2015-02-04',
                             done: true
                         }
                     ]
@@ -79,7 +79,7 @@ $(function() {
                         {
                             title: 'Guessed interdum armies chirp writhes most',
                             description: 'Came champlain live leopards twilight whenever warm read wish squirrel rock.',
-                            dueDate: '2015-02-04',
+                            duedate: '2015-02-04',
                             done: true
                         }
                     ]
@@ -95,12 +95,12 @@ $(function() {
                 items: [{
                     title: 'Floor cool cinders',
                     description: 'Thunder fulfilled travellers folly, wading, lake.',
-                    dueDate: '2015-01-31'
+                    duedate: '2015-01-31'
                 }]
             }],
             afterListAdd: function(lobilist, list) {
-                var $dueDateInput = list.$el.find('form [name=dueDate]');
-                $dueDateInput.datepicker();
+                var $duedateInput = list.$el.find('form [name=duedate]');
+                $duedateInput.datepicker();
             }
         });
         // Event handling
@@ -225,7 +225,7 @@ $(function() {
                             items: [{
                                     title: 'Floor cool cinders',
                                     description: 'Thunder fulfilled travellers folly, wading, lake.',
-                                    dueDate: '2015-01-31'
+                                    duedate: '2015-01-31'
                                 },
                                 {
                                     title: 'Periods pride',
@@ -241,7 +241,7 @@ $(function() {
                                     title: 'Accepted was mollis',
                                     description: 'Rowed cloven frolic thereby, vivamus pining gown intruding strangers prank ' +
                                         'treacherously darkling.',
-                                    dueDate: '2015-02-02'
+                                    duedate: '2015-02-02'
                                 }
                             ]
                         }]
@@ -262,7 +262,7 @@ $(function() {
                     items: [{
                         title: 'Floor cool cinders',
                         description: 'Thunder fulfilled travellers folly, wading, lake.',
-                        dueDate: '2015-01-31'
+                        duedate: '2015-01-31'
                     }]
                 },
                 {
@@ -309,7 +309,7 @@ $(function() {
                     items: [{
                         title: 'Floor cool cinders',
                         description: 'Thunder fulfilled travellers folly, wading, lake.',
-                        dueDate: '2015-01-31'
+                        duedate: '2015-01-31'
                     }]
                 },
                 {
