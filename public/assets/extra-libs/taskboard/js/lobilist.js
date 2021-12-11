@@ -449,7 +449,8 @@ $(function() {
                 title: me.$form[0].title.value,
                 description: me.$form[0].description.value,
                 duedate: me.$form[0].duedate.value,
-                status: me.$form[0].status.value
+                status: me.$form[0].status.value,
+                created_at: me.$form[0].status.value
             });
             me.$form.addClass('hide');
             me.$footer.removeClass('hide');
@@ -713,6 +714,12 @@ $(function() {
                     html: item.status
                 }));
             }
+            if (item.created_at) {
+                $li.append($('<div>', {
+                    'class': 'lobilist-item-created_at',
+                    html: item.created_at
+                }));
+            }
             $li = me._addItemControls($li);
             if (item.done) {
                 $li.find('input[type=checkbox]').prop('checked', true);
@@ -771,6 +778,7 @@ $(function() {
             $li.find('.lobilist-item-description').remove();
             $li.find('.lobilist-item-duedate').remove();
             $li.find('.lobilist-item-status').html(item.status);
+            $li.find('.lobilist-item-created_at').html(item.created_at);
 
             if (item.description) {
                 $li.append('<div class="lobilist-item-description">' + item.description + '</div>');
@@ -780,6 +788,10 @@ $(function() {
             }
             if (item.status) {
                 $li.append('<div class="lobilist-item-status">' + item.status + '</div>');
+            }
+
+            if (item.created_at) {
+                $li.append('<div class="lobilist-item-created_at">' + item.created_at + '</div>');
             }
             $li.data('lobiListItem', item);
             $.extend(me.$items[item.id], item);
@@ -1047,7 +1059,8 @@ $(function() {
             description: '',
             duedate: '',
             done: false,
-            status:''
+            status:'',
+            created_at:''
         },
 
         lists: [],
