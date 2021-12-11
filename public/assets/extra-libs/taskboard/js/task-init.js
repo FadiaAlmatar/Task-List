@@ -1,10 +1,8 @@
 $(function() {
-    var myTasks = JSON.parse(window.tasks);
-    var fromusers = JSON.parse(window.from);
-    var tousers = JSON.parse(window.to);
     /**
      * Created by Zura on 4/5/2016.
      */
+     var myTasks = JSON.parse(window.tasks);
     $(function() {
         Lobibox.notify.DEFAULTS = $.extend({}, Lobibox.notify.DEFAULTS, {
             size: 'mini',
@@ -13,24 +11,82 @@ $(function() {
         });
 
         //Basic example
-        myTasks.forEach(task => {
-
+        // myTasks.forEach(task => {
         $('#todo-lists-basic-demo').lobiList({
             lists: [{
                     id: 'todo',
                     title: 'Todo',
-                        items: [{
-                            title: task.title,
-                            // data:[myResult[0], myResult[1]],
-                            description: task.description,
-                            dueDate: task.duedate,
-                        }],
-
+                    description:'Todo',
+                    dueDate:'Todo',
                     defaultStyle: 'lobilist-danger',
+                
+                    items : myTasks
+                    // items: [
+
+                    //     {
+                    //         id:myTasks[0]['id'],
+                    //         title: myTasks[0]['title'],
+                    //         description: myTasks[0]['description'],
+                    //         dueDate: myTasks[0]['duedate']
+                    //     },
+                    //     {
+                    //         title: myTasks[1]['title'],
+                    //         description: myTasks[1]['description'],
+                    //         dueDate: myTasks[1]['duedate'],
+                    //         // done: true
+                    //     },
+                        // {
+                        //     title: task.title,
+                        //     description: task.description
+                        // },
+                        // {
+                        //     title: task.title,
+                        //     description: task.description,
+                        //     dueDate: task.duedate
+                        // }
+                    // ]
                 },
+                {
+                    id: 'doing',
+                    title: 'Doing',
+                    defaultStyle: 'lobilist-primary',
+                    items: [{
+                            title: 'Composed trays',
+                            description: 'Hoary rattle exulting suspendisse elit paradises craft wistful. Bayonets allures prefer traits wrongs flushed. Tent wily matched bold polite slab coinage celerities gales beams.'
+                        },
+                        {
+                            title: 'Chic leafy'
+                        },
+                        {
+                            title: 'Guessed interdum armies chirp writhes most',
+                            description: 'Came champlain live leopards twilight whenever warm read wish squirrel rock.',
+                            dueDate: '2015-02-04',
+                            done: true
+                        }
+                    ]
+                },
+                {
+                    id: 'Done',
+                    title: 'Done',
+                    defaultStyle: 'lobilist-success',
+                    items: [{
+                            title: 'Composed trays',
+                            description: 'Hoary rattle exulting suspendisse elit paradises craft wistful. Bayonets allures prefer traits wrongs flushed. Tent wily matched bold polite slab coinage celerities gales beams.'
+                        },
+                        {
+                            title: 'Chic leafy'
+                        },
+                        {
+                            title: 'Guessed interdum armies chirp writhes most',
+                            description: 'Came champlain live leopards twilight whenever warm read wish squirrel rock.',
+                            dueDate: '2015-02-04',
+                            done: true
+                        }
+                    ]
+                }
             ]
         });
-    });
+    // });
         //Custom datepicker
         $('#todo-lists-demo-datepicker').lobiList({
             lists: [{
