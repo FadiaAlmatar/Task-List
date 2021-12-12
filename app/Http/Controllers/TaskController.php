@@ -24,7 +24,7 @@ class TaskController extends Controller
           $users = User::where('parentId', Auth::User()->id)->orwhere('id', Auth::User()->id)->get();
        else
           $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
-        return view('task.index',['tasks' => $tasks,'users'=>$users]);
+        return view('task.index',['tasks' => $tasks,'users'=>$users,'status'=>'']);
     }
 
     /**
@@ -193,7 +193,17 @@ class TaskController extends Controller
 
     public function printAssign (Request $request)
     {
-        $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->get();
+        // dd($request->status);
+        if($request->status == "in")
+           $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','=',"in progress")->get();
+        elseif($request->status == "waiting")
+           $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','=',$request->status)->get();
+        elseif($request->status == "not")
+           $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','=',"not started")->get();
+        elseif($request->status == "denied")
+           $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','=',$request->status)->get();
+        else{
+        $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->get();}
         $html = view('task.assign-task-pdf',['tasks'=>$tasks])->render();
         $pdf = new \Mpdf\Mpdf([
             'mode' => 'utf-8', 'format' => 'A4','default_font' => 'fontawesome','margin_left' => 15,'margin_right' => 10,'margin_top' => 16,'margin_bottom' => 15,'margin_header' => 10, 'margin_footer' => 10 ]);
@@ -237,19 +247,10 @@ class TaskController extends Controller
           $users = User::where('parentId', Auth::User()->id)->orwhere('id', Auth::User()->id)->get();
        else
           $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
-        return view('task.index',['tasks' => $tasks,'users'=>$users]);
+        return view('task.index',['tasks' => $tasks,'users'=>$users,'status'=>$status]);
     }
 public function delegated_taskboard()
 {
-//     $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->get();
-//     // $taskCount =count($tasks);
-//     if(Auth::User()->parentId == null)
-//       $users = User::where('parentId', Auth::User()->id)->orwhere('id', Auth::User()->id)->get();
-//    else
-//       $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
-    // $userCount =count($users);
-    // $jsonResult = json_encode($tasks);
-    // dd($jsonResult);
 
     if(Auth::User()->parentId == null){
         $tasks = DB::select("CALL pr_employees_tasks(".Auth::User()->id.")");//employees who have assign

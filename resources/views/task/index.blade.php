@@ -6,7 +6,13 @@
 @endsection
 @section('content')
     <div class="py-12">
-        @if(count($tasks) <> 0) <a href="{{route('tasks.printAssign')}}" class="btn btn-danger btn-md active"class="pdf" role="button" aria-pressed="true">{{__('Download')}} PDF</a>@endif<br><br>
+        <form action="{{route('tasks.printAssign')}}" method="GET">
+        @if(count($tasks) <> 0)
+        {{-- <a href="" class="btn btn-danger btn-md active"class="pdf" role="button" aria-pressed="true">{{__('Download')}} PDF</a> --}}
+        <button type="submit" class="btn btn-success mr-2"> <i class="fa fa-check"></i> {{__('Download')}}</button>
+        @endif<br><br>
+        <input type="hidden" name="status" value={{$status}}>
+        </form>
         <form action="{{route('tasks.store_status')}}" method="POST">
             @csrf
             <table class="table table-responsive table-bordered tasksTable">
