@@ -76,7 +76,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Basic Sample Taskboard</h4>
+                                <h4 class="card-title">Taskboard</h4>
                                 <div id="todo-lists-basic-demo"></div>
                             </div>
                         </div>
@@ -100,8 +100,9 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">
-       All Rights Reserved by AdminBite admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
-</footer>
+                {{__('All Rights Reserved by Innovative Systems. Designed and Developed')}}
+                <a href="https://almounkez.com">{{__('almounkez')}}</a>.
+            </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->

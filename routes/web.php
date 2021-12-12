@@ -35,7 +35,6 @@ Route::resource('tasks', TaskController::class);
 Route::resource('employees', EmployeeController::class);
 Route::post('/task',[TaskController::class,'store_status'])->name('tasks.store_status');
 Route::get('/archive',[TaskController::class,'archive'])->name('archive');
-Route::get('/delegated-taskboard', [TaskController::class,'delegated_taskboard'])->name('delegated-taskboard');
 Route::get('/app-taskboard', [TaskController::class,'taskboard'])->name('taskboard');
 
 Route::get('/dashboard', [TaskController::class,'index'])->middleware(['auth','verified'])->name('dashboard');

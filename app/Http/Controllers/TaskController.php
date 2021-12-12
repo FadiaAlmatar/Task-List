@@ -249,31 +249,6 @@ class TaskController extends Controller
           $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
         return view('task.index',['tasks' => $tasks,'users'=>$users,'status'=>$status]);
     }
-public function delegated_taskboard()
-{
-
-    if(Auth::User()->parentId == null){
-        $tasks = DB::select("CALL pr_employees_tasks(".Auth::User()->id.")");//employees who have assign
-    }else{ $tasks = Task::where('user_id', Auth::User()->id)->get();//all tasks that I created it
-     }
-     if (count($tasks) <> 0){
-     foreach($tasks as $task){
-     $assignedfrom_users = User::where('id' , $task->user_id)->get();
-     $assignedto_users = User::where('id' , $task->assigned_to)->get();
-    }
-    $tasks = json_encode($tasks);
-    $fromusers = json_encode($assignedfrom_users);
-    $tousers = json_encode($assignedto_users);
-    // dd($tasks);
-    return view('delegated-taskboard',compact('tasks','fromusers','tousers'));
-    // return view('dashboard',['tasks'=> $tasks,'assignedfrom_users'=>$assignedfrom_users,'assignedto_users'=>$assignedto_users]);
-     }else{
-        $jsonResult = json_encode($tasks);
-        return view('delegated-taskboard',compact('jsonResult'));
-        // return view('dashboard',['tasks'=> $tasks]);
-     }
-
-}
    public function taskboard()
    {
     if(Auth::User()->parentId == null){
