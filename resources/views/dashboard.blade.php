@@ -14,7 +14,7 @@
     </div>
     @endif
 <div style="padding: 10px">
-    @if(count($tasks) <> 0)<a href="{{route('tasks.printCreated')}}" class="btn btn-danger btn-md active"class="pdf" role="button" aria-pressed="true">{{__('Download')}} PDF</a>@endif<br><br>
+    @if(count($tasks) <> 0)<a href="{{route('tasks.printCreated')}}" class="btn btn-danger btn-md active"class="pdf" role="button" aria-pressed="true"><i class="fa fa-download" aria-hidden="true"></i> {{__('Download')}} PDF</a>@endif<br><br>
 
     <table class="table table-responsive table-bordered tasksTable">
         <thead>

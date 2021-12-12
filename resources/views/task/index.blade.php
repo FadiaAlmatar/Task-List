@@ -9,7 +9,7 @@
         <form action="{{route('tasks.printAssign')}}" method="GET">
         @if(count($tasks) <> 0)
         {{-- <a href="" class="btn btn-danger btn-md active"class="pdf" role="button" aria-pressed="true">{{__('Download')}} PDF</a> --}}
-        <button type="submit" class="btn btn-success mr-2"> <i class="fa fa-check"></i> {{__('Download')}}</button>
+        <button type="submit" class="btn btn-danger mr-2"> <i class="fa fa-download" aria-hidden="true"></i> {{__('Download')}} PDF</button>
         @endif<br><br>
         <input type="hidden" name="status" value={{$status}}>
         </form>
