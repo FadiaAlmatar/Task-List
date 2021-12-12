@@ -288,8 +288,12 @@ public function delegated_taskboard()
          }
     $tasks = json_encode($tasks);
     // dd($tasks);
-    return view('app-taskboard',compact('tasks'));
+
    }
+   $archive = DB::select("CALL pr_archive_tasks( ".Auth::User()->id.")");//employees who have assign
+   $archive = json_encode($archive);
+
+   return view('app-taskboard',compact('tasks','archive'));
 }
 
 }

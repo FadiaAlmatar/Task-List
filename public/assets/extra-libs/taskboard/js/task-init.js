@@ -3,6 +3,7 @@ $(function() {
      * Created by Zura on 4/5/2016.
      */
      var myTasks = JSON.parse(window.tasks);
+     var myarchive = JSON.parse(window.archive);
     $(function() {
         Lobibox.notify.DEFAULTS = $.extend({}, Lobibox.notify.DEFAULTS, {
             size: 'mini',
@@ -69,20 +70,8 @@ $(function() {
                     id: 'Done',
                     title: 'Done',
                     defaultStyle: 'lobilist-success',
-                    items: [{
-                            title: 'Composed trays',
-                            description: 'Hoary rattle exulting suspendisse elit paradises craft wistful. Bayonets allures prefer traits wrongs flushed. Tent wily matched bold polite slab coinage celerities gales beams.'
-                        },
-                        {
-                            title: 'Chic leafy'
-                        },
-                        {
-                            title: 'Guessed interdum armies chirp writhes most',
-                            description: 'Came champlain live leopards twilight whenever warm read wish squirrel rock.',
-                            duedate: '2015-02-04',
-                            done: true
-                        }
-                    ]
+                    items: myarchive
+
                 }
             ]
         });
