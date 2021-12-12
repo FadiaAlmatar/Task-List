@@ -4,6 +4,7 @@ $(function() {
      */
      var myTasks = JSON.parse(window.tasks);
      var myarchive = JSON.parse(window.archive);
+     var myassign = JSON.parse(window.assign);
     $(function() {
         Lobibox.notify.DEFAULTS = $.extend({}, Lobibox.notify.DEFAULTS, {
             size: 'mini',
@@ -21,7 +22,7 @@ $(function() {
                     duedate:'Todo',
                     defaultStyle: 'lobilist-danger',
 
-                    items : myTasks
+                    items : myassign
                     // items: [
 
                     //     {
@@ -51,20 +52,7 @@ $(function() {
                     id: 'doing',
                     title: 'Doing',
                     defaultStyle: 'lobilist-primary',
-                    items: [{
-                            title: 'Composed trays',
-                            description: 'Hoary rattle exulting suspendisse elit paradises craft wistful. Bayonets allures prefer traits wrongs flushed. Tent wily matched bold polite slab coinage celerities gales beams.'
-                        },
-                        {
-                            title: 'Chic leafy'
-                        },
-                        {
-                            title: 'Guessed interdum armies chirp writhes most',
-                            description: 'Came champlain live leopards twilight whenever warm read wish squirrel rock.',
-                            duedate: '2015-02-04',
-                            done: true
-                        }
-                    ]
+                    items: myTasks
                 },
                 {
                     id: 'Done',

@@ -287,13 +287,13 @@ public function delegated_taskboard()
             $assignedto_users = User::where('id' , $task->assigned_to)->get();
          }
     $tasks = json_encode($tasks);
-    // dd($tasks);
-
    }
    $archive = DB::select("CALL pr_archive_tasks( ".Auth::User()->id.")");//employees who have assign
    $archive = json_encode($archive);
 
-   return view('app-taskboard',compact('tasks','archive'));
+   $assign = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->get();
+   $assign = json_encode($assign);
+   return view('app-taskboard',compact('tasks','archive','assign'));
 }
 
 }

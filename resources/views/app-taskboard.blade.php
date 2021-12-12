@@ -60,7 +60,7 @@
         <!-- ============================================================== -->
         <!-- Page wrapper  -->
         <!-- ============================================================== -->
-        <div class="page-wrapper" >
+        <div class="page-wrapper" style="width:100%;margin:0">
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
@@ -71,7 +71,7 @@
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
-            <div class="container-fluid" style="border:1px solid red;width: 100%;margin:auto;">
+            <div class="container-fluid" style="width: 100%;margin:auto;">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card">
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
@@ -91,7 +91,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
@@ -354,6 +354,7 @@
     <script src="{{asset('assets/extra-libs/taskboard/js/lobibox.min.js')}}"></script>
     <script> window.tasks = '<?php echo $tasks ?>'; </script>
     <script> window.archive = '<?php echo $archive ?>'; </script>
+    <script> window.assign = '<?php echo $assign ?>'; </script>
     <script src="{{asset('assets/extra-libs/taskboard/js/task-init.js')}}"></script>
 
     {{-- <script src="{{ asset('dist/js/app.init.horizontal-fullwidth.js')}}"></script> --}}
