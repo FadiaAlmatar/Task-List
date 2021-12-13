@@ -14,6 +14,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Custom CSS -->
     <link href="{{ asset('dist/css/style.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/mystyle.css')}}" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -225,7 +226,7 @@
         <!-- ============================================================== -->
         <!-- Page wrapper  -->
         <!-- ============================================================== -->
-        <div class="page-wrapper">
+        {{-- <div class="page-wrapper"> --}}
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
@@ -236,19 +237,19 @@
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
-            <div class="container-fluid">
+            {{-- <div class="container-fluid"> --}}
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <div class="row">
+                {{-- <div class="row"> --}}
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-body">
+                            {{-- <div class="card-body"> --}}
                                @yield('content')
-                            </div>
+                            {{-- </div> --}}
                         </div>
                     </div>
-                </div>
+                {{-- </div> --}}
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
@@ -259,7 +260,7 @@
                 <!-- ============================================================== -->
                 <!-- End Right sidebar -->
                 <!-- ============================================================== -->
-            </div>
+            {{-- </div> --}}
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
@@ -267,13 +268,13 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">
-                All Rights Reserved by Innovative Systems. Designed and Developed by
-                <a href="https://almounkez.com">almounkez</a>.
+                {{__('All Rights Reserved by Innovative Systems. Designed and Developed')}}
+                <a href="https://almounkez.com">{{__('almounkez')}}</a>.
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->
-        </div>
+        {{-- </div> --}}
         <!-- ============================================================== -->
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->

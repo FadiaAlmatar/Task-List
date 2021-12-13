@@ -24,7 +24,7 @@ class TaskController extends Controller
           $users = User::where('parentId', Auth::User()->id)->orwhere('id', Auth::User()->id)->get();
        else
           $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
-        return view('task.index',['tasks' => $tasks,'users'=>$users]);
+        return view('task.index',['tasks' => $tasks,'users'=>$users,'status'=>'']);
     }
 
     /**
@@ -193,7 +193,17 @@ class TaskController extends Controller
 
     public function printAssign (Request $request)
     {
-        $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->get();
+        // dd($request->status);
+        if($request->status == "in")
+           $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','=',"in progress")->get();
+        elseif($request->status == "waiting")
+           $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','=',$request->status)->get();
+        elseif($request->status == "not")
+           $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','=',"not started")->get();
+        elseif($request->status == "denied")
+           $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','=',$request->status)->get();
+        else{
+        $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->get();}
         $html = view('task.assign-task-pdf',['tasks'=>$tasks])->render();
         $pdf = new \Mpdf\Mpdf([
             'mode' => 'utf-8', 'format' => 'A4','default_font' => 'fontawesome','margin_left' => 15,'margin_right' => 10,'margin_top' => 16,'margin_bottom' => 15,'margin_header' => 10, 'margin_footer' => 10 ]);
@@ -210,8 +220,7 @@ class TaskController extends Controller
             $tasks = DB::select("CALL pr_employees_tasks(".Auth::User()->id.")");//employees who have assign
         }else{ $tasks = Task::where('user_id', Auth::User()->id)->get();//all tasks that I created it
          }
-        if(count($tasks) <> 0){
-            // dd("if");
+         if (count($tasks) <> 0){
          foreach($tasks as $task){
             $assignedfrom_users = User::where('id' , $task->user_id)->get();
             $assignedto_users = User::where('id' , $task->assigned_to)->get();
@@ -240,8 +249,28 @@ class TaskController extends Controller
           $users = User::where('parentId', Auth::User()->id)->orwhere('id', Auth::User()->id)->get();
        else
           $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
-        return view('task.index',['tasks' => $tasks,'users'=>$users]);
+        return view('task.index',['tasks' => $tasks,'users'=>$users,'status'=>$status]);
     }
+   public function taskboard()
+   {
+    if(Auth::User()->parentId == null){
+        $tasks = DB::select("CALL pr_employees_tasks(".Auth::User()->id.")");//employees who have assign
+    }else{
+        $tasks = Task::where('user_id', Auth::User()->id)->get();//all tasks that I created it
+     }
+    if (count($tasks) <> 0){
+        foreach($tasks as $task){
+            $assignedfrom_users = User::where('id' , $task->user_id)->get();
+            $assignedto_users = User::where('id' , $task->assigned_to)->get();
+         }
+    $tasks = json_encode($tasks);
+   }
+   $archive = DB::select("CALL pr_archive_tasks( ".Auth::User()->id.")");//employees who have assign
+   $archive = json_encode($archive);
 
+   $assign = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->get();
+   $assign = json_encode($assign);
+   return view('app-taskboard',compact('tasks','archive','assign'));
 }
 
+}

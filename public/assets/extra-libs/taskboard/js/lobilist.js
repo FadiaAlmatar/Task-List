@@ -301,7 +301,7 @@ $(function() {
             $form[0].id.value = $item.attr('data-id');
             $form[0].title.value = $item.find('.lobilist-item-title').html();
             $form[0].description.value = $item.find('.lobilist-item-description').html() || '';
-            $form[0].dueDate.value = $item.find('.lobilist-item-duedate').html() || '';
+            $form[0].duedate.value = $item.find('.lobilist-item-duedate').html() || '';
             return me;
         },
 
@@ -404,7 +404,7 @@ $(function() {
             $('<div class="form-group">').append(
                 $('<input>', {
                     'type': 'text',
-                    name: 'dueDate',
+                    name: 'duedate',
                     'class': 'datepicker form-control',
                     placeholder: 'Due Date'
                 })
@@ -448,7 +448,9 @@ $(function() {
                 id: me.$form[0].id.value,
                 title: me.$form[0].title.value,
                 description: me.$form[0].description.value,
-                dueDate: me.$form[0].dueDate.value
+                duedate: me.$form[0].duedate.value,
+                status: me.$form[0].status.value,
+                created_at: me.$form[0].status.value
             });
             me.$form.addClass('hide');
             me.$footer.removeClass('hide');
@@ -700,10 +702,22 @@ $(function() {
                     html: item.description
                 }));
             }
-            if (item.dueDate) {
+            if (item.duedate) {
                 $li.append($('<div>', {
                     'class': 'lobilist-item-duedate',
-                    html: item.dueDate
+                    html: item.duedate
+                }));
+            }
+            if (item.status) {
+                $li.append($('<div>', {
+                    'class': 'lobilist-item-status',
+                    html: item.status
+                }));
+            }
+            if (item.created_at) {
+                $li.append($('<div>', {
+                    'class': 'lobilist-item-created_at',
+                    html: item.created_at
                 }));
             }
             $li = me._addItemControls($li);
@@ -763,12 +777,21 @@ $(function() {
             $li.find('.lobilist-item-title').html(item.title);
             $li.find('.lobilist-item-description').remove();
             $li.find('.lobilist-item-duedate').remove();
+            $li.find('.lobilist-item-status').html(item.status);
+            $li.find('.lobilist-item-created_at').html(item.created_at);
 
             if (item.description) {
                 $li.append('<div class="lobilist-item-description">' + item.description + '</div>');
             }
-            if (item.dueDate) {
-                $li.append('<div class="lobilist-item-duedate">' + item.dueDate + '</div>');
+            if (item.duedate) {
+                $li.append('<div class="lobilist-item-duedate">' + item.duedate + '</div>');
+            }
+            if (item.status) {
+                $li.append('<div class="lobilist-item-status">' + item.status + '</div>');
+            }
+
+            if (item.created_at) {
+                $li.append('<div class="lobilist-item-created_at">' + item.created_at + '</div>');
             }
             $li.data('lobiListItem', item);
             $.extend(me.$items[item.id], item);
@@ -1034,8 +1057,10 @@ $(function() {
             id: false,
             title: '',
             description: '',
-            dueDate: '',
-            done: false
+            duedate: '',
+            done: false,
+            status:'',
+            created_at:''
         },
 
         lists: [],

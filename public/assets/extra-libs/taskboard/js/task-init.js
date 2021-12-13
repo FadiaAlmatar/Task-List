@@ -2,6 +2,9 @@ $(function() {
     /**
      * Created by Zura on 4/5/2016.
      */
+     var myTasks = JSON.parse(window.tasks);
+     var myarchive = JSON.parse(window.archive);
+     var myassign = JSON.parse(window.assign);
     $(function() {
         Lobibox.notify.DEFAULTS = $.extend({}, Lobibox.notify.DEFAULTS, {
             size: 'mini',
@@ -10,72 +13,57 @@ $(function() {
         });
 
         //Basic example
+        // myTasks.forEach(task => {
         $('#todo-lists-basic-demo').lobiList({
             lists: [{
                     id: 'todo',
                     title: 'Todo',
+                    description:'Todo',
+                    duedate:'Todo',
                     defaultStyle: 'lobilist-danger',
-                    items: [{
-                            title: 'Floor cool cinders',
-                            description: 'Thunder fulfilled travellers folly, wading, lake.',
-                            dueDate: '2015-01-31'
-                        },
-                        {
-                            title: 'Periods pride',
-                            description: 'Accepted was mollis',
-                            done: true
-                        },
-                        {
-                            title: 'Flags better burns pigeon',
-                            description: 'Rowed cloven frolic thereby, vivamus pining gown intruding strangers prank treacherously darkling.'
-                        },
-                        {
-                            title: 'Accepted was mollis',
-                            description: 'Rowed cloven frolic thereby, vivamus pining gown intruding strangers prank treacherously darkling.',
-                            dueDate: '2015-02-02'
-                        }
-                    ]
+
+                    items : myassign
+                    // items: [
+
+                    //     {
+                    //         id:myTasks[0]['id'],
+                    //         title: myTasks[0]['title'],
+                    //         description: myTasks[0]['description'],
+                    //         duedate: myTasks[0]['duedate']
+                    //     },
+                    //     {
+                    //         title: myTasks[1]['title'],
+                    //         description: myTasks[1]['description'],
+                    //         duedate: myTasks[1]['duedate'],
+                    //         // done: true
+                    //     },
+                        // {
+                        //     title: task.title,
+                        //     description: task.description
+                        // },
+                        // {
+                        //     title: task.title,
+                        //     description: task.description,
+                        //     duedate: task.duedate
+                        // }
+                    // ]
                 },
                 {
                     id: 'doing',
                     title: 'Doing',
                     defaultStyle: 'lobilist-primary',
-                    items: [{
-                            title: 'Composed trays',
-                            description: 'Hoary rattle exulting suspendisse elit paradises craft wistful. Bayonets allures prefer traits wrongs flushed. Tent wily matched bold polite slab coinage celerities gales beams.'
-                        },
-                        {
-                            title: 'Chic leafy'
-                        },
-                        {
-                            title: 'Guessed interdum armies chirp writhes most',
-                            description: 'Came champlain live leopards twilight whenever warm read wish squirrel rock.',
-                            dueDate: '2015-02-04',
-                            done: true
-                        }
-                    ]
+                    items: myTasks
                 },
                 {
                     id: 'Done',
                     title: 'Done',
                     defaultStyle: 'lobilist-success',
-                    items: [{
-                            title: 'Composed trays',
-                            description: 'Hoary rattle exulting suspendisse elit paradises craft wistful. Bayonets allures prefer traits wrongs flushed. Tent wily matched bold polite slab coinage celerities gales beams.'
-                        },
-                        {
-                            title: 'Chic leafy'
-                        },
-                        {
-                            title: 'Guessed interdum armies chirp writhes most',
-                            description: 'Came champlain live leopards twilight whenever warm read wish squirrel rock.',
-                            dueDate: '2015-02-04',
-                            done: true
-                        }
-                    ]
+                    items: myarchive
+
                 }
             ]
         });
+    // });
         //Custom datepicker
         $('#todo-lists-demo-datepicker').lobiList({
             lists: [{
@@ -84,12 +72,12 @@ $(function() {
                 items: [{
                     title: 'Floor cool cinders',
                     description: 'Thunder fulfilled travellers folly, wading, lake.',
-                    dueDate: '2015-01-31'
+                    duedate: '2015-01-31'
                 }]
             }],
             afterListAdd: function(lobilist, list) {
-                var $dueDateInput = list.$el.find('form [name=dueDate]');
-                $dueDateInput.datepicker();
+                var $duedateInput = list.$el.find('form [name=duedate]');
+                $duedateInput.datepicker();
             }
         });
         // Event handling
@@ -214,7 +202,7 @@ $(function() {
                             items: [{
                                     title: 'Floor cool cinders',
                                     description: 'Thunder fulfilled travellers folly, wading, lake.',
-                                    dueDate: '2015-01-31'
+                                    duedate: '2015-01-31'
                                 },
                                 {
                                     title: 'Periods pride',
@@ -230,7 +218,7 @@ $(function() {
                                     title: 'Accepted was mollis',
                                     description: 'Rowed cloven frolic thereby, vivamus pining gown intruding strangers prank ' +
                                         'treacherously darkling.',
-                                    dueDate: '2015-02-02'
+                                    duedate: '2015-02-02'
                                 }
                             ]
                         }]
@@ -251,7 +239,7 @@ $(function() {
                     items: [{
                         title: 'Floor cool cinders',
                         description: 'Thunder fulfilled travellers folly, wading, lake.',
-                        dueDate: '2015-01-31'
+                        duedate: '2015-01-31'
                     }]
                 },
                 {
@@ -298,7 +286,7 @@ $(function() {
                     items: [{
                         title: 'Floor cool cinders',
                         description: 'Thunder fulfilled travellers folly, wading, lake.',
-                        dueDate: '2015-01-31'
+                        duedate: '2015-01-31'
                     }]
                 },
                 {
