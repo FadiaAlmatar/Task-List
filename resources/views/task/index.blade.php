@@ -83,13 +83,17 @@
                     @endforeach
                 </tbody>
             </table>
-        @if(count($tasks) <> 0)
-            <button type="submit" class="btn btn-success mr-2"> <i class="fa fa-check"></i> {{__('Save')}}</button>
 
-        <a href="{{route('delegatedTasks')}}"><button type="button" class="btn btn-danger">{{__('Cancel')}}</button></a>
-        @endif
-    </form>
-        <br>
+                        @if(count($tasks) <> 0)
+                        <button type="submit" class="btn btn-success mr-2"> <i class="fa fa-check"></i> {{__('Save')}}</button>
+                        @endif
+                    <a href="{{route('delegatedTasks')}}"><button type="button" class="btn btn-danger">{{__('Cancel')}}</button></a>
+                    </form>
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
     </div>
     @endsection
     @section('scripts')

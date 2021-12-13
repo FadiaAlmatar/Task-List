@@ -30,7 +30,7 @@ class EmployeeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    { 
         return view('employee.create');
     }
 

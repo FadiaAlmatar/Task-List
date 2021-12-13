@@ -222,12 +222,14 @@ class TaskController extends Controller
          }
          if (count($tasks) <> 0){
          foreach($tasks as $task){
-         $assignedfrom_users = User::where('id' , $task->user_id)->get();
-         $assignedto_users = User::where('id' , $task->assigned_to)->get();
-        }
+            $assignedfrom_users = User::where('id' , $task->user_id)->get();
+            $assignedto_users = User::where('id' , $task->assigned_to)->get();
+            }
         return view('dashboard',['tasks'=> $tasks,'assignedfrom_users'=>$assignedfrom_users,'assignedto_users'=>$assignedto_users]);
-         }else{
-            return view('dashboard',['tasks'=> $tasks]);
+         }
+         else{
+            //  dd("else");
+            return view('dashboard',['tasks'=> $tasks,'assignedfrom_users'=>'','assignedto_users'=>'']);
          }
 
     }

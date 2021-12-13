@@ -1,5 +1,4 @@
 @extends('layouts.amz')
-
 @section('content')
     <div class="py-12">
         <form class="create-task"action="{!! !empty($task) ? route('tasks.update', $task) :  route('tasks.store')  !!}" method="POST">
