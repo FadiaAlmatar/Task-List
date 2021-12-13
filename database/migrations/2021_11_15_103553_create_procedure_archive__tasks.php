@@ -22,7 +22,8 @@ class CreateProcedureArchiveTasks extends Migration
                users.name ,users.email ,users.password ,users.parentId ,users.company_name from tasks
         INNER JOIN
         users ON (tasks.assigned_to = users.id)
-        where ((users.parentId = num) or (users.id = num)) and (tasks.status = 'finished');
+        where ((users.parentId = num) or (users.id = num)) and (tasks.status = 'finished')
+        ORDER BY tasks.updated_at DESC;
         END;";
 
         DB::unprepared($procedure);
