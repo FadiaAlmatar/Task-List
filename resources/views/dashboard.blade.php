@@ -14,7 +14,8 @@
     </div>
     @endif
 <div style="padding: 10px">
-    @if(count($tasks) <> 0)<a href="{{route('tasks.printCreated')}}" class="btn btn-danger btn-md active"class="pdf" role="button" aria-pressed="true"><i class="fa fa-download" aria-hidden="true"></i> {{__('Download')}} PDF</a>@endif<br><br>
+    @if(count($tasks) <> 0)<a href="{{route('tasks.printCreated')}}" class="btn btn-danger btn-md active"class="pdf" role="button" aria-pressed="true"><i class="fa fa-download" aria-hidden="true"></i> {{__('Download')}} PDF</a>@endif
+    <a href="{{route('tasks.create')}}"><button type="button" class="btn_add btn btn-success"><i class="fas fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;{{__('create task')}}</button></a><br><br>
 
     <table class="table table-responsive table-bordered tasksTable">
         <thead>
@@ -73,14 +74,16 @@
                 </td>
                 <td>{{__($task->status)}}</td>
                 <td>{{$task->description}}</td>
-                @foreach ($assignedfrom_users as $assignedfrom_user)
-                    @if($task->user_id == $assignedfrom_user->id)
-                    <td>{{$assignedfrom_user->name}}</td>
+                @foreach ($users as $user)
+                    @if($user->id == $task->user_id)
+                    <td>{{$user->name}}</td>
+                    @break
                     @endif
                 @endforeach
-                @foreach ($assignedto_users as $assignedto_user)
-                    @if($task->assigned_to == $assignedto_user->id)
-                    <td>{{$assignedto_user->name}}</td>
+                @foreach ($users as $user)
+                    @if($user->id == $task->assigned_to)
+                    <td>{{$user->name}}</td>
+                    @break
                     @endif
                 @endforeach
                 <td>{{$task->duedate}}</td>

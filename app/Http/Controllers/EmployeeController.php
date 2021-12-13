@@ -30,7 +30,7 @@ class EmployeeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    { 
+    {
         return view('employee.create');
     }
 
@@ -53,7 +53,9 @@ class EmployeeController extends Controller
                 $user->password =  Hash::make($request->password);
                 $user->company_name = Auth::User()->company_name;
                 $user->parentId = Auth::User()->id;
+
                 $user->save();
+                // dd("here");
         return redirect()->route('employees.index');
     }
     public function update(Request $request,$id)

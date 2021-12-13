@@ -53,7 +53,7 @@
         </div>
 
                 <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> {{__('Save')}}</button>
-                <a href="{{route('dashboard')}}"><button type="button" class="btn btn-danger">{{__('Cancel')}}</button></a>
+                <a href="{{route('delegatedTasks')}}"><button type="button" class="btn btn-danger">{{__('Cancel')}}</button></a>
         </form>
     </div>
 @endsection

@@ -221,15 +221,11 @@ class TaskController extends Controller
         }else{ $tasks = Task::where('user_id', Auth::User()->id)->get();//all tasks that I created it
          }
          if (count($tasks) <> 0){
-         foreach($tasks as $task){
-            $assignedfrom_users = User::where('id' , $task->user_id)->get();
-            $assignedto_users = User::where('id' , $task->assigned_to)->get();
-            }
-        return view('dashboard',['tasks'=> $tasks,'assignedfrom_users'=>$assignedfrom_users,'assignedto_users'=>$assignedto_users]);
+            $users = User::all();
+        return view('dashboard',['tasks'=> $tasks,'users'=>$users]);
          }
          else{
-            //  dd("else");
-            return view('dashboard',['tasks'=> $tasks,'assignedfrom_users'=>'','assignedto_users'=>'']);
+            return view('dashboard',['tasks'=> $tasks,'users'=>'']);
          }
 
     }

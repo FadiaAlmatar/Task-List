@@ -27,7 +27,6 @@
                 <p class="help is-danger"style="color: red">{{ $message }}</p>
                 @enderror
             </div>
-
             <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> {{__('Save')}}</button>
             <a href="{{route('employees.index')}}"><button type="button" class="btn btn-danger">{{__('Cancel')}}</button></a>
         </form>
