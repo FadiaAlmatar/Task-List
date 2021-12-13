@@ -7,6 +7,7 @@
 @section('content')
     <div class="py-12">
         <form action="{{route('tasks.printAssign')}}" method="GET">
+            @csrf
         @if(count($tasks) <> 0)
         {{-- <a href="" class="btn btn-danger btn-md active"class="pdf" role="button" aria-pressed="true">{{__('Download')}} PDF</a> --}}
         <button type="submit" class="btn btn-danger mr-2"> <i class="fa fa-download" aria-hidden="true"></i> {{__('Download')}} PDF</button>

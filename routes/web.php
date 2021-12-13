@@ -22,7 +22,7 @@ use App\Http\Controllers\Controller;
 |
 */
 
-Route::get('/', [TaskController::class,'index'])->middleware(['auth']);
+Route::any('/', [TaskController::class,'index'])->middleware(['auth']);
 Route::get('locale/{locale}', function ($locale){
     if (! in_array($locale, ['en', 'ar'])) {
         abort(400);
