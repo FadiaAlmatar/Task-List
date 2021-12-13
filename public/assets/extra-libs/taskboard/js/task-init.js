@@ -15,7 +15,13 @@ $(function() {
         //Basic example
         // myTasks.forEach(task => {
         $('#todo-lists-basic-demo').lobiList({
-            lists: [{
+            lists: [
+                {
+                    id: 'doing',//doing
+                    title: 'Delegated',//Doing
+                    defaultStyle: 'lobilist-primary',
+                    items: myTasks
+                },{
                     id: 'todo',
                     title: 'Todo',
                     description:'Todo',
@@ -23,14 +29,9 @@ $(function() {
                     defaultStyle: 'lobilist-danger',
                     items : myassign
                 },
+
                 {
-                    id: 'delegated',//doing
-                    title: 'Delegated',//Doing
-                    defaultStyle: 'lobilist-primary',
-                    items: myTasks
-                },
-                {
-                    id: 'Archive',//Done
+                    id: 'Done',//Done
                     title: 'Archive',//Done
                     defaultStyle: 'lobilist-success',
                     items: myarchive
