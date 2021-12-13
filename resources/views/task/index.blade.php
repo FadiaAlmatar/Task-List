@@ -82,12 +82,7 @@
                     @endforeach
                 </tbody>
             </table>
-        @if(count($tasks) <> 0)
-            <button type="submit" class="btn btn-success mr-2"> <i class="fa fa-check"></i> {{__('Save')}}</button>
 
-                                @endforeach
-                            </tbody>
-                        </table>
                         @if(count($tasks) <> 0)
                         <button type="submit" class="btn btn-success mr-2"> <i class="fa fa-check"></i> {{__('Save')}}</button>
                         @endif
