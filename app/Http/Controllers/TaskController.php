@@ -221,7 +221,11 @@ class TaskController extends Controller
         }else{ $tasks = Task::where('user_id', Auth::User()->id)->get();//all tasks that I created it
          }
          if (count($tasks) <> 0){
-            $users = User::all();
+            if(Auth::User()->parentId == null)
+            $users = User::where('parentId', Auth::User()->id)->orwhere('id', Auth::User()->id)->get();
+         else
+            $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
+
         return view('dashboard',['tasks'=> $tasks,'users'=>$users]);
          }
          else{
