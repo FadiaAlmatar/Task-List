@@ -255,22 +255,18 @@ class TaskController extends Controller
    {
     if(Auth::User()->parentId == null){
         $tasks = DB::select("CALL pr_employees_tasks(".Auth::User()->id.")");//employees who have assign
+        $users = User::where('parentId', Auth::User()->id)->orwhere('id', Auth::User()->id)->get();
     }else{
         $tasks = Task::where('user_id', Auth::User()->id)->get();//all tasks that I created it
+        $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
      }
-    if (count($tasks) <> 0){
-        foreach($tasks as $task){
-            $assignedfrom_users = User::where('id' , $task->user_id)->get();
-            $assignedto_users = User::where('id' , $task->assigned_to)->get();
-         }
     $tasks = json_encode($tasks);
-   }
-   $archive = DB::select("CALL pr_archive_tasks( ".Auth::User()->id.")");//employees who have assign
-   $archive = json_encode($archive);
+    $archive = DB::select("CALL pr_archive_tasks( ".Auth::User()->id.")");//employees who have
+    $archive = json_encode($archive);
 
-   $assign = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->get();
-   $assign = json_encode($assign);
-   return view('app-taskboard',compact('tasks','archive','assign'));
+    $assign = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->get();
+    $assign = json_encode($assign);
+    return view('app-taskboard',compact('tasks','archive','assign'));
 }
 
 }

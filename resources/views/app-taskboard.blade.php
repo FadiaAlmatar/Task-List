@@ -357,9 +357,6 @@
     <script> window.archive = '<?php echo $archive ?>'; </script>
     <script> window.assign = '<?php echo $assign ?>'; </script>
     <script src="{{asset('assets/extra-libs/taskboard/js/task-init.js')}}"></script>
-
-    {{-- <script src="{{ asset('dist/js/app.init.horizontal-fullwidth.js')}}"></script> --}}
-    {{-- <script src="{{ asset('dist/js/app-style-switcher.horizontal.js')}}"></script> --}}
 </body>
 
 </html>

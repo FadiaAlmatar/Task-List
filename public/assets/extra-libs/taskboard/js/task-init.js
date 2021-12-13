@@ -21,42 +21,17 @@ $(function() {
                     description:'Todo',
                     duedate:'Todo',
                     defaultStyle: 'lobilist-danger',
-
                     items : myassign
-                    // items: [
-
-                    //     {
-                    //         id:myTasks[0]['id'],
-                    //         title: myTasks[0]['title'],
-                    //         description: myTasks[0]['description'],
-                    //         duedate: myTasks[0]['duedate']
-                    //     },
-                    //     {
-                    //         title: myTasks[1]['title'],
-                    //         description: myTasks[1]['description'],
-                    //         duedate: myTasks[1]['duedate'],
-                    //         // done: true
-                    //     },
-                        // {
-                        //     title: task.title,
-                        //     description: task.description
-                        // },
-                        // {
-                        //     title: task.title,
-                        //     description: task.description,
-                        //     duedate: task.duedate
-                        // }
-                    // ]
                 },
                 {
-                    id: 'doing',
-                    title: 'Doing',
+                    id: 'delegated',//doing
+                    title: 'Delegated',//Doing
                     defaultStyle: 'lobilist-primary',
                     items: myTasks
                 },
                 {
-                    id: 'Done',
-                    title: 'Done',
+                    id: 'Archive',//Done
+                    title: 'Archive',//Done
                     defaultStyle: 'lobilist-success',
                     items: myarchive
 
@@ -69,11 +44,7 @@ $(function() {
             lists: [{
                 title: 'Todo',
                 defaultStyle: 'lobilist-info',
-                items: [{
-                    title: 'Floor cool cinders',
-                    description: 'Thunder fulfilled travellers folly, wading, lake.',
-                    duedate: '2015-01-31'
-                }]
+                items: myassign
             }],
             afterListAdd: function(lobilist, list) {
                 var $duedateInput = list.$el.find('form [name=duedate]');
@@ -199,28 +170,7 @@ $(function() {
                         lists: [{
                             title: 'Todo',
                             defaultStyle: 'lobilist-info',
-                            items: [{
-                                    title: 'Floor cool cinders',
-                                    description: 'Thunder fulfilled travellers folly, wading, lake.',
-                                    duedate: '2015-01-31'
-                                },
-                                {
-                                    title: 'Periods pride',
-                                    description: 'Accepted was mollis',
-                                    done: true
-                                },
-                                {
-                                    title: 'Flags better burns pigeon',
-                                    description: 'Rowed cloven frolic thereby, vivamus pining gown intruding strangers prank ' +
-                                        'treacherously darkling.'
-                                },
-                                {
-                                    title: 'Accepted was mollis',
-                                    description: 'Rowed cloven frolic thereby, vivamus pining gown intruding strangers prank ' +
-                                        'treacherously darkling.',
-                                    duedate: '2015-02-02'
-                                }
-                            ]
+                            items: myassign
                         }]
                     })
                     .data('lobiList');
@@ -236,43 +186,26 @@ $(function() {
                     title: 'Todo',
                     defaultStyle: 'lobilist-info',
                     controls: ['edit', 'styleChange'],
-                    items: [{
-                        title: 'Floor cool cinders',
-                        description: 'Thunder fulfilled travellers folly, wading, lake.',
-                        duedate: '2015-01-31'
-                    }]
+                    items:myassign
+
                 },
                 {
                     title: 'Disabled checkboxes',
                     defaultStyle: 'lobilist-danger',
                     controls: ['edit', 'add', 'remove'],
                     useLobicheck: false,
-                    items: [{
-                        title: 'Periods pride',
-                        description: 'Accepted was mollis',
-                        done: true
-                    }]
+                    items:myassign
                 },
                 {
                     title: 'Controls disabled',
                     controls: false,
-                    items: [{
-                        title: 'Composed trays',
-                        description: 'Hoary rattle exulting suspendisse elit paradises craft wistful. ' +
-                            'Bayonets allures prefer traits wrongs flushed. Tent wily matched bold polite slab coinage ' +
-                            'celerities gales beams.'
-                    }]
+                    items: myassign
                 },
                 {
                     title: 'No edit/remove',
                     enableTodoRemove: false,
                     enableTodoEdit: false,
-                    items: [{
-                        title: 'Composed trays',
-                        description: 'Hoary rattle exulting suspendisse elit paradises craft wistful. ' +
-                            'Bayonets allures prefer traits wrongs flushed. Tent wily matched bold polite slab coinage ' +
-                            'celerities gales beams.'
-                    }]
+                    items: myassign
                 }
             ]
         });
@@ -283,19 +216,12 @@ $(function() {
                     title: 'Todo',
                     defaultStyle: 'lobilist-info',
                     controls: ['edit', 'styleChange'],
-                    items: [{
-                        title: 'Floor cool cinders',
-                        description: 'Thunder fulfilled travellers folly, wading, lake.',
-                        duedate: '2015-01-31'
-                    }]
+                    items: myassign
                 },
                 {
                     title: 'Controls disabled',
                     controls: false,
-                    items: [{
-                        title: 'Composed trays',
-                        description: 'Hoary rattle exulting suspendisse elit paradises craft wistful. Bayonets allures prefer traits wrongs flushed. Tent wily matched bold polite slab coinage celerities gales beams.'
-                    }]
+                    items: myassign
                 }
             ]
         });
