@@ -49,12 +49,12 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'title'                   => 'required|min:3',
-        //     'description'             => 'required|min:3',
-        //     'duedate'                 => 'required|after:yesterday|date',
-        //     'assigned_to'             => 'required'
-        // ]);
+        $request->validate([
+            'title'                   => 'required|min:3',
+            'description'             => 'required|min:3',
+            'duedate'                 => 'required|after:yesterday|date',
+            'assigned_to'             => 'required'
+        ]);
         //    dd("here");
         $task = new Task();
         $task->title = $request->title;
@@ -260,13 +260,13 @@ class TaskController extends Controller
         $tasks = Task::where('user_id', Auth::User()->id)->get();//all tasks that I created it
         $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
      }
-    $tasks = json_encode($tasks);
+    // $tasks = json_encode($tasks);
     $archive = DB::select("CALL pr_archive_tasks( ".Auth::User()->id.")");//employees who have
-    $archive = json_encode($archive);
+    // $archive = json_encode($archive);
 
     $assign = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->get();
-    $assign = json_encode($assign);
-    return view('taskboard',compact('tasks','archive','assign'));
+    // $assign = json_encode($assign);
+    return view('taskboard',compact('tasks','archive','assign','users'));
 }
 
 }

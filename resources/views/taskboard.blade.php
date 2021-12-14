@@ -68,19 +68,6 @@
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
-            {{-- <div class="container-fluid" style="width: 100%;margin:auto;">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Taskboard</h4>
-                                <div id="todo-lists-basic-demo" class="lobilists single-line ui-sortable"><div class="lobilist-wrapper"><div id="doing" class="lobilist lobilist-primary ps-container ps-theme-default" data-ps-id="1c116962-edd9-6387-f228-216cfc24c6d6"><div class="lobilist-header ui-sortable-handle"><div class="lobilist-actions"><div class="dropdown"><button type="button" data-toggle="dropdown" class="btn btn-xs"><i class="ti-view-grid"></i></button><div class="dropdown-menu dropdown-menu-right"><div class="lobilist-default"></div><div class="lobilist-danger"></div><div class="lobilist-success"></div><div class="lobilist-warning"></div><div class="lobilist-info"></div><div class="lobilist-primary"></div></div></div><button class="btn btn-xs"><i class="ti-pencil"></i></button><button class="btn btn-xs btn-finish-title-editing"><i class="ti-check-box"></i></button><button class="btn btn-xs btn-cancel-title-editing"><i class="ti-close"></i></button><button class="btn btn-xs"><i class="ti-plus"></i></button><button class="btn btn-xs"><i class="ti-trash"></i></button></div><div class="lobilist-title">Delegated</div></div><div class="lobilist-body"><ul class="lobilist-items ui-sortable"></ul><form class="lobilist-add-todo-form hide"><input type="hidden" name="id"><div class="form-group"><input type="text" name="title" class="form-control" placeholder="TODO title"></div><div class="form-group"><textarea rows="2" name="description" class="form-control" placeholder="TODO description"></textarea></div><div class="form-group"><input type="text" name="duedate" class="datepicker form-control hasDatepicker" placeholder="Due Date" id="dp1639475788502"></div><div class="lobilist-form-footer"><button class="btn btn-primary btn-sm btn-add-todo">Add/Update</button><button type="button" class="btn btn-danger btn-sm btn-discard-todo">Cancel</button></div></form></div><div class="lobilist-footer"><button type="button" class="btn-link btn-show-form">Add new</button></div><div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div></div><div class="lobilist-wrapper"><div id="todo" class="lobilist lobilist-danger ps-container ps-theme-default" data-ps-id="d20776ef-bc82-4abb-8f47-3ee033fe81a0"><div class="lobilist-header ui-sortable-handle"><div class="lobilist-actions"><div class="dropdown"><button type="button" data-toggle="dropdown" class="btn btn-xs"><i class="ti-view-grid"></i></button><div class="dropdown-menu dropdown-menu-right"><div class="lobilist-default"></div><div class="lobilist-danger"></div><div class="lobilist-success"></div><div class="lobilist-warning"></div><div class="lobilist-info"></div><div class="lobilist-primary"></div></div></div><button class="btn btn-xs"><i class="ti-pencil"></i></button><button class="btn btn-xs btn-finish-title-editing"><i class="ti-check-box"></i></button><button class="btn btn-xs btn-cancel-title-editing"><i class="ti-close"></i></button><button class="btn btn-xs"><i class="ti-plus"></i></button><button class="btn btn-xs"><i class="ti-trash"></i></button></div><div class="lobilist-title">Todo</div></div><div class="lobilist-body"><ul class="lobilist-items ui-sortable"><li data-id="18" class="lobilist-item"><div class="lobilist-item-title">eeeeee</div><div class="lobilist-item-description">eeeeeeeeee</div><div class="lobilist-item-duedate">2022-01-06T22:00:00.000000Z</div><div class="lobilist-item-status">not started</div><div class="lobilist-item-created_at">2021-12-14T08:41:42.000000Z</div><label class="checkbox-inline lobilist-check"><input type="checkbox"></label><div class="todo-actions"><div class="edit-todo todo-action"><i class="ti-pencil"></i></div><div class="delete-todo todo-action"><i class="ti-close"></i></div></div><div class="drag-handler"></div></li></ul><form class="lobilist-add-todo-form hide"><input type="hidden" name="id"><div class="form-group"><input type="text" name="title" class="form-control" placeholder="TODO title"></div><div class="form-group"><textarea rows="2" name="description" class="form-control" placeholder="TODO description"></textarea></div><div class="form-group"><input type="text" name="duedate" class="datepicker form-control hasDatepicker" placeholder="Due Date" id="dp1639475788503"></div><div class="lobilist-form-footer"><button class="btn btn-primary btn-sm btn-add-todo">Add/Update</button><button type="button" class="btn btn-danger btn-sm btn-discard-todo">Cancel</button></div></form></div><div class="lobilist-footer"><button type="button" class="btn-link btn-show-form">Add new</button></div><div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div></div><div class="lobilist-wrapper"><div id="Done" class="lobilist lobilist-success ps-container ps-theme-default" data-ps-id="0bd9f531-4e29-f392-3c68-5f451b832cbd"><div class="lobilist-header ui-sortable-handle"><div class="lobilist-actions"><div class="dropdown"><button type="button" data-toggle="dropdown" class="btn btn-xs"><i class="ti-view-grid"></i></button><div class="dropdown-menu dropdown-menu-right"><div class="lobilist-default"></div><div class="lobilist-danger"></div><div class="lobilist-success"></div><div class="lobilist-warning"></div><div class="lobilist-info"></div><div class="lobilist-primary"></div></div></div><button class="btn btn-xs"><i class="ti-pencil"></i></button><button class="btn btn-xs btn-finish-title-editing"><i class="ti-check-box"></i></button><button class="btn btn-xs btn-cancel-title-editing"><i class="ti-close"></i></button><button class="btn btn-xs"><i class="ti-plus"></i></button><button class="btn btn-xs"><i class="ti-trash"></i></button></div><div class="lobilist-title">Archive</div></div><div class="lobilist-body"><ul class="lobilist-items ui-sortable"><li data-id="15" class="lobilist-item"><div class="lobilist-item-title">rrrrrr</div><div class="lobilist-item-description">rrrrrrrrr</div><div class="lobilist-item-duedate">2021-12-14</div><div class="lobilist-item-status">finished</div><div class="lobilist-item-created_at">2021-12-14 10:32:20</div><label class="checkbox-inline lobilist-check"><input type="checkbox"></label><div class="todo-actions"><div class="edit-todo todo-action"><i class="ti-pencil"></i></div><div class="delete-todo todo-action"><i class="ti-close"></i></div></div><div class="drag-handler"></div></li></ul><form class="lobilist-add-todo-form hide"><input type="hidden" name="id"><div class="form-group"><input type="text" name="title" class="form-control" placeholder="TODO title"></div><div class="form-group"><textarea rows="2" name="description" class="form-control" placeholder="TODO description"></textarea></div><div class="form-group"><input type="text" name="duedate" class="datepicker form-control hasDatepicker" placeholder="Due Date" id="dp1639475788504"></div><div class="lobilist-form-footer"><button class="btn btn-primary btn-sm btn-add-todo">Add/Update</button><button type="button" class="btn btn-danger btn-sm btn-discard-todo">Cancel</button></div></form></div><div class="lobilist-footer"><button type="button" class="btn-link btn-show-form">Add new</button></div><div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div></div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div> --}}
                {{-- here --}}
                <div class="container-fluid" style="width: 100%;margin:auto;">
                 <div class="row">
@@ -114,13 +101,37 @@
                                                     <div class="lobilist-title">Delegated</div>
                                                 </div>
                                                 <div class="lobilist-body"><ul class="lobilist-items ui-sortable"></ul>
-                                    <form action="{!!  route('tasks.store')  !!}" method="POST"class="lobilist-add-todo-form hide">
+                                    <form action="{!!  route('tasks.store')  !!}" method="POST"class="lobilist-add-todo-form">
                                         @csrf
                                         <input type="hidden" name="id">
                                         <div class="form-group">
                                         <input type="text" name="title" class="form-control" placeholder="TODO title"></div><div class="form-group">
                                         <textarea rows="2" name="description" class="form-control" placeholder="TODO description"></textarea>
                                         </div>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlSelect1">{{__('Assigned To')}}</label>
+                                            <select name="assigned_to"class="form-control" id="exampleFormControlSelect1" style="appearance: none;background-image: url('<custom_arrow_image_url_here>');">
+                                                @if (!empty($task) && old('assigned_to', $task->assigned_to))
+                                                <option value="{{ $task->assigned_to}}" selected>{{ App\Models\User::where(['id' => $task->assigned_to])->pluck('name')->first() }}</option>
+                                                    @foreach ($users as $user)
+                                                        @if($task->assigned_to <> $user->id)
+                                                            <option value="{{$user->id}}" @if (old('assigned_to') == $user->id) {{ 'selected' }} @endif>{{$user->name}}</option>
+                                                        @endif
+                                                    @endforeach
+                                                @else
+                                                    @foreach ($users as $user)
+                                                        @if(Auth::User()->id == $user->id)
+                                                            <option value="{{$user->id}}" @if (old('assigned_to') == $user->id) {{ 'selected' }} @endif selected>{{Auth::User()->name}}</option>
+                                                        @else
+                                                            <option value="{{$user->id}}" @if (old('assigned_to') == $user->id) {{ 'selected' }} @endif>{{$user->name}}</option> --}}
+                                                        @endif
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                                            @error('assigned_to')
+                                            <p class="help is-danger" style="color: red">{{ $message }}</p>
+                                            @enderror
+                                            </div><br>
                                         <div class="form-group">
                                         <input type="text" name="duedate" class="datepicker form-control hasDatepicker" placeholder="Due Date" id="dp1639475788502"></div><div class="lobilist-form-footer">
                                         <button class="btn btn-primary btn-sm btn-add-todo" type="submit">Add/Update</button>
@@ -160,13 +171,118 @@
                                                 <button class="btn btn-xs"><i class="ti-trash"></i></button>
                                             </div>
                                             <div class="lobilist-title">Todo</div>
-                                        </div><div class="lobilist-body">
+                                        </div>
+                                        <div class="lobilist-body">
                                             <ul class="lobilist-items ui-sortable">
+                                                @foreach ($assign as $myassign)
                                                 <li data-id="18" class="lobilist-item">
-                                                    <div class="lobilist-item-title">eeeeee</div>
-                                                    <div class="lobilist-item-description">eeeeeeeeee</div>
-                                                    <div class="lobilist-item-duedate">2022-01-06T22:00:00.000000Z</div>
-                                                    <div class="lobilist-item-status">not started</div><div class="lobilist-item-created_at">2021-12-14T08:41:42.000000Z</div><label class="checkbox-inline lobilist-check"><input type="checkbox"></label><div class="todo-actions"><div class="edit-todo todo-action"><i class="ti-pencil"></i></div><div class="delete-todo todo-action"><i class="ti-close"></i></div></div><div class="drag-handler"></div></li></ul><form class="lobilist-add-todo-form hide"><input type="hidden" name="id"><div class="form-group"><input type="text" name="title" class="form-control" placeholder="TODO title"></div><div class="form-group"><textarea rows="2" name="description" class="form-control" placeholder="TODO description"></textarea></div><div class="form-group"><input type="text" name="duedate" class="datepicker form-control hasDatepicker" placeholder="Due Date" id="dp1639475788503"></div><div class="lobilist-form-footer"><button class="btn btn-primary btn-sm btn-add-todo">Add/Update</button><button type="button" class="btn btn-danger btn-sm btn-discard-todo">Cancel</button></div></form></div><div class="lobilist-footer"><button type="button" class="btn-link btn-show-form">Add new</button></div><div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div></div><div class="lobilist-wrapper"><div id="Done" class="lobilist lobilist-success ps-container ps-theme-default" data-ps-id="0bd9f531-4e29-f392-3c68-5f451b832cbd"><div class="lobilist-header ui-sortable-handle"><div class="lobilist-actions"><div class="dropdown"><button type="button" data-toggle="dropdown" class="btn btn-xs"><i class="ti-view-grid"></i></button><div class="dropdown-menu dropdown-menu-right"><div class="lobilist-default"></div><div class="lobilist-danger"></div><div class="lobilist-success"></div><div class="lobilist-warning"></div><div class="lobilist-info"></div><div class="lobilist-primary"></div></div></div><button class="btn btn-xs"><i class="ti-pencil"></i></button><button class="btn btn-xs btn-finish-title-editing"><i class="ti-check-box"></i></button><button class="btn btn-xs btn-cancel-title-editing"><i class="ti-close"></i></button><button class="btn btn-xs"><i class="ti-plus"></i></button><button class="btn btn-xs"><i class="ti-trash"></i></button></div><div class="lobilist-title">Archive</div></div><div class="lobilist-body"><ul class="lobilist-items ui-sortable"><li data-id="15" class="lobilist-item"><div class="lobilist-item-title">rrrrrr</div><div class="lobilist-item-description">rrrrrrrrr</div><div class="lobilist-item-duedate">2021-12-14</div><div class="lobilist-item-status">finished</div><div class="lobilist-item-created_at">2021-12-14 10:32:20</div><label class="checkbox-inline lobilist-check"><input type="checkbox"></label><div class="todo-actions"><div class="edit-todo todo-action"><i class="ti-pencil"></i></div><div class="delete-todo todo-action"><i class="ti-close"></i></div></div><div class="drag-handler"></div></li></ul><form class="lobilist-add-todo-form hide"><input type="hidden" name="id"><div class="form-group"><input type="text" name="title" class="form-control" placeholder="TODO title"></div><div class="form-group"><textarea rows="2" name="description" class="form-control" placeholder="TODO description"></textarea></div><div class="form-group"><input type="text" name="duedate" class="datepicker form-control hasDatepicker" placeholder="Due Date" id="dp1639475788504"></div><div class="lobilist-form-footer"><button class="btn btn-primary btn-sm btn-add-todo">Add/Update</button><button type="button" class="btn btn-danger btn-sm btn-discard-todo">Cancel</button></div></form></div><div class="lobilist-footer"><button type="button" class="btn-link btn-show-form">Add new</button></div><div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div></div>
+                                                    <div class="lobilist-item-title">{{$myassign->title}}</div>
+                                                    <div class="lobilist-item-description">{{$myassign->description}}</div>
+                                                    <div class="lobilist-item-duedate">{{$myassign->duedate}}</div>
+                                                    <div class="lobilist-item-status">{{$myassign->status}}</div>
+                                                    <div class="lobilist-item-created_at">{{$myassign->created_at}}</div>
+                                                    {{-- <label class="checkbox-inline lobilist-check">
+                                                        {{-- <input type="checkbox">
+                                                    </label>--}}
+                                                        <div class="todo-actions">
+                                                            <div class="edit-todo todo-action">
+                                                                <i class="ti-pencil"></i>
+                                                            </div>
+                                                            <div class="delete-todo todo-action">
+                                                                <i class="ti-close"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="drag-handler">
+
+                                                        </div>
+                                                </li>
+                                                    @endforeach
+                                            </ul>
+                                                        {{-- <form class="lobilist-add-todo-form hide">
+                                                            <input type="hidden" name="id"><div class="form-group">
+                                                                <input type="text" name="title" class="form-control" placeholder="TODO title">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <textarea rows="2" name="description" class="form-control" placeholder="TODO description"></textarea>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="text" name="duedate" class="datepicker form-control hasDatepicker" placeholder="Due Date" id="dp1639475788503">
+                                                            </div>
+                                                            <div class="lobilist-form-footer">
+                                                                <button class="btn btn-primary btn-sm btn-add-todo">Add/Update</button>
+                                                                <button type="button" class="btn btn-danger btn-sm btn-discard-todo">Cancel</button>
+                                                            </div>
+                                                        </form> --}}
+                                                        </div>
+                                                        {{-- <div class="lobilist-footer">
+                                                            <button type="button" class="btn-link btn-show-form">Add new</button>
+                                                        </div> --}}
+                                                        <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
+                                                            <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;">
+                                                            </div>
+                                                        </div>
+                                                        <div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px;">
+                                                            <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="lobilist-wrapper">
+                                                    <div id="Done" class="lobilist lobilist-success ps-container ps-theme-default" data-ps-id="0bd9f531-4e29-f392-3c68-5f451b832cbd">
+                                                        <div class="lobilist-header ui-sortable-handle">
+                                                            <div class="lobilist-actions">
+                                                                <div class="dropdown">
+                                                                    <button type="button" data-toggle="dropdown" class="btn btn-xs">
+                                                                        <i class="ti-view-grid"></i>
+                                                                    </button>
+                                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                                        <div class="lobilist-default"></div>
+                                                                        <div class="lobilist-danger"></div>
+                                                                        <div class="lobilist-success"></div>
+                                                                        <div class="lobilist-warning"></div>
+                                                                        <div class="lobilist-info"></div>
+                                                                        <div class="lobilist-primary"></div>
+                                                                    </div></div>
+                                                                    <button class="btn btn-xs"><i class="ti-pencil"></i></button>
+                                                                    <button class="btn btn-xs btn-finish-title-editing"><i class="ti-check-box"></i></button>
+                                                                    <button class="btn btn-xs btn-cancel-title-editing"><i class="ti-close"></i></button>
+                                                                    <button class="btn btn-xs"><i class="ti-plus"></i></button>
+                                                                    <button class="btn btn-xs"><i class="ti-trash"></i></button>
+                                                                </div><div class="lobilist-title">Archive</div></div>
+                                                                <div class="lobilist-body">
+                                                                    <ul class="lobilist-items ui-sortable">
+                                                                        @foreach ($archive as $myarchive )
+
+
+                                                                    <li data-id="15" class="lobilist-item">
+                                                                        <div class="lobilist-item-title">{{$myarchive->title}}</div>
+                                                                        <div class="lobilist-item-description">{{$myarchive->description}}</div>
+                                                                        <div class="lobilist-item-duedate">{{$myarchive->duedate}}</div>
+                                                                        <div class="lobilist-item-status">{{$myarchive->status}}</div>
+                                                                        <div class="lobilist-item-created_at">{{$myarchive->created_at}}</div>
+                                                                        <label class="checkbox-inline lobilist-check"><input type="checkbox"></label><div class="todo-actions">
+                                                                            <div class="edit-todo todo-action"><i class="ti-pencil"></i></div>
+                                                                            <div class="delete-todo todo-action"><i class="ti-close"></i></div></div>
+                                                                            <div class="drag-handler">
+
+                                                                            </div>
+                                                                        </li>
+                                                                        @endforeach
+                                                                        </ul>
+                                                                            {{-- <form class="lobilist-add-todo-form hide"><input type="hidden" name="id">
+                                                                                <div class="form-group"><input type="text" name="title" class="form-control" placeholder="TODO title">
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <textarea rows="2" name="description" class="form-control" placeholder="TODO description"></textarea>
+                                                                                </div><div class="form-group">
+                                                                                    <input type="text" name="duedate" class="datepicker form-control hasDatepicker" placeholder="Due Date" id="dp1639475788504"></div><div class="lobilist-form-footer">
+                                                                                        <button class="btn btn-primary btn-sm btn-add-todo">Add/Update</button>
+                                                                                        <button type="button" class="btn btn-danger btn-sm btn-discard-todo">Cancel</button></div>
+                                                                                    </form> --}}
+                                                                                </div>
+                                                                                {{-- <div class="lobilist-footer"><button type="button" class="btn-link btn-show-form">Add new</button> --}}
+                                                                                </div>
+                                                                                <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;">
+                                                    </div></div></div></div>
                                                 </div>
                             </div>
                         </div>
