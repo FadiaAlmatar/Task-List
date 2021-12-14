@@ -49,13 +49,13 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title'                   => 'required|min:3',
-            'description'             => 'required|min:3',
-            'duedate'                 => 'required|after:yesterday|date',
-            'assigned_to'             => 'required'
-        ]);
-
+        // $request->validate([
+        //     'title'                   => 'required|min:3',
+        //     'description'             => 'required|min:3',
+        //     'duedate'                 => 'required|after:yesterday|date',
+        //     'assigned_to'             => 'required'
+        // ]);
+        //    dd("here");
         $task = new Task();
         $task->title = $request->title;
         $task->description = $request->description;
@@ -266,7 +266,7 @@ class TaskController extends Controller
 
     $assign = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->get();
     $assign = json_encode($assign);
-    return view('app-taskboard',compact('tasks','archive','assign'));
+    return view('taskboard',compact('tasks','archive','assign'));
 }
 
 }

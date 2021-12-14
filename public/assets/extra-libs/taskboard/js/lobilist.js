@@ -507,31 +507,31 @@ $(function() {
             }
         },
 
-        _createCheckbox: function() {
-            var me = this;
-            var $item = $('<input>', {
-                'type': 'checkbox'
-            });
+        // _createCheckbox: function() {
+        //     var me = this;
+        //     var $item = $('<input>', {
+        //         'type': 'checkbox'
+        //     });
 
-            $item.change(function() {
-                me._onCheckboxChange(this);
-            });
-            return $('<label>', {
-                'class': 'checkbox-inline lobilist-check'
-            }).append($item);
-        },
+        //     $item.change(function() {
+        //         me._onCheckboxChange(this);
+        //     });
+        //     return $('<label>', {
+        //         'class': 'checkbox-inline lobilist-check'
+        //     }).append($item);
+        // },
 
-        _onCheckboxChange: function(checkbox) {
-            var me = this;
-            var $this = $(checkbox);
-            if ($this.prop('checked')) {
-                me._triggerEvent('afterMarkAsDone', [me, $this])
-            } else {
-                me._triggerEvent('afterMarkAsUndone', [me, $this])
-            }
+        // _onCheckboxChange: function(checkbox) {
+        //     var me = this;
+        //     var $this = $(checkbox);
+        //     if ($this.prop('checked')) {
+        //         me._triggerEvent('afterMarkAsDone', [me, $this])
+        //     } else {
+        //         me._triggerEvent('afterMarkAsUndone', [me, $this])
+        //     }
 
-            $this.closest('.lobilist-item').toggleClass('item-done');
-        },
+        //     $this.closest('.lobilist-item').toggleClass('item-done');
+        // },
 
         _createDropdownForStyleChange: function() {
             var me = this;
@@ -620,10 +620,10 @@ $(function() {
 
         _createFinishTitleEditing: function() {
             var me = this;
-            var $btn = $('<button>', {
-                'class': 'btn btn-xs btn-finish-title-editing',
-                html: '<i class="ti-check-box"></i>'
-            });
+            // var $btn = $('<button>', {
+            //     'class': 'btn btn-xs btn-finish-title-editing',
+            //     html: '<i class="ti-check-box"></i>'
+            // });
             $btn.click(function() {
                 me.finishTitleEditing();
             });
@@ -721,10 +721,10 @@ $(function() {
                 }));
             }
             $li = me._addItemControls($li);
-            if (item.done) {
-                $li.find('input[type=checkbox]').prop('checked', true);
-                $li.addClass('item-done');
-            }
+            // if (item.done) {
+            //     $li.find('input[type=checkbox]').prop('checked', true);
+            //     $li.addClass('item-done');
+            // }
             $li.data('lobiListItem', item);
             me.$ul.append($li);
             me.$items[item.id] = item;
@@ -735,9 +735,9 @@ $(function() {
 
         _addItemControls: function($li) {
             var me = this;
-            if (me.$options.useCheckboxes) {
-                $li.append(me._createCheckbox());
-            }
+            // if (me.$options.useCheckboxes) {
+            //     $li.append(me._createCheckbox());
+            // }
             var $itemControlsDiv = $('<div>', {
                 'class': 'todo-actions'
             }).appendTo($li);
@@ -773,7 +773,7 @@ $(function() {
         _updateItemInList: function(item) {
             var me = this;
             var $li = me.$lobiList.$el.find('li[data-id="' + item.id + '"]');
-            $li.find('input[type=checkbox]').prop('checked', item.done);
+            // $li.find('input[type=checkbox]').prop('checked', item.done);
             $li.find('.lobilist-item-title').html(item.title);
             $li.find('.lobilist-item-description').remove();
             $li.find('.lobilist-item-duedate').remove();
@@ -1072,7 +1072,7 @@ $(function() {
             'delete': ''
         },
         // Whether to show checkboxes or not
-        useCheckboxes: true,
+        // useCheckboxes: true,
         // Show/hide todo remove button
         enableTodoRemove: true,
         // Show/hide todo edit button
