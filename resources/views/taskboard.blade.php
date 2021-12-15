@@ -54,7 +54,8 @@
                         </div>
                         </div>
                         </div>
-                        <div class="lobilist-title">{{__('Delegated Tasks')}}</div>
+                        <a href="{{route('delegatedTasks')}}">
+                            <div class="lobilist-title">{{__('Delegated Tasks')}}</div></a>
                                                 </div>
                                                 <div class="lobilist-body">
                                                     <ul class="lobilist-items ui-sortable">
@@ -149,13 +150,8 @@
                                                     <div class="lobilist-info"></div>
                                                     <div class="lobilist-primary"></div>
                                                 </div></div>
-                                                {{-- <button class="btn btn-xs"><i class="ti-pencil"></i></button>
-                                                <button class="btn btn-xs btn-finish-title-editing"><i class="ti-check-box"></i>
-                                                </button><button class="btn btn-xs btn-cancel-title-editing"><i class="ti-close"></i></button>
-                                                <button class="btn btn-xs"><i class="ti-plus"></i></button>
-                                                <button class="btn btn-xs"><i class="ti-trash"></i></button> --}}
                                             </div>
-                                            <div class="lobilist-title">Todo</div>
+                                            <a href="{{route('dashboard')}}"><div class="lobilist-title">{{__('Todo')}}</div></a>
                                         </div>
                                         <div class="lobilist-body">
                                             <ul class="lobilist-items ui-sortable">
@@ -206,12 +202,8 @@
                                                                         <div class="lobilist-info"></div>
                                                                         <div class="lobilist-primary"></div>
                                                                     </div></div>
-                                                                    {{-- <button class="btn btn-xs"><i class="ti-pencil"></i></button>
-                                                                    <button class="btn btn-xs btn-finish-title-editing"><i class="ti-check-box"></i></button>
-                                                                    <button class="btn btn-xs btn-cancel-title-editing"><i class="ti-close"></i></button>
-                                                                    <button class="btn btn-xs"><i class="ti-plus"></i></button>
-                                                                    <button class="btn btn-xs"><i class="ti-trash"></i></button> --}}
-                                                                </div><div class="lobilist-title">{{__('Archive')}}</div></div>
+                                                                </div>
+                                                            <a href="{{route('archive')}}"><div class="lobilist-title">{{__('Archive')}}</div></a></div></div>
                                                                 <div class="lobilist-body">
                                                                     <ul class="lobilist-items ui-sortable">
                                                                     @foreach ($archive as $myarchive )
