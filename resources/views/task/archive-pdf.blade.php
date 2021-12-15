@@ -86,7 +86,7 @@
                             @if(Auth::User()->parentId == null)
                             <td>{{ App\Models\User::where(['id' => $task->assigned_to])->pluck('name')->first()}}</td>
                             @endif
-                            <td>{{$task->status}} </td>
+                            <td>{{__($task->status)}} </td>
                             <td>{{$task->duedate}}
                         </tr>
                 @endforeach

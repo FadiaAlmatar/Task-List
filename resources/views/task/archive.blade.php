@@ -29,7 +29,7 @@
                     <td>{{$task->description}}</td>
                     <td>{{ App\Models\User::where(['id' => $task->user_id])->pluck('name')->first()}}</td>
                     <td>{{ App\Models\User::where(['id' => $task->assigned_to])->pluck('name')->first()}}</td>
-                    <td>{{$task->status}} </td>
+                    <td>{{__($task->status)}} </td>
                     <td>{{$task->duedate}}
                     </tr>
                     @endforeach
