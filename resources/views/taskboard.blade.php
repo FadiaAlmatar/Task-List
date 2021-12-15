@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="http://localhost/TaskList/public/assets/images/favicon.png">
+    {{-- <link rel="icon" type="image/png" sizes="16x16" href="http://localhost/TaskList/public/assets/images/favicon.png">
     <title>AdminBite admin Template - The Ultimate Multipurpose admin template</title>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="http://localhost/TaskList/public/assets/extra-libs/taskboard/css/lobilist.css">
@@ -16,7 +16,20 @@
     <!-- Custom CSS -->
     <link href="http://localhost/TaskList/public/dist/css/style.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="http://localhost/TaskList/public/dist/css/style.min.css&quot; rel=&quot;stylesheet">
+    <link href="http://localhost/TaskList/public/dist/css/style.min.css&quot; rel=&quot;stylesheet"> --}}
+
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/images/favicon.png')}}">
+    <title>AdminBite admin Template - The Ultimate Multipurpose admin template</title>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/extra-libs/taskboard/css/lobilist.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/extra-libs/taskboard/css/jquery-ui.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
+
+    <!-- Custom CSS -->
+    <link href="{{ asset('dist/css/style.min.css')}}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{{asset('dist/css/style.min.css" rel="stylesheet')}}">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -55,7 +68,8 @@
                         </div>
                         </div>
                         <a href="{{route('delegatedTasks')}}">
-                            <div class="lobilist-title">{{__('Delegated Tasks')}}</div></a>
+                            <div class="lobilist-title">{{__('Delegated Tasks')}}</div>
+                        </a>
                                                 </div>
                                                 <div class="lobilist-body">
                                                     <ul class="lobilist-items ui-sortable">
@@ -151,7 +165,9 @@
                                                     <div class="lobilist-primary"></div>
                                                 </div></div>
                                             </div>
-                                            <a href="{{route('dashboard')}}"><div class="lobilist-title">{{__('Todo')}}</div></a>
+                                            <a href="{{route('dashboard')}}">
+                                                <div class="lobilist-title">{{__('Todo')}}</div>
+                                            </a>
                                         </div>
                                         <div class="lobilist-body">
                                             <ul class="lobilist-items ui-sortable">
@@ -203,7 +219,10 @@
                                                                         <div class="lobilist-primary"></div>
                                                                     </div></div>
                                                                 </div>
-                                                            <a href="{{route('archive')}}"><div class="lobilist-title">{{__('Archive')}}</div></a></div></div>
+                                                            <a href="{{route('archive')}}">
+                                                                <div class="lobilist-title">{{__('Archive')}}</div>
+                                                            </a>
+                                                        </div></div>
                                                                 <div class="lobilist-body">
                                                                     <ul class="lobilist-items ui-sortable">
                                                                     @foreach ($archive as $myarchive )
