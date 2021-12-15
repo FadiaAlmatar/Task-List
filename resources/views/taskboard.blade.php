@@ -27,46 +27,38 @@
     </style>
 </head>
 <body>
-    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin1" data-sidebartype="mini-sidebar" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="boxed">
-        <header class="topbar" data-navbarbg="skin1">
-        </header>
-        <div class="page-wrapper" style="width: 100%; margin: 0px; display: block;">
-               {{-- here --}}
-               <div class="container-fluid" style="width: 100%;margin:auto;">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">{{__('Taskboard')}}</h4>
-                                <div id="todo-lists-basic-demo" class="lobilists single-line ui-sortable">
-                                    <div class="lobilist-wrapper">
-                                        <div id="doing" class="lobilist lobilist-primary ps-container ps-theme-default" data-ps-id="1c116962-edd9-6387-f228-216cfc24c6d6">
-                                            <div class="lobilist-header ui-sortable-handle">
-                                                <div class="lobilist-actions">
-                                                    <div class="dropdown">
-                                                        <button type="button" data-toggle="dropdown" class="btn btn-xs">
-                                                            <i class="ti-view-grid"></i>
-                                                        </button>
-                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                                <div class="lobilist-default"></div>
-                                                                <div class="lobilist-danger"></div>
-                                                                <div class="lobilist-success"></div>
-                                                                <div class="lobilist-warning"></div>
-                                                                <div class="lobilist-info"></div>
-                                                                <div class="lobilist-primary"></div>
-                                                            </div>
-                                                        </div>
-                                                        {{-- <button class="btn btn-xs"><i class="ti-pencil"></i></button> --}}
-                                                        {{-- <button class="btn btn-xs btn-finish-title-editing"><i class="ti-check-box"></i></button>
-                                                        <button class="btn btn-xs btn-cancel-title-editing"><i class="ti-close"></i></button> --}}
-                                                        {{-- <button class="btn btn-xs" onclick="addfooter()"><i class="ti-plus"></i></button> --}}
-                                                        {{-- <button class="btn btn-xs"><i class="ti-trash"></i></button> --}}
-                                                    </div>
-                                                    <div class="lobilist-title">{{__('Delegated Tasks')}}</div>
+<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin1" data-sidebartype="mini-sidebar" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="boxed">
+    <header class="topbar" data-navbarbg="skin1"></header>
+    <div class="page-wrapper" style="width: 100%; margin: 0px; display: block;">
+{{-- here --}}
+    <div class="container-fluid" style="width: 100%;margin:auto;">
+    <div class="row">
+    <div class="col-sm-12">
+    <div class="card">
+    <div class="card-body">
+    <h4 class="card-title">{{__('Taskboard')}}</h4>
+    <div id="todo-lists-basic-demo" class="lobilists single-line ui-sortable">
+    <div class="lobilist-wrapper">
+        <div id="doing" class="lobilist lobilist-primary ps-container ps-theme-default" data-ps-id="1c116962-edd9-6387-f228-216cfc24c6d6">
+            <div class="lobilist-header ui-sortable-handle">
+                <div class="lobilist-actions">
+                    <div class="dropdown">
+                        <button type="button" data-toggle="dropdown" class="btn btn-xs"><i class="ti-view-grid"></i></button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <div class="lobilist-default"></div>
+                            <div class="lobilist-danger"></div>
+                            <div class="lobilist-success"></div>
+                            <div class="lobilist-warning"></div>
+                            <div class="lobilist-info"></div>
+                            <div class="lobilist-primary"></div>
+                        </div>
+                        </div>
+                        </div>
+                        <div class="lobilist-title">{{__('Delegated Tasks')}}</div>
                                                 </div>
                                                 <div class="lobilist-body">
                                                     <ul class="lobilist-items ui-sortable">
-                                                        @foreach ($tasks as $task)
+                                                    @foreach ($tasks as $task)
                                                 <li data-id="18" class="lobilist-item">
                                                     <div class="lobilist-item-title">{{$task->title}}</div>
                                                     <div class="lobilist-item-description">{{$task->description}}</div>
@@ -90,13 +82,18 @@
                                                         </div>
                                                 </li>
                                                     @endforeach
-                                                    </ul>
+                                                </ul>
+
+
                                     <form action="{!!  route('tasks.store')  !!}" method="POST"class="lobilist-add-todo-form hide" id="form">
                                         @csrf
                                         <input type="hidden" name="id">
                                         <div class="form-group">
-                                        <input type="text" name="title" value="@if(!empty($task)) {{$task->title}} @else {{ old('title') }} @endif"class="form-control" placeholder="TODO title"></div><div class="form-group">
-                                        <textarea rows="2" name="description" class="form-control" placeholder="TODO description">@if(!empty($task)) {{$task->description}} @else {{old('description')}} @endif</textarea>
+                                        <input type="text" name="title" value="{{ old('title') }}"class="form-control" placeholder="TODO title"></div><div class="form-group">
+                                        @error('title')
+                                            <p class="help is-danger" style="color: red">{{ $message }}</p>
+                                        @enderror
+                                        <textarea rows="2" name="description" class="form-control" placeholder="TODO description">{{old('description')}}</textarea>
                                         @error('description')
                                         <p class="help is-danger"style="color: red">{{ $message }}</p>
                                         @enderror
@@ -104,14 +101,6 @@
                                         <div class="form-group">
                                             <label for="exampleFormControlSelect1">{{__('Assigned To')}}</label>
                                             <select name="assigned_to"class="form-control" id="exampleFormControlSelect1" style="appearance: none;background-image: url('<custom_arrow_image_url_here>');">
-                                                @if (!empty($task) && old('assigned_to', $task->assigned_to))
-                                                <option value="{{ $task->assigned_to}}" selected>{{ App\Models\User::where(['id' => $task->assigned_to])->pluck('name')->first() }}</option>
-                                                    @foreach ($users as $user)
-                                                        @if($task->assigned_to <> $user->id)
-                                                            <option value="{{$user->id}}" @if (old('assigned_to') == $user->id) {{ 'selected' }} @endif>{{$user->name}}</option>
-                                                        @endif
-                                                    @endforeach
-                                                @else
                                                     @foreach ($users as $user)
                                                         @if(Auth::User()->id == $user->id)
                                                             <option value="{{$user->id}}" @if (old('assigned_to') == $user->id) {{ 'selected' }} @endif selected>{{Auth::User()->name}}</option>
@@ -119,16 +108,18 @@
                                                             <option value="{{$user->id}}" @if (old('assigned_to') == $user->id) {{ 'selected' }} @endif>{{$user->name}}</option> --}}
                                                         @endif
                                                     @endforeach
-                                                @endif
                                             </select>
                                             @error('assigned_to')
                                             <p class="help is-danger" style="color: red">{{ $message }}</p>
                                             @enderror
                                             </div><br>
                                         <div class="form-group">
-                                        <input type="text" name="duedate" class="datepicker form-control hasDatepicker" placeholder="Due Date" id="dp1639475788502"></div><div class="lobilist-form-footer">
-                                        <button class="btn btn-primary btn-sm btn-add-todo" type="submit">Add/Update</button>
-                                        <button type="button" class="btn btn-danger btn-sm btn-discard-todo">{{__('Cancel')}}</button>
+                                        <input type="date" name="duedate" value="{{\Carbon\Carbon::now()->format('Y-m-d')}}" class="datepicker form-control hasDatepicker" placeholder="Due Date" id="dp1639475788502"></div><div class="lobilist-form-footer">
+                                        @error('duedate')
+                                            <p class="help is-danger" style="color: red">{{ $message }}</p>
+                                        @enderror
+                                        <button class="btn btn-primary btn-sm btn-add-todo" type="submit">{{__('Add')}}</button>
+                                        <button type="button" class="btn btn-danger btn-sm btn-discard-todo" onclick="addfooter()">{{__('Cancel')}}</button>
                                         </div>
                                     </form>
                                 </div>
