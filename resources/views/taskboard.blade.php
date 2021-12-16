@@ -71,6 +71,7 @@
             </div>
             <div class="lobilist-body">
                 <ul class="lobilist-items ui-sortable">
+                    @if(count($tasks)<> 0)
                     @for($i=0;$i<= 1;$i++)
                     {{-- @foreach ($tasks as $task) --}}
                         <li data-id="18" class="lobilist-item">
@@ -94,6 +95,7 @@
                             <div class="drag-handler"></div>
                         </li>
                     @endfor
+                    @endif
                 </ul>
                 <p style="text-align: center;"><a href="{{route('delegatedTasks')}}">{{__('see more...')}}</a></p>
                 <form action="{!!  route('tasks.store')  !!}" method="POST"class="lobilist-add-todo-form hide" id="form">
@@ -209,15 +211,16 @@
         </div>
         <div class="lobilist-body">
             <ul class="lobilist-items ui-sortable">
-            @foreach ($archive as $myarchive )
+            @if(count($archive)<> 0)
+            @for($i=0;$i<= 1;$i++)
             <li data-id="15" class="lobilist-item">
-                <div class="lobilist-item-title">{{$myarchive->title}}</div>
-                <div class="lobilist-item-description">{{$myarchive->description}}</div>
-                <div class="lobilist-item-duedate">{{$myarchive->duedate}}</div>
-                <div class="lobilist-item-status">{{$myarchive->status}}</div>
-                <div class="lobilist-item-created_at">{{$myarchive->created_at}}</div>
+                <div class="lobilist-item-title">{{$archive[$i]->title}}</div>
+                <div class="lobilist-item-description">{{$archive[$i]->description}}</div>
+                <div class="lobilist-item-duedate">{{$archive[$i]->duedate}}</div>
+                <div class="lobilist-item-status">{{$archive[$i]->status}}</div>
+                <div class="lobilist-item-created_at">{{$archive[$i]->created_at}}</div>
                 <div class="todo-actions">
-                    <form action="{{route('tasks.destroy', $myarchive->id)}}" method="POST" style="display:inline">
+                    <form action="{{route('tasks.destroy', $archive[$i]->id)}}" method="POST" style="display:inline">
                         @csrf
                         @method('DELETE')
                         <button type="submit"class="btn btn-link delete-todo todo-action"><i class="ti-close"></i></button>
@@ -226,8 +229,11 @@
                     <div class="drag-handler">
                 </div>
             </li>
-            @endforeach
+            @endfor
+
             </ul>
+            <p style="text-align: center;"><a href="{{route('delegatedTasks')}}">{{__('see more...')}}</a></p>
+            @endif
         </div>
     </div>
     </div>
