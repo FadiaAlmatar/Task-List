@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use App\Models\User;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Notifications\TaskCreated;
 use Illuminate\Support\Facades\DB;
@@ -260,8 +261,10 @@ class TaskController extends Controller
         $tasks = Task::where('user_id', Auth::User()->id)->get();//all tasks that I created it
         $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
      }
+    //  $tasks = Arr::last($tasks);
     // $tasks = json_encode($tasks);
     $archive = DB::select("CALL pr_archive_tasks( ".Auth::User()->id.")");//employees who have
+    // $archive = Arr::last($archive);
 
     // $archive = json_encode($archive);
 
