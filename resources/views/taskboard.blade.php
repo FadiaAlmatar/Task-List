@@ -65,215 +65,193 @@
                             <div class="lobilist-info"></div>
                             <div class="lobilist-primary"></div>
                         </div>
-                        </div>
-                        </div>
-                        <a href="{{route('delegatedTasks')}}">
-                            <div class="lobilist-title">{{__('Delegated Tasks')}}</div>
-                        </a>
-                                                </div>
-                                                <div class="lobilist-body">
-                                                    <ul class="lobilist-items ui-sortable">
-                                                    @foreach ($tasks as $task)
-                                                <li data-id="18" class="lobilist-item">
-                                                    <div class="lobilist-item-title">{{$task->title}}</div>
-                                                    <div class="lobilist-item-description">{{$task->description}}</div>
-                                                    <div class="lobilist-item-duedate">{{$task->duedate}}</div>
-                                                    <div class="lobilist-item-status">{{$task->status}}</div>
-                                                    <div class="lobilist-item-created_at">{{$task->created_at}}</div>
-                                                        <div class="todo-actions">
-                                                            {{-- <a href="{{route('tasks.edit',$task->id)}}"> --}}
-                                                                <button onclick="addfooter()"type="button" class="btn btn-link edit-todo todo-action" style="padding-top:0">
-                                                                    <i class="ti-pencil fa-xs"></i>
-                                                                </button>
-                                                            {{-- </a> --}}
-                                                            <form action="{{route('tasks.destroy', $task->id)}}" method="POST" style="display:inline">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit"class="btn btn-link delete-todo todo-action"style="padding-top:0"><i class="ti-close fa-xs"></i></button>
-                                                            </form>
-                                                        </div>
-                                                        <div class="drag-handler">
-
-                                                        </div>
-                                                </li>
-                                                    @endforeach
-                                                </ul>
-
-
-                                    <form action="{!!  route('tasks.store')  !!}" method="POST"class="lobilist-add-todo-form hide" id="form">
-                                        @csrf
-                                        <input type="hidden" name="id">
-                                        <div class="form-group">
-                                        <input type="text" name="title" value="{{ old('title') }}"class="form-control" placeholder="TODO title"></div><div class="form-group">
-                                        @error('title')
-                                            <p class="help is-danger" style="color: red">{{ $message }}</p>
-                                        @enderror
-                                        <textarea rows="2" name="description" class="form-control" placeholder="TODO description">{{old('description')}}</textarea>
-                                        @error('description')
-                                        <p class="help is-danger"style="color: red">{{ $message }}</p>
-                                        @enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleFormControlSelect1">{{__('Assigned To')}}</label>
-                                            <select name="assigned_to"class="form-control" id="exampleFormControlSelect1" style="appearance: none;background-image: url('<custom_arrow_image_url_here>');">
-                                                    @foreach ($users as $user)
-                                                        @if(Auth::User()->id == $user->id)
-                                                            <option value="{{$user->id}}" @if (old('assigned_to') == $user->id) {{ 'selected' }} @endif selected>{{Auth::User()->name}}</option>
-                                                        @else
-                                                            <option value="{{$user->id}}" @if (old('assigned_to') == $user->id) {{ 'selected' }} @endif>{{$user->name}}</option> --}}
-                                                        @endif
-                                                    @endforeach
-                                            </select>
-                                            @error('assigned_to')
-                                            <p class="help is-danger" style="color: red">{{ $message }}</p>
-                                            @enderror
-                                            </div><br>
-                                        <div class="form-group">
-                                        <input type="date" name="duedate" value="{{\Carbon\Carbon::now()->format('Y-m-d')}}" class="datepicker form-control hasDatepicker" placeholder="Due Date" id="dp1639475788502"></div><div class="lobilist-form-footer">
-                                        @error('duedate')
-                                            <p class="help is-danger" style="color: red">{{ $message }}</p>
-                                        @enderror
-                                        <button class="btn btn-primary btn-sm btn-add-todo" type="submit">{{__('Add')}}</button>
-                                        <button type="button" class="btn btn-danger btn-sm btn-discard-todo" onclick="addfooter()">{{__('Cancel')}}</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="lobilist-footer">
-                                    <button type="button" class="btn-link btn-show-form" onclick="addfooter()">{{__('Add new')}}</button>
-                                </div>
-                                <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
-                                    <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-                                </div>
-                                <div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px;">
-                                    <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="lobilist-wrapper">
-                            <div id="todo" class="lobilist lobilist-danger ps-container ps-theme-default" data-ps-id="d20776ef-bc82-4abb-8f47-3ee033fe81a0">
-                                <div class="lobilist-header ui-sortable-handle">
-                                    <div class="lobilist-actions">
-                                        <div class="dropdown">
-                                            <button type="button" data-toggle="dropdown" class="btn btn-xs">
-                                                <i class="ti-view-grid"></i></button>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <div class="lobilist-default"></div>
-                                                    <div class="lobilist-danger"></div>
-                                                    <div class="lobilist-success"></div>
-                                                    <div class="lobilist-warning"></div>
-                                                    <div class="lobilist-info"></div>
-                                                    <div class="lobilist-primary"></div>
-                                                </div></div>
-                                            </div>
-                                            <a href="{{route('dashboard')}}">
-                                                <div class="lobilist-title">{{__('Todo')}}</div>
-                                            </a>
-                                        </div>
-                                        <div class="lobilist-body">
-                                            <ul class="lobilist-items ui-sortable">
-                                                @foreach ($assign as $myassign)
-                                                <li data-id="18" class="lobilist-item">
-                                                    <div class="lobilist-item-title">{{$myassign->title}}</div>
-                                                    <div class="lobilist-item-description">{{$myassign->description}}</div>
-                                                    <div class="lobilist-item-duedate">{{$myassign->duedate}}</div>
-                                                    <div class="lobilist-item-status">{{$myassign->status}}</div>
-                                                    <div class="lobilist-item-created_at">{{$myassign->created_at}}</div>
-                                                        <div class="todo-actions">
-                                                            <div class="edit-todo todo-action">
-                                                                <i class="ti-pencil"></i>
-                                                            </div>
-                                                            <div class="delete-todo todo-action">
-                                                                <i class="ti-close"></i>
-                                                            </div>
-                                                        </div>
-                                                        <div class="drag-handler">
-
-                                                        </div>
-                                                </li>
-                                                    @endforeach
-                                            </ul>
-                                                        </div>
-                                                        <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
-                                                            <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;">
-                                                            </div>
-                                                        </div>
-                                                        <div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px;">
-                                                            <div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="lobilist-wrapper">
-                                                    <div id="Done" class="lobilist lobilist-success ps-container ps-theme-default" data-ps-id="0bd9f531-4e29-f392-3c68-5f451b832cbd">
-                                                        <div class="lobilist-header ui-sortable-handle">
-                                                            <div class="lobilist-actions">
-                                                                <div class="dropdown">
-                                                                    <button type="button" data-toggle="dropdown" class="btn btn-xs">
-                                                                        <i class="ti-view-grid"></i>
-                                                                    </button>
-                                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                                        <div class="lobilist-default"></div>
-                                                                        <div class="lobilist-danger"></div>
-                                                                        <div class="lobilist-success"></div>
-                                                                        <div class="lobilist-warning"></div>
-                                                                        <div class="lobilist-info"></div>
-                                                                        <div class="lobilist-primary"></div>
-                                                                    </div></div>
-                                                                </div>
-                                                            <a href="{{route('archive')}}">
-                                                                <div class="lobilist-title">{{__('Archive')}}</div>
-                                                            </a>
-                                                        </div></div>
-                                                                <div class="lobilist-body">
-                                                                    <ul class="lobilist-items ui-sortable">
-                                                                    @foreach ($archive as $myarchive )
-                                                                    <li data-id="15" class="lobilist-item">
-                                                                        <div class="lobilist-item-title">{{$myarchive->title}}</div>
-                                                                        <div class="lobilist-item-description">{{$myarchive->description}}</div>
-                                                                        <div class="lobilist-item-duedate">{{$myarchive->duedate}}</div>
-                                                                        <div class="lobilist-item-status">{{$myarchive->status}}</div>
-                                                                        <div class="lobilist-item-created_at">{{$myarchive->created_at}}</div>
-                                                                        <div class="todo-actions">
-                                                                            <form action="{{route('tasks.destroy', $myarchive->id)}}" method="POST" style="display:inline">
-                                                                                @csrf
-                                                                                @method('DELETE')
-                                                                                <button type="submit"class="btn btn-link delete-todo todo-action"><i class="ti-close"></i></button>
-                                                                            </form>
-                                                                        </div>
-                                                                            <div class="drag-handler">
-                                                                        </div>
-                                                                    </li>
-                                                                    @endforeach
-                                                                    </ul>
-                                                                                </div>
-                                                                                </div>
-                                                                                <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;">
-                                                    </div></div></div></div>
-                                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
-
+                <a href="{{route('delegatedTasks')}}"><div class="lobilist-title">{{__('Delegated Tasks')}}</div></a>
             </div>
-            <footer class="footer text-center">
-                All Rights Reserved by Innovative Systems. Designed and Developed
-                <a href="https://almounkez.com">almounkez</a>.
-            </footer>
+            <div class="lobilist-body">
+                <ul class="lobilist-items ui-sortable">
+                    @for($i=0;$i<= 1;$i++)
+                    {{-- @foreach ($tasks as $task) --}}
+                        <li data-id="18" class="lobilist-item">
+                            <div class="lobilist-item-title">{{$tasks[$i]->title}}</div>
+                            <div class="lobilist-item-description">{{$tasks[$i]->description}}</div>
+                            <div class="lobilist-item-duedate">{{$tasks[$i]->duedate}}</div>
+                            <div class="lobilist-item-status">{{$tasks[$i]->status}}</div>
+                            <div class="lobilist-item-created_at">{{$tasks[$i]->created_at}}</div>
+                            <div class="todo-actions">
+                                {{-- <a href="{{route('tasks.edit',$task->id)}}"> --}}
+                                <button onclick="addfooter()"type="button" class="btn btn-link edit-todo todo-action" style="padding-top:0">
+                                        <i class="ti-pencil fa-xs"></i>
+                                </button>
+                                {{-- </a> --}}
+                                <form action="{{route('tasks.destroy', $tasks[$i]->id)}}" method="POST" style="display:inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"class="btn btn-link delete-todo todo-action"style="padding-top:0"><i class="ti-close fa-xs"></i></button>
+                                </form>
+                            </div>
+                            <div class="drag-handler"></div>
+                        </li>
+                    @endfor
+                </ul>
+                <p style="text-align: center;"><a href="{{route('delegatedTasks')}}">{{__('see more...')}}</a></p>
+                <form action="{!!  route('tasks.store')  !!}" method="POST"class="lobilist-add-todo-form hide" id="form">
+                    @csrf
+                    <input type="hidden" name="id">
+                    <div class="form-group">
+                    <input type="text" name="title" value="{{ old('title') }}"class="form-control" placeholder="TODO title"></div><div class="form-group">
+                    @error('title')
+                        <p class="help is-danger" style="color: red">{{ $message }}</p>
+                    @enderror
+                    <textarea rows="2" name="description" class="form-control" placeholder="TODO description">{{old('description')}}</textarea>
+                    @error('description')
+                    <p class="help is-danger"style="color: red">{{ $message }}</p>
+                    @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">{{__('Assigned To')}}</label>
+                        <select name="assigned_to"class="form-control" id="exampleFormControlSelect1" style="appearance: none;background-image: url('<custom_arrow_image_url_here>');">
+                                @foreach ($users as $user)
+                                    @if(Auth::User()->id == $user->id)
+                                        <option value="{{$user->id}}" @if (old('assigned_to') == $user->id) {{ 'selected' }} @endif selected>{{Auth::User()->name}}</option>
+                                    @else
+                                        <option value="{{$user->id}}" @if (old('assigned_to') == $user->id) {{ 'selected' }} @endif>{{$user->name}}</option> --}}
+                                    @endif
+                                @endforeach
+                        </select>
+                        @error('assigned_to')
+                        <p class="help is-danger" style="color: red">{{ $message }}</p>
+                        @enderror
+                        </div><br>
+                    <div class="form-group">
+                    <input type="date" name="duedate" value="{{\Carbon\Carbon::now()->format('Y-m-d')}}" class="datepicker form-control hasDatepicker" placeholder="Due Date" id="dp1639475788502"></div><div class="lobilist-form-footer">
+                    @error('duedate')
+                        <p class="help is-danger" style="color: red">{{ $message }}</p>
+                    @enderror
+                    <button class="btn btn-primary btn-sm btn-add-todo" type="submit">{{__('Add')}}</button>
+                    <button type="button" class="btn btn-danger btn-sm btn-discard-todo" onclick="addfooter()">{{__('Cancel')}}</button>
+                    </div>
+                </form>
+            </div>
+            <div class="lobilist-footer"><button type="button" class="btn-link btn-show-form" onclick="addfooter()">{{__('Add new')}}</button>
+            </div>
         </div>
     </div>
-    <aside class="customizer">
-        <a href="javascript:void(0)" class="service-panel-toggle"><i class="fa fa-spin fa-cog"></i></a>
-        <div class="customizer-body ps-container ps-theme-default" data-ps-id="357f5616-7b8f-8929-1d70-05693de8b4b2">
-            <ul class="nav customizer-tab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true"><i class="mdi mdi-wrench font-20"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#chat" role="tab" aria-controls="chat" aria-selected="false"><i class="mdi mdi-message-reply font-20"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false"><i class="mdi mdi-star-circle font-20"></i></a>
-                </li>
+    <div class="lobilist-wrapper">
+        <div id="todo" class="lobilist lobilist-danger ps-container ps-theme-default" data-ps-id="d20776ef-bc82-4abb-8f47-3ee033fe81a0">
+            <div class="lobilist-header ui-sortable-handle">
+                <div class="lobilist-actions">
+                    <div class="dropdown">
+                        <button type="button" data-toggle="dropdown" class="btn btn-xs">
+                            <i class="ti-view-grid"></i></button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <div class="lobilist-default"></div>
+                                <div class="lobilist-danger"></div>
+                                <div class="lobilist-success"></div>
+                                <div class="lobilist-warning"></div>
+                                <div class="lobilist-info"></div>
+                                <div class="lobilist-primary"></div>
+                            </div>
+                    </div>
+                </div>
+                <a href="{{route('dashboard')}}">
+                    <div class="lobilist-title">{{__('Todo')}}</div>
+                </a>
+            </div>
+            <div class="lobilist-body">
+                <ul class="lobilist-items ui-sortable">
+                    @foreach ($assign as $myassign)
+                    <li data-id="18" class="lobilist-item">
+                        <div class="lobilist-item-title">{{$myassign->title}}</div>
+                        <div class="lobilist-item-description">{{$myassign->description}}</div>
+                        <div class="lobilist-item-duedate">{{$myassign->duedate}}</div>
+                        <div class="lobilist-item-status">{{$myassign->status}}</div>
+                        <div class="lobilist-item-created_at">{{$myassign->created_at}}</div>
+                            <div class="todo-actions">
+                                <div class="edit-todo todo-action">
+                                    <i class="ti-pencil"></i>
+                                </div>
+                                <div class="delete-todo todo-action">
+                                    <i class="ti-close"></i>
+                                </div>
+                            </div>
+                            <div class="drag-handler"></div>
+                    </li>
+                        @endforeach
+                </ul>
+                {{-- <p style="text-align: center;"><a href="{{route('dashboard')}}">{{__('see more...')}}</a></p> --}}
+                <div class="lobilist-footer"><a href="{{route('dashboard')}}">{{__('see more...')}}</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="lobilist-wrapper">
+        <div id="Done" class="lobilist lobilist-success ps-container ps-theme-default" data-ps-id="0bd9f531-4e29-f392-3c68-5f451b832cbd">
+            <div class="lobilist-header ui-sortable-handle">
+                <div class="lobilist-actions">
+                    <div class="dropdown">
+                        <button type="button" data-toggle="dropdown" class="btn btn-xs">
+                            <i class="ti-view-grid"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <div class="lobilist-default"></div>
+                            <div class="lobilist-danger"></div>
+                            <div class="lobilist-success"></div>
+                            <div class="lobilist-warning"></div>
+                            <div class="lobilist-info"></div>
+                            <div class="lobilist-primary"></div>
+                        </div></div>
+                </div>
+                <a href="{{route('archive')}}">
+                    <div class="lobilist-title">{{__('Archive')}}</div>
+                </a>
+            </div>
+        </div>
+        <div class="lobilist-body">
+            <ul class="lobilist-items ui-sortable">
+            @foreach ($archive as $myarchive )
+            <li data-id="15" class="lobilist-item">
+                <div class="lobilist-item-title">{{$myarchive->title}}</div>
+                <div class="lobilist-item-description">{{$myarchive->description}}</div>
+                <div class="lobilist-item-duedate">{{$myarchive->duedate}}</div>
+                <div class="lobilist-item-status">{{$myarchive->status}}</div>
+                <div class="lobilist-item-created_at">{{$myarchive->created_at}}</div>
+                <div class="todo-actions">
+                    <form action="{{route('tasks.destroy', $myarchive->id)}}" method="POST" style="display:inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"class="btn btn-link delete-todo todo-action"><i class="ti-close"></i></button>
+                    </form>
+                </div>
+                    <div class="drag-handler">
+                </div>
+            </li>
+            @endforeach
+            </ul>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</div>
+<footer class="footer text-center">All Rights Reserved by Innovative Systems. Designed and Developed<a href="https://almounkez.com">almounkez</a>.</footer>
+<aside class="customizer">
+    <a href="javascript:void(0)" class="service-panel-toggle"><i class="fa fa-spin fa-cog"></i></a>
+    <div class="customizer-body ps-container ps-theme-default" data-ps-id="357f5616-7b8f-8929-1d70-05693de8b4b2">
+        <ul class="nav customizer-tab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true"><i class="mdi mdi-wrench font-20"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#chat" role="tab" aria-controls="chat" aria-selected="false"><i class="mdi mdi-message-reply font-20"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false"><i class="mdi mdi-star-circle font-20"></i></a>
+            </li>
             </ul>
             <div class="tab-content" id="pills-tabContent">
                 <!-- Tab 1 -->
@@ -400,7 +378,7 @@
                                         <h5 class="message-title">Varun Dhavan</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
                                 </a>
                                 <!-- Message -->
-                            <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
+                            {{-- <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div> --}}
                         </li>
                     </ul>
                 </div>
@@ -470,43 +448,40 @@
                 <!-- End Tab 3 -->
             </div>
         <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
-    </aside>
-    <div class="chat-windows"></div>
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
-    <script src="http://localhost/TaskList/public/assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="http://localhost/TaskList/public/assets/extra-libs/taskboard/js/jquery.ui.touch-punch-improved.js"></script>
-    <script src="http://localhost/TaskList/public/assets/extra-libs/taskboard/js/jquery-ui.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="http://localhost/TaskList/public/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="http://localhost/TaskList/public/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- apps -->
-    <script src="http://localhost/TaskList/public/dist/js/app.min.js"></script>
-    <script src="http://localhost/TaskList/public/dist/js/app.init.boxed.js"></script>
-    <script src="http://localhost/TaskList/public/dist/js/app-style-switcher.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="http://localhost/TaskList/public/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="http://localhost/TaskList/public/assets/extra-libs/sparkline/sparkline.js"></script>
-    <!--Wave Effects -->
-    <script src="http://localhost/TaskList/public/dist/js/waves.js"></script>
-    <!--Menu sidebar -->
-    <script src="http://localhost/TaskList/public/dist/js/sidebarmenu.js"></script>
-    <!--Custom JavaScript -->
-    <script src="http://localhost/TaskList/public/dist/js/custom.min.js"></script>
-    <!--This page JavaScript -->
-    <script src="http://localhost/TaskList/public/assets/extra-libs/taskboard/js/lobilist.js"></script>
-    <script src="http://localhost/TaskList/public/assets/extra-libs/taskboard/js/lobibox.min.js"></script>
-    <script> window.tasks = '[]'; </script>
-    <script> window.archive = '[{"id":15,"title":"rrrrrr","description":"rrrrrrrrr","status":"finished","assigned_to":17,"user_id":13,"created_at":"2021-12-14 10:32:20","updated_at":"2021-12-14 10:43:11","duedate":"2021-12-14","name":"tara","email":"tara@gmail.com","password":"$2y$10$jhmV.dlTgGHxzIoHcesbRe9zDmaPx5IFV3I3evsTsdWZrukBPR2Ui","parentId":13,"company_name":"rami"}]'; </script>
-    <script> window.assign = '[{"id":18,"title":"eeeeee","description":"eeeeeeeeee","duedate":"2022-01-06T22:00:00.000000Z","status":"not started","assigned_to":17,"user_id":13,"created_at":"2021-12-14T08:41:42.000000Z","updated_at":"2021-12-14T08:50:40.000000Z"}]'; </script>
-    <script src="http://localhost/TaskList/public/assets/extra-libs/taskboard/js/task-init.js"></script>
+</aside>
+{{-- <div class="chat-windows"></div> --}}
+<!-- ============================================================== -->
+<!-- All Jquery -->
+<!-- ============================================================== -->
+<script src="http://localhost/TaskList/public/assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="http://localhost/TaskList/public/assets/extra-libs/taskboard/js/jquery.ui.touch-punch-improved.js"></script>
+<script src="http://localhost/TaskList/public/assets/extra-libs/taskboard/js/jquery-ui.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="http://localhost/TaskList/public/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+<script src="http://localhost/TaskList/public/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- apps -->
+<script src="http://localhost/TaskList/public/dist/js/app.min.js"></script>
+<script src="http://localhost/TaskList/public/dist/js/app.init.boxed.js"></script>
+<script src="http://localhost/TaskList/public/dist/js/app-style-switcher.js"></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+{{-- <script src="http://localhost/TaskList/public/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script> --}}
+<script src="http://localhost/TaskList/public/assets/extra-libs/sparkline/sparkline.js"></script>
+<!--Wave Effects -->
+<script src="http://localhost/TaskList/public/dist/js/waves.js"></script>
+<!--Menu sidebar -->
+<script src="http://localhost/TaskList/public/dist/js/sidebarmenu.js"></script>
+<!--Custom JavaScript -->
+<script src="http://localhost/TaskList/public/dist/js/custom.min.js"></script>
+<!--This page JavaScript -->
+<script src="http://localhost/TaskList/public/assets/extra-libs/taskboard/js/lobilist.js"></script>
+<script src="http://localhost/TaskList/public/assets/extra-libs/taskboard/js/lobibox.min.js"></script>
+<script> window.tasks = '[]'; </script>
+<script> window.archive = '[{"id":15,"title":"rrrrrr","description":"rrrrrrrrr","status":"finished","assigned_to":17,"user_id":13,"created_at":"2021-12-14 10:32:20","updated_at":"2021-12-14 10:43:11","duedate":"2021-12-14","name":"tara","email":"tara@gmail.com","password":"$2y$10$jhmV.dlTgGHxzIoHcesbRe9zDmaPx5IFV3I3evsTsdWZrukBPR2Ui","parentId":13,"company_name":"rami"}]'; </script>
+<script> window.assign = '[{"id":18,"title":"eeeeee","description":"eeeeeeeeee","duedate":"2022-01-06T22:00:00.000000Z","status":"not started","assigned_to":17,"user_id":13,"created_at":"2021-12-14T08:41:42.000000Z","updated_at":"2021-12-14T08:50:40.000000Z"}]'; </script>
+<script src="http://localhost/TaskList/public/assets/extra-libs/taskboard/js/task-init.js"></script>
 <script>
-     function addfooter(){
-            $("#form").toggle();
-         }
+    function addfooter(){$("#form").toggle();}
 </script>
-
-
-<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div>
-</body></html>
+{{-- <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div> --}}
+</body>
+</html>

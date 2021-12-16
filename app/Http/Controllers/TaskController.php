@@ -262,9 +262,10 @@ class TaskController extends Controller
      }
     // $tasks = json_encode($tasks);
     $archive = DB::select("CALL pr_archive_tasks( ".Auth::User()->id.")");//employees who have
+
     // $archive = json_encode($archive);
 
-    $assign = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->get();
+    $assign = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->orderBy('created_at','desc')->take(3)->get();
     // $assign = json_encode($assign);
     return view('taskboard',compact('tasks','archive','assign','users'));
 }
