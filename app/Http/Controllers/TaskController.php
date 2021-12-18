@@ -263,7 +263,7 @@ class TaskController extends Controller
         $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
      }
     $archive = DB::select("CALL pr_archive_tasks( ".Auth::User()->id.")");//employees who have
-    $assign = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->orderBy('created_at','desc')->take(3)->get();
+    $assign = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->orderBy('created_at','desc')->simplePaginate(1);
     return view('taskboard',compact('tasks','archive','assign','users'));
 }
 
