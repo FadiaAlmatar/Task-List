@@ -8,64 +8,20 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    {{-- <link rel="icon" type="image/png" sizes="16x16" href="http://localhost/TaskList/public/assets/images/favicon.png">
-    <title>AdminBite admin Template - The Ultimate Multipurpose admin template</title>
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="http://localhost/TaskList/public/assets/extra-libs/taskboard/css/lobilist.css">
-    <link rel="stylesheet" href="http://localhost/TaskList/public/assets/extra-libs/taskboard/css/jquery-ui.min.css">
-    <link rel="stylesheet" type="text/css" href="http://localhost/TaskList/public/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-    <!-- Custom CSS -->
-    <link href="http://localhost/TaskList/public/dist/css/style.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="http://localhost/TaskList/public/dist/css/style.min.css&quot; rel=&quot;stylesheet"> --}}
-
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png') }}">
-    <title>AdminBite admin Template - The Ultimate Multipurpose admin template</title>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('assets/extra-libs/taskboard/css/lobilist.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/extra-libs/taskboard/css/jquery-ui.min.css') }}">
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
-
+    <link rel="stylesheet" type="text/css"href="{{ asset('assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
     <!-- Custom CSS -->
     <link href="{{ asset('dist/css/style.min.css') }}" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="{{ asset('dist/css/style.min.css" rel="stylesheet') }}">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-    <style type="text/css">
-        .jqstooltip {
-            position: absolute;
-            left: 0px;
-            top: 0px;
-            visibility: hidden;
-            background: rgb(0, 0, 0) transparent;
-            background-color: rgba(0, 0, 0, 0.6);
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
-            -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
-            color: white;
-            font: 10px arial, san serif;
-            text-align: left;
-            white-space: nowrap;
-            padding: 5px;
-            border: 1px solid white;
-            z-index: 10000;
-        }
-
-        .jqsfield {
-            color: white;
-            font: 10px arial, san serif;
-            text-align: left;
-        }
-
-    </style>
 </head>
-
 <body>
     <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin1" data-sidebartype="mini-sidebar"
         data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="boxed">
@@ -126,7 +82,7 @@
                                                                 </div>
                                                                 <div class="todo-actions">
                                                                     {{-- <a href="{{route('tasks.edit',$task->id)}}"> --}}
-                                                                    <button onclick="addfooter()" type="button"
+                                                                    <button onclick="editform({{ $tasks[$i]->id }})" type="button"
                                                                         class="btn btn-link edit-todo todo-action"
                                                                         style="padding-top:0">
                                                                         <i class="ti-pencil fa-xs"></i>
@@ -185,7 +141,7 @@
                                                                 @else
                                                                     <option value="{{ $user->id }}"
                                                                         @if (old('assigned_to') == $user->id) {{ 'selected' }} @endif>{{ $user->name }}
-                                                                    </option> --}}
+                                                                    </option>
                                                                 @endif
                                                             @endforeach
                                                         </select>
@@ -263,7 +219,7 @@
                                                             </div>
                                                             <div class="todo-actions">
                                                                 <div class="edit-todo todo-action">
-                                                                    <i class="ti-pencil"></i>
+                                                                    {{-- <i class="ti-pencil"></i> --}}
                                                                 </div>
                                                                 <div class="delete-todo todo-action">
                                                                     <i class="ti-close"></i>
@@ -307,8 +263,8 @@
                                         </div>
                                         <div class="lobilist-body">
                                             <ul class="lobilist-items ui-sortable">
-                                                @if (count($archive) != 0)
-                                                    @for ($i = 0; $i < 1; $i++)
+                                                 @if (count($archive) != 0)
+                                                     @for ($i = 0; $i < 3; $i++)
                                                         <li data-id="15" class="lobilist-item">
                                                             <div class="lobilist-item-title">
                                                                 {{ $archive[$i]->title }}
@@ -340,12 +296,12 @@
                                                             <div class="drag-handler">
                                                             </div>
                                                         </li>
-                                                    @endfor
+                                                     @endfor
                                             </ul>
                                             <p style="text-align: center;"><a
                                                     href="{{ route('archive') }}">{{ __('see more...') }}</a>
                                             </p>
-                                            @endif
+                                             @endif
                                         </div>
                                     </div>
                                 </div>
@@ -678,21 +634,15 @@
     <!--This page JavaScript -->
     <script src="http://localhost/TaskList/public/assets/extra-libs/taskboard/js/lobilist.js"></script>
     <script src="http://localhost/TaskList/public/assets/extra-libs/taskboard/js/lobibox.min.js"></script>
-    <script>
-        window.tasks = '[]';
-    </script>
-    <script>
-        window.archive =
-            '[{"id":15,"title":"rrrrrr","description":"rrrrrrrrr","status":"finished","assigned_to":17,"user_id":13,"created_at":"2021-12-14 10:32:20","updated_at":"2021-12-14 10:43:11","duedate":"2021-12-14","name":"tara","email":"tara@gmail.com","password":"$2y$10$jhmV.dlTgGHxzIoHcesbRe9zDmaPx5IFV3I3evsTsdWZrukBPR2Ui","parentId":13,"company_name":"rami"}]';
-    </script>
-    <script>
-        window.assign =
-            '[{"id":18,"title":"eeeeee","description":"eeeeeeeeee","duedate":"2022-01-06T22:00:00.000000Z","status":"not started","assigned_to":17,"user_id":13,"created_at":"2021-12-14T08:41:42.000000Z","updated_at":"2021-12-14T08:50:40.000000Z"}]';
-    </script>
     <script src="http://localhost/TaskList/public/assets/extra-libs/taskboard/js/task-init.js"></script>
     <script>
         function addfooter() {
             $("#form").toggle();
+        }
+    </script>
+      <script>
+        function editform(id) {
+            $("#form-"+ id).toggle();
         }
     </script>
     <script>
@@ -705,8 +655,6 @@
             $("#assign-" + id).toggle();
         }
     </script>
-
-    {{-- <div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div> --}}
 </body>
 
 </html>
