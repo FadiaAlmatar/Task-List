@@ -78,19 +78,20 @@ class TaskController extends Controller
                 else{
                     $task->status = 'forward';
                     $task->assigned_to = $request->forwardto[$i];
-                    $task->user_id = Auth::User()->id;
+                    // $task->user_id = Auth::User()->id;
                 }
             }
             else{
                 if($request->forwardto[$i] <> null){
                     $task->status = $request->status[$i];
                     $task->assigned_to = $request->forwardto[$i];
-                    $task->user_id = Auth::User()->id;
+                    // $task->user_id = Auth::User()->id;
                 }
             }
             $task->save();
         }
-        return redirect()->route('tasks.index');
+        // return redirect()->route('tasks.index');
+        return redirect()->back();
     }
 
     public function archive()
