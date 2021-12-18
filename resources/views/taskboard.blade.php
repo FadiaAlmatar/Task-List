@@ -9,6 +9,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('assets/extra-libs/taskboard/css/lobilist.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/extra-libs/taskboard/css/jquery-ui.min.css') }}">
@@ -30,12 +31,12 @@
             {{-- here --}}
             <div class="container-fluid" style="width: 100%;margin:auto;">
                 <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">{{ __('Taskboard') }}</h4>
-                                <div id="todo-lists-basic-demo" class="lobilists single-line ui-sortable">
-                                    <div class="lobilist-wrapper">
+                    {{-- <div class="col-sm-12"> --}}
+                        {{-- <div class="card">
+                            <div class="card-body ">
+                                <h4 class="card-title">{{ __('Taskboard') }}</h4> --}}
+                                {{-- <div id="todo-lists-basic-demo" class="lobilists single-line ui-sortable"> --}}
+                                    <div class="lobilist-wrapper col-lg-4 col-sm-12 lobilists single-line ui-sortable">
                                         <div id="doing" class="lobilist lobilist-primary ps-container ps-theme-default"
                                             data-ps-id="1c116962-edd9-6387-f228-216cfc24c6d6">
                                             <div class="lobilist-header ui-sortable-handle">
@@ -61,35 +62,99 @@
                                             <div class="lobilist-body">
                                                 <ul class="lobilist-items ui-sortable">
                                                     @if (count($tasks) <> 0)
-                                                        @for ($i = 0; $i < 1; $i++)
-                                                            {{-- @foreach ($tasks as $task) --}}
+                                                        {{-- @for ($i = 0; $i < 2; $i++) --}}
+                                                            @foreach ($tasks as $task)
                                                             <li data-id="18" class="lobilist-item">
                                                                 <div class="lobilist-item-title">
-                                                                    {{ $tasks[$i]->title }}
+                                                                    {{ $task->title }}
                                                                 </div>
                                                                 <div class="lobilist-item-description">
-                                                                    {{ $tasks[$i]->description }}</div>
+                                                                    {{ $task->description }}</div>
                                                                 <button class="btn btn-link"
-                                                                    onclick="showdetails({{ $tasks[$i]->id }})"><small>details</small></button>
-                                                                <div id="details-{{ $tasks[$i]->id }}"
+                                                                    onclick="showdetails({{ $task->id }})"><small>details</small></button>
+                                                                <div id="details-{{ $task->id }}"
                                                                     class="hide">
                                                                     <div class="lobilist-item-duedate">due date:
-                                                                        {{ $tasks[$i]->duedate }}</div>
+                                                                        {{ $task->duedate }}</div>
                                                                     <div class="lobilist-item-status">status:
-                                                                        {{ $tasks[$i]->status }}</div>
+                                                                        {{ $task->status }}</div>
                                                                     <div class="lobilist-item-created_at">created at:
-                                                                        {{ $tasks[$i]->created_at }}</div>
+                                                                        {{ $task->created_at }}</div>
                                                                 </div>
+                                                                <form action="" method="POST"
+                                                                class="lobilist-add-todo-form hide" id="editform-{{$task->id}}">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <input type="hidden" name="id">
+                                                                <div class="form-group">
+                                                                    <input type="text" name="title" value="{{ $task->title }}"
+                                                                        class="form-control" placeholder="TODO title">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    @error('title')
+                                                                        <p class="help is-danger" style="color: red">
+                                                                            {{ $message }}</p>
+                                                                    @enderror
+                                                                    <textarea rows="2" name="description" class="form-control"
+                                                                        placeholder="TODO description">{{ $task->description }}</textarea>
+                                                                    @error('description')
+                                                                        <p class="help is-danger" style="color: red">
+                                                                            {{ $message }}</p>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label
+                                                                        for="exampleFormControlSelect1">{{ __('Assigned To') }}</label>
+                                                                    <select name="assigned_to" class="form-control"
+                                                                        id="exampleFormControlSelect1"
+                                                                        style="appearance: none;background-image: url('<custom_arrow_image_url_here>');">
+                                                                        @foreach ($users as $user)
+                                                                            @if (Auth::User()->id == $user->id)
+                                                                                <option value="{{ $user->id }}"
+                                                                                    @if (old('assigned_to') == $user->id) {{ 'selected' }} @endif selected>
+                                                                                    {{ Auth::User()->name }}</option>
+                                                                            @else
+                                                                                <option value="{{ $user->id }}"
+                                                                                    @if (old('assigned_to') == $user->id) {{ 'selected' }} @endif>{{ $user->name }}
+                                                                                </option>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </select>
+                                                                    @error('assigned_to')
+                                                                        <p class="help is-danger" style="color: red">
+                                                                            {{ $message }}</p>
+                                                                    @enderror
+                                                                </div><br>
+                                                                <div class="form-group">
+                                                                    <input type="date" name="duedate"
+                                                                        value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}"
+                                                                        class="datepicker form-control hasDatepicker"
+                                                                        placeholder="Due Date" id="dp1639475788502">
+                                                                </div>
+                                                                <div class="lobilist-form-footer">
+                                                                    @error('duedate')
+                                                                        <p class="help is-danger" style="color: red">
+                                                                            {{ $message }}</p>
+                                                                    @enderror
+                                                                    <button class="btn btn-primary btn-sm btn-add-todo"
+                                                                        type="submit">{{ __('Add') }}</button>
+                                                                    <button type="button"
+                                                                        class="btn btn-danger btn-sm btn-discard-todo"
+                                                                        onclick="addfooter()">{{ __('Cancel') }}</button>
+                                                                </div>
+                                                            </form>
+
                                                                 <div class="todo-actions">
                                                                     {{-- <a href="{{route('tasks.edit',$task->id)}}"> --}}
-                                                                    <button onclick="editform({{ $tasks[$i]->id }})" type="button"
+                                                                    <button onclick="editform({{ $task->id }})" type="button"
                                                                         class="btn btn-link edit-todo todo-action"
                                                                         style="padding-top:0">
                                                                         <i class="ti-pencil fa-xs"></i>
                                                                     </button>
+
                                                                     {{-- </a> --}}
                                                                     <form
-                                                                        action="{{ route('tasks.destroy', $tasks[$i]->id) }}"
+                                                                        action="{{ route('tasks.destroy', $task->id) }}"
                                                                         method="POST" style="display:inline">
                                                                         @csrf
                                                                         @method('DELETE')
@@ -101,14 +166,14 @@
                                                                 </div>
                                                                 <div class="drag-handler"></div>
                                                             </li>
-                                                        @endfor
+                                                        @endforeach
                                                 </ul>
                                                 <p style="text-align: center;"><a
                                                         href="{{ route('delegatedTasks') }}">{{ __('see more...') }}</a>
                                                 </p>
                                                 @endif
                                                 <form action="{!! route('tasks.store') !!}" method="POST"
-                                                    class="lobilist-add-todo-form hide" id="form">
+                                                    class="lobilist-add-todo-form hide" id="form" >
                                                     @csrf
                                                     <input type="hidden" name="id">
                                                     <div class="form-group">
@@ -173,9 +238,16 @@
                                                     class="btn-link btn-show-form"
                                                     onclick="addfooter()">{{ __('Add new') }}</button>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="lobilist-wrapper">
+                                        {{-- </div>
+                                    </div> --}}
+                                {{-- </div> --}}
+                            </div>
+                        </div>
+                        {{-- <div class="card">
+                            <div class="card-body"> --}}
+                                {{-- <h4 class="card-title">{{ __('Taskboard') }}</h4> --}}
+                                {{-- <div id="todo-lists-basic-demo" class="lobilists single-line ui-sortable"> --}}
+                                    <div class="lobilist-wrapper col-lg-4 col-sm-12 lobilists single-line ui-sortable">
                                         <div id="todo" class="lobilist lobilist-danger ps-container ps-theme-default"
                                             data-ps-id="d20776ef-bc82-4abb-8f47-3ee033fe81a0">
                                             <div class="lobilist-header ui-sortable-handle">
@@ -233,10 +305,17 @@
                                                         href="{{ route('dashboard') }}">{{ __('see more...') }}</a>
                                                 </p>
                                                 {{-- <div class="lobilist-footer"><a href="{{route('dashboard')}}">{{__('see more...')}}</a></div> --}}
-                                            </div>
-                                        </div>
+                                            {{-- </div>
+                                        </div> --}}
                                     </div>
-                                    <div class="lobilist-wrapper">
+                                {{-- </div> --}}
+                            </div>
+                        </div>
+                        {{-- <div class="card">
+                            <div class="card-body"> --}}
+                                {{-- <h4 class="card-title">{{ __('Taskboard') }}</h4> --}}
+                                {{-- <div id="todo-lists-basic-demo" class="lobilists single-line ui-sortable"> --}}
+                                    <div class="lobilist-wrapper col-lg-4 col-sm-12 lobilists single-line ui-sortable">
                                         <div id="Done" class="lobilist lobilist-success ps-container ps-theme-default"
                                             data-ps-id="0bd9f531-4e29-f392-3c68-5f451b832cbd">
                                             <div class="lobilist-header ui-sortable-handle">
@@ -275,14 +354,16 @@
                                                                 onclick="showdetails({{ $archive[$i]->id }})"><small>details</small></button>
                                                             <div id="details-{{ $archive[$i]->id }}"
                                                                 class="hide">
-                                                                <div class="lobilist-item-duedate">
+                                                                <div class="lobilist-item-created_at">from:
+                                                                    {{ App\Models\User::where(['id' => $task->user_id])->pluck('name')->first()}}</div>
+                                                                <div class="lobilist-item-duedate">duedate:
                                                                     {{ $archive[$i]->duedate }}</div>
-                                                                <div class="lobilist-item-status">
-                                                                    {{ $archive[$i]->status }}</div>
-                                                                <div class="lobilist-item-created_at">
+                                                                {{-- <div class="lobilist-item-status">status:
+                                                                    {{ $archive[$i]->status }}</div> --}}
+                                                                <div class="lobilist-item-created_at">created at:
                                                                     {{ $archive[$i]->created_at }}</div>
                                                             </div>
-                                                            <div class="todo-actions">
+                                                            {{-- <div class="todo-actions">
                                                                 <form
                                                                     action="{{ route('tasks.destroy', $archive[$i]->id) }}"
                                                                     method="POST" style="display:inline">
@@ -292,7 +373,7 @@
                                                                         class="btn btn-link delete-todo todo-action"><i
                                                                             class="ti-close"></i></button>
                                                                 </form>
-                                                            </div>
+                                                            </div> --}}
                                                             <div class="drag-handler">
                                                             </div>
                                                         </li>
@@ -304,10 +385,10 @@
                                              @endif
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                {{-- </div> --}}
+                            {{-- </div> --}}
+                        {{-- </div> --}}
+                    {{-- </div> --}}
                 </div>
             </div>
         </div>
@@ -611,6 +692,7 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="http://localhost/TaskList/public/assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="http://localhost/TaskList/public/assets/extra-libs/taskboard/js/jquery.ui.touch-punch-improved.js">
     </script>
@@ -642,7 +724,7 @@
     </script>
       <script>
         function editform(id) {
-            $("#form-"+ id).toggle();
+            $("#editform-"+ id).toggle();
         }
     </script>
     <script>
