@@ -267,7 +267,7 @@ class TaskController extends Controller
         ->simplePaginate(1);
         $users = User::where('parentId', Auth::User()->id)->orwhere('id', Auth::User()->id)->get();
     }else{
-        $tasks = Task::where('user_id', Auth::User()->id)->get();//all tasks that I created it
+        $tasks = Task::where('user_id', Auth::User()->id)->simplePaginate(1);//all tasks that I created it
         $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
      }
     // $archive = DB::select("CALL pr_archive_tasks( ".Auth::User()->id.")");//employees who have
