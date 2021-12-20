@@ -264,7 +264,7 @@ class TaskController extends Controller
             $query->where('users.parentId', Auth::User()->id)
                   ->orWhere('users.id',Auth::User()->id);
         })
-        ->simplePaginate(1);
+        ->simplePaginate(1,'1pagination')->appends(Arr::except(Request::query(),['*'], '1pagination'));
         $users = User::where('parentId', Auth::User()->id)->orwhere('id', Auth::User()->id)->get();
     }else{
         $tasks = Task::where('user_id', Auth::User()->id)->simplePaginate(1);//all tasks that I created it
@@ -279,8 +279,8 @@ class TaskController extends Controller
               ->orWhere('users.id',Auth::User()->id);
     })
     ->ORDERBY ('tasks.updated_at', 'DESC')
-    ->simplePaginate(1);
-    $assign = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->orderBy('created_at','desc')->simplePaginate(1);
+    ->simplePaginate(1,['*'],'2pagination')->appends(Arr::except(Request::query(), '2pagination'));
+    $assign = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->orderBy('created_at','desc')->simplePaginate(1,['*'],'3pagination')->appends(Arr::except(Request::query(), '3pagination'));
     return view('taskboard',compact('tasks','archive','assign','users'));
 }
 
