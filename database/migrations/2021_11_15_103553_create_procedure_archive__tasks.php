@@ -26,6 +26,8 @@ class CreateProcedureArchiveTasks extends Migration
         ORDER BY tasks.updated_at DESC;
         END;";
 
+
+       
         DB::unprepared($procedure);
     }
 

@@ -227,9 +227,9 @@
                                             onclick="addfooter()">{{ __('Cancel') }}</button>
                                     </div>
                                 </form>
-                                {{-- <div class="d-flex justify-content-center" style="margin-bottom:8;">
+                                <div class="d-flex justify-content-center" style="margin-bottom:8;">
                                     {!! $tasks->links() !!}
-                                </div> --}}
+                                </div>
                             </div>
                             <div class="lobilist-footer"><button type="button" class="btn-link btn-show-form"
                                     onclick="addfooter()">{{ __('Add new') }}</button>
@@ -379,9 +379,9 @@
                                                     href="{{ route('archive') }}">{{ __('see more...') }}</a>
                                             </p> --}}
                                 @endif
-                                {{-- <div class="d-flex justify-content-center" style="margin-bottom:8;">
+                                <div class="d-flex justify-content-center" style="margin-bottom:8;">
                                     {!! $archive->links() !!}
-                                </div> --}}
+                                </div>
                             </div>
                         </div>
                     </div>

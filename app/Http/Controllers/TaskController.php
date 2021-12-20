@@ -256,13 +256,30 @@ class TaskController extends Controller
    public function taskboard()
    {
     if(Auth::User()->parentId == null){
-        $tasks = DB::select("CALL pr_employees_tasks(".Auth::User()->id.")");//employees who have assign
+        // $tasks = DB::select("CALL pr_employees_tasks(".Auth::User()->id.")");//employees who have assign
+        $tasks = DB::table('tasks')
+        ->join('users', 'tasks.assigned_to', '=', 'users.id')
+        ->where('tasks.status','<>','finished')
+        ->where(function ($query) {
+            $query->where('users.parentId', Auth::User()->id)
+                  ->orWhere('users.id',Auth::User()->id);
+        })
+        ->simplePaginate(1);
         $users = User::where('parentId', Auth::User()->id)->orwhere('id', Auth::User()->id)->get();
     }else{
         $tasks = Task::where('user_id', Auth::User()->id)->get();//all tasks that I created it
         $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
      }
-    $archive = DB::select("CALL pr_archive_tasks( ".Auth::User()->id.")");//employees who have
+    // $archive = DB::select("CALL pr_archive_tasks( ".Auth::User()->id.")");//employees who have
+    $archive = DB::table('tasks')
+    ->join('users', 'tasks.assigned_to', '=', 'users.id')
+    ->where('tasks.status','=','finished')
+    ->where(function ($query) {
+        $query->where('users.parentId', Auth::User()->id)
+              ->orWhere('users.id',Auth::User()->id);
+    })
+    ->ORDERBY ('tasks.updated_at', 'DESC')
+    ->simplePaginate(1);
     $assign = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->orderBy('created_at','desc')->simplePaginate(1);
     return view('taskboard',compact('tasks','archive','assign','users'));
 }
