@@ -257,8 +257,8 @@ class TaskController extends Controller
    {
     if(Auth::User()->parentId == null){
         // $tasks = DB::select("CALL pr_employees_tasks(".Auth::User()->id.")");//employees who have assign
-        $tasks = DB::table('tasks')
-        ->join('users', 'tasks.assigned_to', '=', 'users.id')
+        $tasks = DB::table('users')
+        ->join('tasks', 'tasks.assigned_to', '=', 'users.id')
         ->where('tasks.status','<>','finished')
         ->where(function ($query) {
             $query->where('users.parentId', Auth::User()->id)
@@ -271,8 +271,8 @@ class TaskController extends Controller
         $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
      }
     // $archive = DB::select("CALL pr_archive_tasks( ".Auth::User()->id.")");//employees who have
-    $archive = DB::table('tasks')
-    ->join('users', 'tasks.assigned_to', '=', 'users.id')
+    $archive = DB::table('users')
+    ->join('tasks', 'tasks.assigned_to', '=', 'users.id')
     ->where('tasks.status','=','finished')
     ->where(function ($query) {
         $query->where('users.parentId', Auth::User()->id)
@@ -280,6 +280,7 @@ class TaskController extends Controller
     })
     ->ORDERBY ('tasks.updated_at', 'DESC')
     ->simplePaginate(3,['*'],'archive');
+    // dd($archive);
     $assign = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->orderBy('created_at','desc')->simplePaginate(3,['*'],'assign');
     return view('taskboard',compact('tasks','archive','assign','users'));
 }

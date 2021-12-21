@@ -333,7 +333,7 @@
                             </div>
                             <div class="lobilist-body">
                                 <ul class="lobilist-items ui-sortable">
-                                    @if (count($archive) != 0)
+                                    {{-- @if (count($archive) != 0) --}}
                                         @foreach ($archive as $myarchive)
                                             <li data-id="15" class="lobilist-item">
                                                 <div class="lobilist-item-title">
@@ -342,8 +342,8 @@
                                                 <div class="lobilist-item-description">
                                                     {{ $myarchive->description }}</div>
                                                 <button class="btn btn-link"
-                                                    onclick="showdetails({{ $myarchive->id }})"><small>details</small></button>
-                                                <div id="details-{{ $myarchive->id }}" class="hide">
+                                                    onclick="archivedetails({{ $myarchive->id }})"><small>details</small></button>
+                                                <div id="archive-{{ $myarchive->id }}" class="hide">
                                                     <div class="lobilist-item-created_at">from:
                                                         {{ App\Models\User::where(['id' => $task->user_id])->pluck('name')->first() }}
                                                     </div>
@@ -358,26 +358,12 @@
                                                     <div class="lobilist-item-created_at">updated at:
                                                         {{ $date->format('m-d-Y H:i') }}</div>
                                                 </div>
-                                                {{-- <div class="todo-actions">
-                                                                <form
-                                                                    action="{{ route('tasks.destroy', $archive[$i]->id) }}"
-                                                                    method="POST" style="display:inline">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit"
-                                                                        class="btn btn-link delete-todo todo-action"><i
-                                                                            class="ti-close"></i></button>
-                                                                </form>
-                                                            </div> --}}
                                                 <div class="drag-handler">
                                                 </div>
                                             </li>
                                         @endforeach
                                 </ul>
-                                {{-- <p style="text-align: center;"><a
-                                                    href="{{ route('archive') }}">{{ __('see more...') }}</a>
-                                            </p> --}}
-                                @endif
+                                {{-- @endif --}}
                                 <div class="d-flex justify-content-center" style="margin-bottom:8;">
                                     {!! $archive->links() !!}
                                 </div>
@@ -733,6 +719,11 @@
     <script>
         function assigndetails(id) {
             $("#assign-" + id).toggle();
+        }
+    </script>
+    <script>
+        function archivedetails(id) {
+            $("#archive-" + id).toggle();
         }
     </script>
 </body>
