@@ -195,7 +195,6 @@ class TaskController extends Controller
 
     public function printAssign (Request $request)
     {
-        // dd($request->status);
         if($request->status == "in")
            $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','=',"in progress")->get();
         elseif($request->status == "waiting")
@@ -233,7 +232,6 @@ class TaskController extends Controller
          else{
             return view('dashboard',['tasks'=> $tasks,'users'=>'']);
          }
-
     }
 
     public function find($status)
@@ -264,12 +262,15 @@ class TaskController extends Controller
             $query->where('users.parentId', Auth::User()->id)
                   ->orWhere('users.id',Auth::User()->id);
         })
-        ->simplePaginate(3,['*'],'tasks');
+        ->simplePaginate(1,['*'],'tasks');
+        // dd($tasks);
         $users = User::where('parentId', Auth::User()->id)->orwhere('id', Auth::User()->id)->get();
     }else{
         $tasks = Task::where('user_id', Auth::User()->id)->simplePaginate(1);//all tasks that I created it
         $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
      }
+
+
     // $archive = DB::select("CALL pr_archive_tasks( ".Auth::User()->id.")");//employees who have
     $archive = DB::table('users')
     ->join('tasks', 'tasks.assigned_to', '=', 'users.id')
@@ -279,9 +280,9 @@ class TaskController extends Controller
               ->orWhere('users.id',Auth::User()->id);
     })
     ->ORDERBY ('tasks.updated_at', 'DESC')
-    ->simplePaginate(3,['*'],'archive');
+    ->simplePaginate(1,['*'],'archive');
     // dd($archive);
-    $assign = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->orderBy('created_at','desc')->simplePaginate(3,['*'],'assign');
+    $assign = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->orderBy('created_at','desc')->simplePaginate(1,['*'],'assign');
     return view('taskboard',compact('tasks','archive','assign','users'));
 }
 
