@@ -24,14 +24,27 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-<style>
-    @media screen and (max-width: 600px) {
-        #doing {
-            margin-bottom: 0;
-            color: Pink;
+    <style>
+        @media (max-width: 600px) {
+            #doing, #todo,#Done {
+                height: 70%;
+                margin-top: 100px;
+            }
+            #form {
+                overflow: auto;
+                height: 300px;
+            }
+            .body-card {
+                padding-bottom: 0;
+                height: 300px;
+                overflow: auto;
+            }
+            .lobilist-wrapper {
+                margin-bottom: 0;
+                margin-top: 0;
+            }
         }
-        }
-</style>
+    </style>
 </head>
 <body>
     <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin1" data-sidebartype="mini-sidebar"
@@ -42,8 +55,7 @@
             <div class="container-fluid" style="width: 100%;margin:auto;">
                 <div class="row">
                     <div class="lobilist-wrapper col-lg-4 col-sm-12 lobilists single-line ui-sortable">
-                        <div style="margin-bottom:0;" id="doing"
-                            class="lobilist lobilist-primary ps-container ps-theme-default"
+                        <div id="doing" class="lobilist lobilist-primary ps-container ps-theme-default"
                             data-ps-id="1c116962-edd9-6387-f228-216cfc24c6d6">
                             <div class="lobilist-header ui-sortable-handle">
                                 <div class="lobilist-actions">
@@ -55,7 +67,7 @@
                                     <div class="lobilist-title">{{ __('Delegated Tasks') }}</div>
                                 </a>
                             </div>
-                            <div class="lobilist-body">
+                            <div class="lobilist-body body-card">
                                 <ul class="lobilist-items ui-sortable" id="delegated-items">
                                     @foreach ($tasks as $task)
                                         <li data-id="18" class="lobilist-item">
@@ -91,7 +103,7 @@
                                     <div class="lobilist-item-created_at">updated at:
                                         {{ $date->format('m-d-Y H:i') }}</div>
                             </div>
-                            <form action="{!! route('tasks.update', $task->id )!!}}" method="POST" class="lobilist-add-todo-form hide"
+                            <form action="{!! route('tasks.update', $task->id) !!}}" method="POST" class="lobilist-add-todo-form hide"
                                 id="editform-{{ $task->id }}">
                                 @csrf
                                 @method('PUT')
@@ -224,11 +236,13 @@
                                         onclick="addfooter()">{{ __('Cancel') }}</button>
                                 </div>
                             </form>
-                            <div class="d-flex justify-content-center" style="margin-bottom:8;">
+                            <div id="pagination-delegated" class="d-flex justify-content-center"
+                                style="margin-bottom:8;">
                                 {!! $tasks->links() !!}
                             </div>
                         </div>
-                        {{-- <div class="lobilist-footer"><button type="button" class="btn-link btn-show-form"
+                        {{-- <div class="lobilist-footer">
+                            <button type="button" class="btn-link btn-show-form"
                                 onclick="addfooter()">{{ __('Add new') }}</button>
                         </div> --}}
                     </div>
@@ -245,7 +259,7 @@
                                 <div class="lobilist-title">{{ __('Todo') }}</div>
                             </a>
                         </div>
-                        <div class="lobilist-body">
+                        <div class="lobilist-body body-card">
                             <ul class="lobilist-items ui-sortable">
                                 @if (count($assign) != 0)
                                     @foreach ($assign as $myassign)
@@ -285,14 +299,13 @@
                                 @endif
                             </ul>
                             {{-- pagination --}}
-                            <div id="pagination-delegated" class="d-flex justify-content-center" style="margin-bottom:8;">
+                            <div class="d-flex justify-content-center" style="margin-bottom:8;">
                                 {!! $assign->links() !!}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div style="margin:0;padding:0"
-                    class="lobilist-wrapper col-lg-4 col-sm-12 lobilists single-line ui-sortable">
+                <div class="lobilist-wrapper col-lg-4 col-sm-12 lobilists single-line ui-sortable">
                     <div id="Done" class="lobilist lobilist-success ps-container ps-theme-default"
                         data-ps-id="0bd9f531-4e29-f392-3c68-5f451b832cbd">
                         <div class="lobilist-header ui-sortable-handle">
@@ -303,7 +316,7 @@
                                 <div class="lobilist-title">{{ __('Archive') }}</div>
                             </a>
                         </div>
-                        <div class="lobilist-body">
+                        <div class="lobilist-body body-card">
                             <ul class="lobilist-items ui-sortable">
                                 {{-- @if (count($archive) != 0) --}}
                                 @foreach ($archive as $myarchive)
