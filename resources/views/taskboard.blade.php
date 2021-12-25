@@ -25,34 +25,43 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
     <style>
-         .body-card {
-                padding-bottom: 0;
-                height: 350px;
-                overflow: auto;
-            }
+        .body-card {
+            padding-bottom: 0;
+            height: 350px;
+            overflow: auto;
+        }
+
     </style>
     <style>
         @media (max-width: 600px) {
-            #doing, #todo,#Done {
+
+            #doing,
+            #todo,
+            #Done {
                 height: 70%;
                 margin-top: 100px;
             }
+
             #form {
                 overflow: auto;
                 height: 300px;
             }
+
             .body-card {
                 padding-bottom: 0;
                 height: 300px;
                 overflow: auto;
             }
+
             .lobilist-wrapper {
                 margin-bottom: 0;
                 margin-top: 0;
             }
         }
+
     </style>
 </head>
+
 <body>
     <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin1" data-sidebartype="mini-sidebar"
         data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="boxed">
@@ -243,8 +252,7 @@
                                         onclick="addfooter()">{{ __('Cancel') }}</button>
                                 </div>
                             </form>
-                            <div id="pagination-delegated" class="d-flex justify-content-center"
-                                style="margin-bottom:8;">
+                            <div id="pagination-delegated" class="d-flex justify-content-center">
                                 {!! $tasks->links() !!}
                             </div>
                         </div>
