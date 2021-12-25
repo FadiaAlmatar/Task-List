@@ -25,6 +25,13 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
     <style>
+         .body-card {
+                padding-bottom: 0;
+                height: 350px;
+                overflow: auto;
+            }
+    </style>
+    <style>
         @media (max-width: 600px) {
             #doing, #todo,#Done {
                 height: 70%;
@@ -44,13 +51,6 @@
                 margin-top: 0;
             }
         }
-    </style>
-    <style>
-         .body-card {
-                padding-bottom: 0;
-                height: 350px;
-                overflow: auto;
-            }
     </style>
 </head>
 <body>
