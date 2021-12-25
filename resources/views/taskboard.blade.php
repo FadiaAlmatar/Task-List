@@ -45,6 +45,13 @@
             }
         }
     </style>
+    <style>
+         .body-card {
+                padding-bottom: 0;
+                height: 350px;
+                overflow: auto;
+            }
+    </style>
 </head>
 <body>
     <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin1" data-sidebartype="mini-sidebar"

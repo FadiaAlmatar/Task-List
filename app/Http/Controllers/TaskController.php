@@ -278,9 +278,9 @@ class TaskController extends Controller
               ->orWhere('users.id',Auth::User()->id);
     })
     ->ORDERBY ('tasks.updated_at', 'DESC')
-    ->simplePaginate(1,['*'],'archive');
+    ->simplePaginate(3,['*'],'archive');
     // dd($archive);
-    $assign = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->orderBy('created_at','desc')->simplePaginate(1,['*'],'assign');
+    $assign = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->orderBy('created_at','desc')->simplePaginate(3,['*'],'assign');
     return view('taskboard',compact('tasks','archive','assign','users'));
 }
 
