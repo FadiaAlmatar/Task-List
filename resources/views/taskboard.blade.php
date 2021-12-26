@@ -30,6 +30,48 @@
             height: 350px;
             overflow: auto;
         }
+        /* Dropdown Button */
+        .dropbtn {
+        /* background-color: #04AA6D; */
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        }
+
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+        position: relative;
+        display: inline-block;
+        }
+
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+        display: none;
+        position: absolute;
+        /* float:left; */
+        background-color: #f1f1f1;
+        min-width: 20px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {background-color: #ddd;}
+
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {display: block;}
+
+        /* Change the background color of the dropdown button when the dropdown content is shown */
+        .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
     </style>
     <style>
@@ -261,7 +303,6 @@
                                 onclick="addfooter()">{{ __('Add new') }}</button>
                         </div> --}}
                     </div>
-
                 </div>
                 <div style="margin-bottom:0;margin-top:0;"
                     class="lobilist-wrapper col-lg-4 col-sm-12 lobilists single-line ui-sortable">
@@ -276,10 +317,36 @@
                         </div>
                         <div class="lobilist-body body-card">
                             <ul class="lobilist-items ui-sortable">
-                                @if (count($assign) != 0)
+                                {{-- @if (count($assign) != 0) --}}
                                     @foreach ($assign as $myassign)
                                         <li data-id="18" class="lobilist-item">
                                             <div class="lobilist-item-title">{{ $myassign->title }}
+                                                <div class="dropdown">
+                                                    {{-- <i class="fas fa-angle-down dropbtn"  style="margin-right: 10px;"> --}}
+                                                    {{-- <button class="dropbtn">Dropdown</button> --}}
+                                                    {{-- <div class="dropdown-content">
+                                                        <a href="#">Link 1</a>
+                                                        <a href="#">Link 2</a>
+                                                        <a href="#">Link 3</a>
+                                                        </div>
+                                                        {{-- </i> --}}
+                                                    {{-- </div>  --}}
+                                            {{-- <div class="form-check"> --}}
+                                                {{-- <select name="status[]" aria-label=".form-select-sm example">
+                                                @if($myassign->status <> "not started")
+                                                    <option>{{__($myassign->status)}}</option>
+                                                    <option value="not started">{{__('not started')}}</option>
+                                                @else
+                                                    <option value="not started" selected>{{__('not started')}}</option>
+                                                @endif
+                                                <option value="in progress">{{__('in progress')}}</option>
+                                                <option value="waiting">{{__('waiting')}}</option>
+                                                <option value="finished">{{__('finished')}}</option>
+                                                <option value="denied">{{__('denied')}}</option>
+                                                <option value="forward">{{__('forward')}}</option>
+                                                </select> --}}
+                                                {{-- <input type="hidden" name="taskId[]" value="{{$myassign->id}}"> --}}
+                                            {{-- </div> --}}
                                             </div>
                                             <div class="lobilist-item-description">
                                                 {{ $myassign->description }}</div>
@@ -301,8 +368,36 @@
                                                     {{ $date->format('m-d-Y H:i') }}</div>
                                             </div>
                                             <div class="todo-actions">
-                                                <div class="edit-todo todo-action">
-                                                    {{-- <i class="ti-pencil"></i> --}}
+                                                <div class="edit-todo todo-action dropdown">
+                                                   {{-- <button class="btn btn-link" onclick="showselect()">
+                                                       <i class="fas fa-angle-down"  ></i>
+                                                    </button> --}}
+                                                    {{-- <div id="sta"class="hide">
+                                                    <select  style="border:none;"name="status[]" aria-label=".form-select-sm example" >
+                                                            {{-- @if($myassign->status <> "not started")
+                                                                <option>{{__($myassign->status)}}</option> --}}
+                                                                {{-- <option></option>
+                                                                <option value="not started">{{__('not started')}}</option> --}}
+                                                            {{-- @else --}}
+                                                                {{-- <option value="not started" selected>{{__('not started')}}</option> --}}
+                                                            {{-- @endif --}}
+                                                            {{-- <option value="in progress">{{__('in progress')}}</option>
+                                                            <option value="waiting">{{__('waiting')}}</option>
+                                                            <option value="finished">{{__('finished')}}</option>
+                                                            <option value="denied">{{__('denied')}}</option>
+                                                            <option value="forward">{{__('forward')}}</option>
+                                                    </select>
+                                                        </div> --}}
+                                                        {{-- <div class="dropdown"> --}}
+                                                            {{-- <i class="fas fa-angle-down dropbtn"  style="margin-right: 10px;"> --}}
+                                                            {{-- <button class="dropbtn">Dropdown</button> --}}
+                                                            <div class="dropdown-content">
+                                                              <a href="#">Link 1</a>
+                                                              <a href="#">Link 2</a>
+                                                              <a href="#">Link 3</a>
+                                                            </div>
+                                                            {{-- </i> --}}
+                                                          {{-- </div> --}}
                                                 </div>
                                                 <div class="delete-todo todo-action">
                                                     <i class="ti-close"></i>
@@ -311,7 +406,7 @@
                                             <div class="drag-handler"></div>
                                         </li>
                                     @endforeach
-                                @endif
+                                {{-- @endif --}}
                             </ul>
                             {{-- pagination --}}
                             <div class="d-flex justify-content-center" style="margin-bottom:8;">
@@ -708,6 +803,12 @@
             $("#form").toggle();
             $("#delegated-items").toggle();
             // $("#pagination-delegated").toggle();
+        }
+    </script>
+    <script>
+        function showselect(){
+            // $("#form").toggle();
+            $("#sta").toggle();
         }
     </script>
     <script>
