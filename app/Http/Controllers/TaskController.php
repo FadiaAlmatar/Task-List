@@ -68,29 +68,27 @@ class TaskController extends Controller
         $user = User::where('id',$request->assigned_to)->first();
         return redirect()->route('delegatedTasks')->with('success', 'Task created successfully');
     }
-    public function store_status(Request $request)
+
+    public function status(Request $request ,$id)
     {
-        for ($i = 0; $i < count($request->status); $i++) {
-            $task = Task::find($request->taskId[$i]);
-            if($request->status[$i] <> 'forward'){
-                if($request->forwardto[$i] == null)
-                    $task->status = $request->status[$i];
+            $task = Task::find($id);
+            if($request->status <> 'forward'){
+                if($request->forwardto == null)
+                    $task->status = $request->status;
                 else{
                     $task->status = 'forward';
-                    $task->assigned_to = $request->forwardto[$i];
+                    $task->assigned_to = $request->forwardto;
                     // $task->user_id = Auth::User()->id;
                 }
             }
             else{
-                if($request->forwardto[$i] <> null){
-                    $task->status = $request->status[$i];
-                    $task->assigned_to = $request->forwardto[$i];
+                if($request->forwardto<> null){
+                    $task->status = $request->status;
+                    $task->assigned_to = $request->forwardto;
                     // $task->user_id = Auth::User()->id;
                 }
             }
             $task->save();
-        }
-        // return redirect()->route('tasks.index');
         return redirect()->back();
     }
 

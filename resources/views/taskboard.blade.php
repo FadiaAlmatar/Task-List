@@ -295,29 +295,33 @@
                                                 <div class="lobilist-item-created_at">updated at:
                                                     {{ $date->format('m-d-Y H:i') }}</div>
                                             </div>
-                                            <form action="{{ route('tasks.store_status') }}" method="POST"
+                                            <form action="{{ route('tasks.status',$myassign->id) }}" method="POST"
                                                 class="lobilist-add-todo-form hide"
                                                 id="editstatus-{{ $myassign->id }}">
                                                 @csrf
-                                                @method('PUT')
+                                                
                                                 <input type="hidden" name="id">
                                                 <div class="form-group">
                                                     <label
                                                         for="exampleFormControlSelect1">{{ __('Assigned To') }}</label>
-                                                        <select style="width:100%"name="status[]"class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                                            @if($task->status <> "not started")
-                                                                <option>{{__($task->status)}}</option>
-                                                                <option value="not started">{{__('not started')}}</option>
-                                                            @else
-                                                                <option value="not started" selected>{{__('not started')}}</option>
-                                                            @endif
-                                                            <option value="in progress">{{__('in progress')}}</option>
-                                                            <option value="waiting">{{__('waiting')}}</option>
-                                                            <option value="finished">{{__('finished')}}</option>
-                                                            <option value="denied">{{__('denied')}}</option>
-                                                            <option value="forward">{{__('forward')}}</option>
-                                                            </select>
-                                                            <input type="hidden" name="taskId[]" value="{{$task->id}}">
+                                                    <select style="width:100%" name="status[]"
+                                                        class="form-select form-select-sm"
+                                                        aria-label=".form-select-sm example">
+                                                        @if ($task->status != 'not started')
+                                                            <option>{{ __($task->status) }}</option>
+                                                            <option value="not started">{{ __('not started') }}
+                                                            </option>
+                                                        @else
+                                                            <option value="not started" selected>
+                                                                {{ __('not started') }}</option>
+                                                        @endif
+                                                        <option value="in progress">{{ __('in progress') }}</option>
+                                                        <option value="waiting">{{ __('waiting') }}</option>
+                                                        <option value="finished">{{ __('finished') }}</option>
+                                                        <option value="denied">{{ __('denied') }}</option>
+                                                        <option value="forward">{{ __('forward') }}</option>
+                                                    </select>
+                                                    <input type="hidden" name="taskId[]" value="{{ $task->id }}">
                                                     @error('assigned_to')
                                                         <p class="help is-danger" style="color: red">
                                                             {{ $message }}</p>
@@ -326,25 +330,29 @@
                                                 <div class="form-group">
                                                     <label
                                                         for="exampleFormControlSelect1">{{ __('Forward To') }}</label>
-                                                <select style="width:100%"name="forwardto[]"class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                                    <option></option>
-                                                    @foreach ($users as $user)
-                                                        @unless($user->id == Auth::User()->id)
-                                                            <option value="{{$user->id}}">{{$user->name}}</option>
-                                                        @endunless
+                                                    <select style="width:100%" name="forwardto[]"
+                                                        class="form-select form-select-sm"
+                                                        aria-label=".form-select-sm example">
+                                                        <option></option>
+                                                        @foreach ($users as $user)
+                                                            @unless($user->id == Auth::User()->id)
+                                                                <option value="{{ $user->id }}">{{ $user->name }}
+                                                                </option>
+                                                            @endunless
 
-                                                    @endforeach
-                                                </select>
-                                                @error('forwardto[]')
-                                                <p class="help is-danger" style="color: black">{{ $message }}</p>
-                                                @enderror
+                                                        @endforeach
+                                                    </select>
+                                                    @error('forwardto[]')
+                                                        <p class="help is-danger" style="color: black">{{ $message }}
+                                                        </p>
+                                                    @enderror
                                                 </div>
-                                                {{-- <div class="lobilist-form-footer">
+                                                <div class="lobilist-form-footer">
                                                     <button class="btn btn-primary btn-sm btn-add-todo"
                                                         type="submit">{{ __('Save') }}</button>
                                                     <button type="button" class="btn btn-danger btn-sm btn-discard-todo"
                                                         onclick="addfooter()">{{ __('Cancel') }}</button>
-                                                </div> --}}
+                                                </div>
                                             </form>
                                         </div>
                                         <div class="todo-actions">

@@ -31,6 +31,7 @@ Route::get('locale/{locale}', function ($locale){
 Route::resource('tasks', TaskController::class);
 Route::resource('employees', EmployeeController::class);
 Route::post('/task',[TaskController::class,'store_status'])->name('tasks.store_status');
+Route::post('/task/{id}',[TaskController::class,'status'])->name('tasks.status');
 Route::get('/archive',[TaskController::class,'archive'])->name('archive');
 // Route::get('/app-taskboard', [TaskController::class,'taskboard'])->name('taskboard');
 Route::get('/taskboard', [TaskController::class,'taskboard'])->name('taskboard');
