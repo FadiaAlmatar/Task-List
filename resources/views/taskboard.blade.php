@@ -299,16 +299,16 @@
                                                 class="lobilist-add-todo-form hide"
                                                 id="editstatus-{{ $myassign->id }}">
                                                 @csrf
-                                                
+
                                                 <input type="hidden" name="id">
                                                 <div class="form-group">
                                                     <label
                                                         for="exampleFormControlSelect1">{{ __('Assigned To') }}</label>
-                                                    <select style="width:100%" name="status[]"
+                                                    <select name="status"
                                                         class="form-select form-select-sm"
                                                         aria-label=".form-select-sm example">
-                                                        @if ($task->status != 'not started')
-                                                            <option>{{ __($task->status) }}</option>
+                                                        @if ($myassign->status != 'not started')
+                                                            <option>{{ __($myassign->status) }}</option>
                                                             <option value="not started">{{ __('not started') }}
                                                             </option>
                                                         @else
@@ -321,7 +321,7 @@
                                                         <option value="denied">{{ __('denied') }}</option>
                                                         <option value="forward">{{ __('forward') }}</option>
                                                     </select>
-                                                    <input type="hidden" name="taskId[]" value="{{ $task->id }}">
+                                                    <input type="hidden" name="taskId" value="{{ $myassign->id }}">
                                                     @error('assigned_to')
                                                         <p class="help is-danger" style="color: red">
                                                             {{ $message }}</p>
@@ -330,7 +330,7 @@
                                                 <div class="form-group">
                                                     <label
                                                         for="exampleFormControlSelect1">{{ __('Forward To') }}</label>
-                                                    <select style="width:100%" name="forwardto[]"
+                                                    <select  name="forwardto"
                                                         class="form-select form-select-sm"
                                                         aria-label=".form-select-sm example">
                                                         <option></option>
@@ -342,7 +342,7 @@
 
                                                         @endforeach
                                                     </select>
-                                                    @error('forwardto[]')
+                                                    @error('forwardto')
                                                         <p class="help is-danger" style="color: black">{{ $message }}
                                                         </p>
                                                     @enderror
