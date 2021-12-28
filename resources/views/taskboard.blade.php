@@ -25,56 +25,6 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
     <style>
-        .body-card {
-            padding-bottom: 0;
-            height: 350px;
-            overflow: auto;
-        }
-        /* Dropdown Button */
-        .dropbtn {
-        /* background-color: #04AA6D; */
-        color: white;
-        padding: 16px;
-        font-size: 16px;
-        border: none;
-        }
-
-        /* The container <div> - needed to position the dropdown content */
-        .dropdown {
-        position: relative;
-        display: inline-block;
-        }
-
-        /* Dropdown Content (Hidden by Default) */
-        .dropdown-content {
-        display: none;
-        position: absolute;
-        /* float:left; */
-        background-color: #f1f1f1;
-        min-width: 20px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-        }
-
-        /* Links inside the dropdown */
-        .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-        }
-
-        /* Change color of dropdown links on hover */
-        .dropdown-content a:hover {background-color: #ddd;}
-
-        /* Show the dropdown menu on hover */
-        .dropdown:hover .dropdown-content {display: block;}
-
-        /* Change the background color of the dropdown button when the dropdown content is shown */
-        .dropdown:hover .dropbtn {background-color: #3e8e41;}
-
-    </style>
-    <style>
         @media (max-width: 600px) {
 
             #doing,
@@ -186,40 +136,47 @@
                                     <label for="exampleFormControlSelect1">{{ __('Assigned To') }}</label>
                                     <select name="assigned_to" class="form-control" id="exampleFormControlSelect1"
                                         style="appearance: none;background-image: url('<custom_arrow_image_url_here>');">
-                                        @foreach ($users as $user)
-                                            @if (Auth::User()->id == $user->id)
-                                                <option value="{{ $user->id }}" @if (old('assigned_to') == $user->id) {{ 'selected' }} @endif selected>
-                                                    {{ Auth::User()->name }}</option>
-                                            @else
-                                                <option value="{{ $user->id }}" @if (old('assigned_to') == $user->id) {{ 'selected' }} @endif>
-                                                    {{ $user->name }}
-                                                </option>
-                                            @endif
-                                        @endforeach
+                                        @if (!empty($task) && old('assigned_to', $task->assigned_to))
+                                            <option value="{{ $task->assigned_to }}" selected>
+                                                {{ App\Models\User::where(['id' => $task->assigned_to])->pluck('name')->first() }}
+                                            </option>
+                                            @foreach ($users as $user)
+                                                @if ($task->assigned_to != $user->id)
+                                                    <option value="{{ $user->id }}" @if (old('assigned_to') == $user->id) {{ 'selected' }} @endif>
+                                                        {{ $user->name }}</option>
+                                                @endif
+                                            @endforeach
+                                        @else
+                                            @foreach ($users as $user)
+                                                @if (Auth::User()->id == $user->id)
+                                                    <option value="{{ $user->id }}" @if (old('assigned_to') == $user->id) {{ 'selected' }} @endif
+                                                        selected>{{ Auth::User()->name }}</option>
+                                                @else
+                                                    <option value="{{ $user->id }}" @if (old('assigned_to') == $user->id) {{ 'selected' }} @endif>
+                                                        {{ $user->name }}</option>
+                                                @endif
+                                            @endforeach
+                                        @endif
                                     </select>
                                     @error('assigned_to')
-                                        <p class="help is-danger" style="color: red">
-                                            {{ $message }}</p>
+                                        <p class="help is-danger" style="color: red">{{ $message }}</p>
                                     @enderror
                                 </div><br>
                                 <div class="form-group">
-                                    <input type="date" name="duedate"
-                                        value="{{ \Carbon\Carbon::now()->format('Y-m-d') }}"
-                                        class="datepicker form-control hasDatepicker" placeholder="Due Date"
-                                        id="dp1639475788502">
-                                </div>
-                                <div class="lobilist-form-footer">
+                                    <input name="duedate" type="date" class="datepicker form-control hasDatepicker"
+                                        value=@if (!empty($task)) "{{ $task->duedate }}" @else "{{ \Carbon\Carbon::now()->format('Y-m-d') }}" @endif />
                                     @error('duedate')
                                         <p class="help is-danger" style="color: red">
                                             {{ $message }}</p>
                                     @enderror
+                                </div>
+                                <div class="lobilist-form-footer">
                                     <button class="btn btn-primary btn-sm btn-add-todo"
                                         type="submit">{{ __('Save') }}</button>
                                     <button type="button" class="btn btn-danger btn-sm btn-discard-todo"
                                         onclick="addfooter()">{{ __('Cancel') }}</button>
                                 </div>
                             </form>
-
                             <div class="todo-actions">
                                 <button onclick="editform({{ $task->id }})" type="button"
                                     class="btn btn-link edit-todo todo-action" style="padding-top:0">
@@ -294,14 +251,11 @@
                                         onclick="addfooter()">{{ __('Cancel') }}</button>
                                 </div>
                             </form>
-                            <div id="pagination-delegated" class="d-flex justify-content-center">
+                            <div id="pagination-delegated" class="d-flex justify-content-center"
+                                style="margin-bottom:8px;">
                                 {!! $tasks->links() !!}
                             </div>
                         </div>
-                        {{-- <div class="lobilist-footer">
-                            <button type="button" class="btn-link btn-show-form"
-                                onclick="addfooter()">{{ __('Add new') }}</button>
-                        </div> --}}
                     </div>
                 </div>
                 <div style="margin-bottom:0;margin-top:0;"
@@ -317,36 +271,10 @@
                         </div>
                         <div class="lobilist-body body-card">
                             <ul class="lobilist-items ui-sortable">
-                                {{-- @if (count($assign) != 0) --}}
-                                    @foreach ($assign as $myassign)
-                                        <li data-id="18" class="lobilist-item">
-                                            <div class="lobilist-item-title">{{ $myassign->title }}
-                                                <div class="dropdown">
-                                                    {{-- <i class="fas fa-angle-down dropbtn"  style="margin-right: 10px;"> --}}
-                                                    {{-- <button class="dropbtn">Dropdown</button> --}}
-                                                    {{-- <div class="dropdown-content">
-                                                        <a href="#">Link 1</a>
-                                                        <a href="#">Link 2</a>
-                                                        <a href="#">Link 3</a>
-                                                        </div>
-                                                        {{-- </i> --}}
-                                                    {{-- </div>  --}}
-                                            {{-- <div class="form-check"> --}}
-                                                {{-- <select name="status[]" aria-label=".form-select-sm example">
-                                                @if($myassign->status <> "not started")
-                                                    <option>{{__($myassign->status)}}</option>
-                                                    <option value="not started">{{__('not started')}}</option>
-                                                @else
-                                                    <option value="not started" selected>{{__('not started')}}</option>
-                                                @endif
-                                                <option value="in progress">{{__('in progress')}}</option>
-                                                <option value="waiting">{{__('waiting')}}</option>
-                                                <option value="finished">{{__('finished')}}</option>
-                                                <option value="denied">{{__('denied')}}</option>
-                                                <option value="forward">{{__('forward')}}</option>
-                                                </select> --}}
-                                                {{-- <input type="hidden" name="taskId[]" value="{{$myassign->id}}"> --}}
-                                            {{-- </div> --}}
+                                @foreach ($assign as $myassign)
+                                    <li data-id="18" class="lobilist-item">
+                                        <div class="lobilist-item-title">{{ $myassign->title }}
+                                            <div class="dropdown">
                                             </div>
                                             <div class="lobilist-item-description">
                                                 {{ $myassign->description }}</div>
@@ -367,46 +295,76 @@
                                                 <div class="lobilist-item-created_at">updated at:
                                                     {{ $date->format('m-d-Y H:i') }}</div>
                                             </div>
-                                            <div class="todo-actions">
-                                                <div class="edit-todo todo-action dropdown">
-                                                   {{-- <button class="btn btn-link" onclick="showselect()">
-                                                       <i class="fas fa-angle-down"  ></i>
-                                                    </button> --}}
-                                                    {{-- <div id="sta"class="hide">
-                                                    <select  style="border:none;"name="status[]" aria-label=".form-select-sm example" >
-                                                            {{-- @if($myassign->status <> "not started")
-                                                                <option>{{__($myassign->status)}}</option> --}}
-                                                                {{-- <option></option>
-                                                                <option value="not started">{{__('not started')}}</option> --}}
-                                                            {{-- @else --}}
-                                                                {{-- <option value="not started" selected>{{__('not started')}}</option> --}}
-                                                            {{-- @endif --}}
-                                                            {{-- <option value="in progress">{{__('in progress')}}</option>
+                                            <form action="{{ route('tasks.store_status') }}" method="POST"
+                                                class="lobilist-add-todo-form hide"
+                                                id="editstatus-{{ $myassign->id }}">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="hidden" name="id">
+                                                <div class="form-group">
+                                                    <label
+                                                        for="exampleFormControlSelect1">{{ __('Assigned To') }}</label>
+                                                        <select style="width:100%"name="status[]"class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                                            @if($task->status <> "not started")
+                                                                <option>{{__($task->status)}}</option>
+                                                                <option value="not started">{{__('not started')}}</option>
+                                                            @else
+                                                                <option value="not started" selected>{{__('not started')}}</option>
+                                                            @endif
+                                                            <option value="in progress">{{__('in progress')}}</option>
                                                             <option value="waiting">{{__('waiting')}}</option>
                                                             <option value="finished">{{__('finished')}}</option>
                                                             <option value="denied">{{__('denied')}}</option>
                                                             <option value="forward">{{__('forward')}}</option>
-                                                    </select>
-                                                        </div> --}}
-                                                        {{-- <div class="dropdown"> --}}
-                                                            {{-- <i class="fas fa-angle-down dropbtn"  style="margin-right: 10px;"> --}}
-                                                            {{-- <button class="dropbtn">Dropdown</button> --}}
-                                                            <div class="dropdown-content">
-                                                              <a href="#">Link 1</a>
-                                                              <a href="#">Link 2</a>
-                                                              <a href="#">Link 3</a>
-                                                            </div>
-                                                            {{-- </i> --}}
-                                                          {{-- </div> --}}
+                                                            </select>
+                                                            <input type="hidden" name="taskId[]" value="{{$task->id}}">
+                                                    @error('assigned_to')
+                                                        <p class="help is-danger" style="color: red">
+                                                            {{ $message }}</p>
+                                                    @enderror
                                                 </div>
-                                                <div class="delete-todo todo-action">
-                                                    <i class="ti-close"></i>
+                                                <div class="form-group">
+                                                    <label
+                                                        for="exampleFormControlSelect1">{{ __('Forward To') }}</label>
+                                                <select style="width:100%"name="forwardto[]"class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                                    <option></option>
+                                                    @foreach ($users as $user)
+                                                        @unless($user->id == Auth::User()->id)
+                                                            <option value="{{$user->id}}">{{$user->name}}</option>
+                                                        @endunless
+
+                                                    @endforeach
+                                                </select>
+                                                @error('forwardto[]')
+                                                <p class="help is-danger" style="color: black">{{ $message }}</p>
+                                                @enderror
                                                 </div>
+                                                {{-- <div class="lobilist-form-footer">
+                                                    <button class="btn btn-primary btn-sm btn-add-todo"
+                                                        type="submit">{{ __('Save') }}</button>
+                                                    <button type="button" class="btn btn-danger btn-sm btn-discard-todo"
+                                                        onclick="addfooter()">{{ __('Cancel') }}</button>
+                                                </div> --}}
+                                            </form>
+                                        </div>
+                                        <div class="todo-actions">
+                                            <button onclick="editstatus({{ $myassign->id }})" type="button"
+                                                class="btn btn-link edit-todo todo-action" style="padding-top:0">
+                                                <i class="ti-pencil fa-xs"></i>
+                                            </button>
+                                            <div class="delete-todo todo-action">
+                                                <form action="{{ route('tasks.destroy', $myassign->id) }}"
+                                                    method="POST" style="display:inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-link delete-todo todo-action"
+                                                        style="padding-top:0"><i class="ti-close fa-xs"></i></button>
+                                                </form>
                                             </div>
-                                            <div class="drag-handler"></div>
-                                        </li>
-                                    @endforeach
-                                {{-- @endif --}}
+                                        </div>
+                                        <div class="drag-handler"></div>
+                                    </li>
+                                @endforeach
                             </ul>
                             {{-- pagination --}}
                             <div class="d-flex justify-content-center" style="margin-bottom:8;">
@@ -420,7 +378,6 @@
                         data-ps-id="0bd9f531-4e29-f392-3c68-5f451b832cbd">
                         <div class="lobilist-header ui-sortable-handle">
                             <div class="lobilist-actions">
-
                             </div>
                             <a href="{{ route('archive') }}">
                                 <div class="lobilist-title">{{ __('Archive') }}</div>
@@ -428,7 +385,6 @@
                         </div>
                         <div class="lobilist-body body-card">
                             <ul class="lobilist-items ui-sortable">
-                                {{-- @if (count($archive) != 0) --}}
                                 @foreach ($archive as $myarchive)
                                     <li data-id="15" class="lobilist-item">
                                         <div class="lobilist-item-title">
@@ -448,8 +404,6 @@
 
                                             <div class="lobilist-item-duedate">duedate:
                                                 {{ $myarchive->duedate }}</div>
-                                            {{-- <div class="lobilist-item-status">status:
-                                                                    {{ $archive[$i]->status }}</div> --}}
                                             <?php $date = \Carbon\Carbon::parse($myarchive->created_at); ?>
                                             <div class="lobilist-item-created_at">created at:
                                                 {{ $date->format('m-d-Y H:i') }}</div>
@@ -680,7 +634,6 @@
                                     </div>
                                 </a>
                                 <!-- Message -->
-                                {{-- <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 3px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div> --}}
                         </li>
                     </ul>
                 </div>
@@ -802,18 +755,21 @@
         function addfooter() {
             $("#form").toggle();
             $("#delegated-items").toggle();
-            // $("#pagination-delegated").toggle();
         }
     </script>
     <script>
-        function showselect(){
-            // $("#form").toggle();
+        function showselect() {
             $("#sta").toggle();
         }
     </script>
     <script>
         function editform(id) {
             $("#editform-" + id).toggle();
+        }
+    </script>
+    <script>
+        function editstatus(id) {
+            $("#editstatus-" + id).toggle();
         }
     </script>
     <script>
