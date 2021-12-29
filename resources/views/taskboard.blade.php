@@ -26,7 +26,6 @@
 <![endif]-->
     <style>
         @media (max-width: 600px) {
-
             #doing,
             #todo,
             #Done {
@@ -50,10 +49,8 @@
                 margin-top: 0;
             }
         }
-
     </style>
 </head>
-
 <body>
     <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin1" data-sidebartype="mini-sidebar"
         data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="boxed">
@@ -295,17 +292,15 @@
                                                 <div class="lobilist-item-created_at">updated at:
                                                     {{ $date->format('m-d-Y H:i') }}</div>
                                             </div>
-                                            <form action="{{ route('tasks.status',$myassign->id) }}" method="POST"
+                                            <form action="{{ route('tasks.status', $myassign->id) }}" method="POST"
                                                 class="lobilist-add-todo-form hide"
                                                 id="editstatus-{{ $myassign->id }}">
                                                 @csrf
-
                                                 <input type="hidden" name="id">
                                                 <div class="form-group">
                                                     <label
-                                                        for="exampleFormControlSelect1">{{ __('Assigned To') }}</label>
-                                                    <select name="status"
-                                                        class="form-select form-select-sm"
+                                                        for="exampleFormControlSelect1">{{ __('Status') }}</label>
+                                                    <select name="status" class="form-select form-select-sm"
                                                         aria-label=".form-select-sm example">
                                                         @if ($myassign->status != 'not started')
                                                             <option>{{ __($myassign->status) }}</option>
@@ -330,8 +325,7 @@
                                                 <div class="form-group">
                                                     <label
                                                         for="exampleFormControlSelect1">{{ __('Forward To') }}</label>
-                                                    <select  name="forwardto"
-                                                        class="form-select form-select-sm"
+                                                    <select name="forwardto" class="form-select form-select-sm"
                                                         aria-label=".form-select-sm example">
                                                         <option></option>
                                                         @foreach ($users as $user)
