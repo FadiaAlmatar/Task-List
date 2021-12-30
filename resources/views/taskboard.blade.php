@@ -25,6 +25,11 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
     <style>
+        /* .body-card {
+            padding-bottom: 0;
+            height: 350px;
+            overflow: auto;
+        } */
         @media (max-width: 600px) {
             #doing,
             #todo,
@@ -82,9 +87,9 @@
                                             <div class="lobilist-item-description">
                                                 {{ $task->description }}</div>
                                             <button class="btn btn-link"
-                                                onclick="showdetails({{ $task->id }})"><small>details</small></button>
+                                                onclick="showdetails({{ $task->id }})"><small>{{__('details')}}</small></button>
                                             <div id="details-{{ $task->id }}" class="hide">
-                                                <div class="lobilist-item-duedate">due date:
+                                                <div class="lobilist-item-duedate">{{__('due date:')}}'
                                                     {{ $task->duedate }}</div>
                                                 <div class="lobilist-item-status">status:
                                                     {{ $task->status }}</div>
