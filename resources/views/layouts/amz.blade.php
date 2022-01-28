@@ -23,7 +23,6 @@
     <![endif]-->
     @yield('styles')
 </head>
-
 <body>
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
@@ -128,7 +127,6 @@
                                     <i class="flag-icon flag-icon-us"></i> {{__('Arabic')}}</a>
                             </div>
                         </li>
-
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
@@ -162,7 +160,6 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-
                                     <i class="fa fa-power-off m-r-5 m-l-5"></i> {{ __('Logout') }}</a>
                                       <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf

@@ -25,6 +25,8 @@ class CreateProcedureEmployeesTasks extends Migration
         where ((users.parentId = num) or (users.id = num)) and (tasks.status <> 'finished');
         END;";
 
+    
+
         DB::unprepared($procedure);
     }
 
