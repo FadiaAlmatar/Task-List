@@ -68,29 +68,27 @@ class TaskController extends Controller
         $user = User::where('id',$request->assigned_to)->first();
         return redirect()->route('delegatedTasks')->with('success', 'Task created successfully');
     }
-    public function store_status(Request $request)
+
+    public function status(Request $request ,$id)
     {
-        for ($i = 0; $i < count($request->status); $i++) {
-            $task = Task::find($request->taskId[$i]);
-            if($request->status[$i] <> 'forward'){
-                if($request->forwardto[$i] == null)
-                    $task->status = $request->status[$i];
+            $task = Task::find($id);
+            if($request->status <> 'forward'){
+                if($request->forwardto == null)
+                    $task->status = $request->status;
                 else{
                     $task->status = 'forward';
-                    $task->assigned_to = $request->forwardto[$i];
+                    $task->assigned_to = $request->forwardto;
                     // $task->user_id = Auth::User()->id;
                 }
             }
             else{
-                if($request->forwardto[$i] <> null){
-                    $task->status = $request->status[$i];
-                    $task->assigned_to = $request->forwardto[$i];
+                if($request->forwardto<> null){
+                    $task->status = $request->status;
+                    $task->assigned_to = $request->forwardto;
                     // $task->user_id = Auth::User()->id;
                 }
             }
             $task->save();
-        }
-        // return redirect()->route('tasks.index');
         return redirect()->back();
     }
 
@@ -195,7 +193,6 @@ class TaskController extends Controller
 
     public function printAssign (Request $request)
     {
-        // dd($request->status);
         if($request->status == "in")
            $tasks = Task::where('assigned_to', Auth::User()->id)->where('status','=',"in progress")->get();
         elseif($request->status == "waiting")
@@ -233,7 +230,6 @@ class TaskController extends Controller
          else{
             return view('dashboard',['tasks'=> $tasks,'users'=>'']);
          }
-
     }
 
     public function find($status)
@@ -256,14 +252,33 @@ class TaskController extends Controller
    public function taskboard()
    {
     if(Auth::User()->parentId == null){
-        $tasks = DB::select("CALL pr_employees_tasks(".Auth::User()->id.")");//employees who have assign
+        // $tasks = DB::select("CALL pr_employees_tasks(".Auth::User()->id.")");//employees who have assign
+        $tasks = DB::table('users')
+        ->join('tasks', 'tasks.assigned_to', '=', 'users.id')
+        ->where('tasks.status','<>','finished')
+        ->where(function ($query) {
+            $query->where('users.parentId', Auth::User()->id)
+                  ->orWhere('users.id',Auth::User()->id);
+        })
+        ->simplePaginate(3,['*'],'tasks');
+        // dd($tasks);
         $users = User::where('parentId', Auth::User()->id)->orwhere('id', Auth::User()->id)->get();
     }else{
-        $tasks = Task::where('user_id', Auth::User()->id)->get();//all tasks that I created it
+        $tasks = Task::where('user_id', Auth::User()->id)->simplePaginate(1);//all tasks that I created it
         $users = User::where('parentId' , Auth::User()->parentId)->orwhere('id',Auth::User()->parentId)->get();
      }
-    $archive = DB::select("CALL pr_archive_tasks( ".Auth::User()->id.")");//employees who have
-    $assign = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->orderBy('created_at','desc')->simplePaginate(1);
+    // $archive = DB::select("CALL pr_archive_tasks( ".Auth::User()->id.")");//employees who have
+    $archive = DB::table('users')
+    ->join('tasks', 'tasks.assigned_to', '=', 'users.id')
+    ->where('tasks.status','=','finished')
+    ->where(function ($query) {
+        $query->where('users.parentId', Auth::User()->id)
+              ->orWhere('users.id',Auth::User()->id);
+    })
+    ->ORDERBY ('tasks.updated_at', 'DESC')
+    ->simplePaginate(3,['*'],'archive');
+    // dd($archive);
+    $assign = Task::where('assigned_to', Auth::User()->id)->where('status','<>','finished')->orderBy('created_at','desc')->simplePaginate(3,['*'],'assign');
     return view('taskboard',compact('tasks','archive','assign','users'));
 }
 

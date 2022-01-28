@@ -268,8 +268,8 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center">
-                {{__('All Rights Reserved by Innovative Systems. Designed and Developed')}}
-                <a href="https://almounkez.com">{{__('almounkez')}}</a>.
+                {{__('All Rights Reserved')}}
+                {{-- <a href="https://almounkez.com">{{__('almounkez')}}</a>. --}}
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
